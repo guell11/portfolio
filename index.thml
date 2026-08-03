@@ -1,0 +1,3305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Miguel Penha Reis — AI Engineer & Researcher
+    </title>
+
+    <meta
+        name="description"
+        content="Miguel Penha Reis builds AI systems, language models, research architectures, developer tools and experimental software."
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================================================
+           ROOT
+        ========================================================= */
+
+        :root {
+
+            --bg:
+                #050505;
+
+            --bg-soft:
+                #090909;
+
+            --surface:
+                #0d0d0e;
+
+            --surface-light:
+                #111112;
+
+            --border:
+                rgba(255,255,255,0.09);
+
+            --border-strong:
+                rgba(255,255,255,0.16);
+
+            --text:
+                #f4f4f5;
+
+            --muted:
+                #8c8c94;
+
+            --muted-light:
+                #b5b5bb;
+
+            --white:
+                #ffffff;
+
+            --max:
+                1180px;
+
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            background:
+                var(--bg);
+
+            color:
+                var(--text);
+
+            font-family:
+                "Inter",
+                sans-serif;
+
+            line-height:
+                1.6;
+
+            overflow-x:
+                hidden;
+
+        }
+
+
+        body::before {
+
+            content: "";
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            z-index:
+                -2;
+
+            pointer-events:
+                none;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% -15%,
+                    rgba(255,255,255,0.08),
+                    transparent 38%
+                );
+
+        }
+
+
+        body::after {
+
+            content: "";
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            z-index:
+                -1;
+
+            pointer-events:
+                none;
+
+            opacity:
+                0.025;
+
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+
+        }
+
+
+        a {
+
+            color:
+                inherit;
+
+            text-decoration:
+                none;
+
+        }
+
+
+        .container {
+
+            width:
+                min(
+                    var(--max),
+                    calc(100% - 48px)
+                );
+
+            margin:
+                auto;
+
+        }
+
+
+        /* =========================================================
+           NAV
+        ========================================================= */
+
+        nav {
+
+            position:
+                fixed;
+
+            top:
+                0;
+
+            left:
+                0;
+
+            width:
+                100%;
+
+            z-index:
+                100;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.055);
+
+            background:
+                rgba(5,5,5,0.72);
+
+            backdrop-filter:
+                blur(22px);
+
+            -webkit-backdrop-filter:
+                blur(22px);
+
+        }
+
+
+        .nav-inner {
+
+            height:
+                70px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+        }
+
+
+        .logo {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                17px;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                -0.045em;
+
+        }
+
+
+        .nav-links {
+
+            display:
+                flex;
+
+            gap:
+                32px;
+
+            list-style:
+                none;
+
+        }
+
+
+        .nav-links a {
+
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+
+            transition:
+                0.25s
+                ease;
+
+        }
+
+
+        .nav-links a:hover {
+
+            color:
+                var(--white);
+
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+
+            min-height:
+                100vh;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            padding-top:
+                70px;
+
+        }
+
+
+        .hero-content {
+
+            width:
+                100%;
+
+            max-width:
+                1040px;
+
+        }
+
+
+        .hero-kicker {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            margin-bottom:
+                34px;
+
+            color:
+                var(--muted);
+
+            font-family:
+                "DM Mono",
+                monospace;
+
+            font-size:
+                10px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                0.12em;
+
+        }
+
+
+        .kicker-line {
+
+            width:
+                36px;
+
+            height:
+                1px;
+
+            background:
+                rgba(255,255,255,0.4);
+
+        }
+
+
+        .hero h1 {
+
+            max-width:
+                1050px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    54px,
+                    8.5vw,
+                    108px
+                );
+
+            line-height:
+                0.91;
+
+            letter-spacing:
+                -0.075em;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .hero h1 .dim {
+
+            color:
+                #6f6f76;
+
+        }
+
+
+        .hero-description {
+
+            max-width:
+                680px;
+
+            margin-top:
+                40px;
+
+            color:
+                var(--muted-light);
+
+            font-size:
+                17px;
+
+            line-height:
+                1.8;
+
+        }
+
+
+        /* NEW HEADER IDENTITY */
+
+        .hero-focus {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                0;
+
+            margin-top:
+                34px;
+
+            border-top:
+                1px solid
+                var(--border);
+
+            border-bottom:
+                1px solid
+                var(--border);
+
+            width:
+                fit-content;
+
+        }
+
+
+        .focus-item {
+
+            padding:
+                13px
+                18px;
+
+            padding-left:
+                0;
+
+            margin-right:
+                18px;
+
+            color:
+                #a4a4aa;
+
+            font-family:
+                "DM Mono",
+                monospace;
+
+            font-size:
+                10px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                0.08em;
+
+        }
+
+
+        .focus-item:not(:last-child)::after {
+
+            content:
+                " / ";
+
+            margin-left:
+                18px;
+
+            color:
+                #444449;
+
+        }
+
+
+        .hero-actions {
+
+            display:
+                flex;
+
+            gap:
+                10px;
+
+            margin-top:
+                38px;
+
+        }
+
+
+        .button {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            padding:
+                12px
+                17px;
+
+            border-radius:
+                7px;
+
+            font-size:
+                12px;
+
+            font-weight:
+                600;
+
+            transition:
+                0.25s
+                ease;
+
+        }
+
+
+        .button-primary {
+
+            color:
+                #000;
+
+            background:
+                #fff;
+
+        }
+
+
+        .button-primary:hover {
+
+            transform:
+                translateY(-2px);
+
+            opacity:
+                0.88;
+
+        }
+
+
+        .button-secondary {
+
+            border:
+                1px solid
+                var(--border);
+
+            color:
+                var(--text);
+
+        }
+
+
+        .button-secondary:hover {
+
+            background:
+                rgba(255,255,255,0.06);
+
+            border-color:
+                var(--border-strong);
+
+        }
+
+
+        /* =========================================================
+           SECTION
+        ========================================================= */
+
+        section {
+
+            padding:
+                130px
+                0;
+
+        }
+
+
+        .section-top {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                flex-end;
+
+            gap:
+                40px;
+
+            margin-bottom:
+                55px;
+
+        }
+
+
+        .section-label {
+
+            margin-bottom:
+                13px;
+
+            color:
+                #68686f;
+
+            font-family:
+                "DM Mono",
+                monospace;
+
+            font-size:
+                10px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                0.14em;
+
+        }
+
+
+        .section-title {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    38px,
+                    5vw,
+                    62px
+                );
+
+            line-height:
+                0.98;
+
+            letter-spacing:
+                -0.065em;
+
+        }
+
+
+        .section-note {
+
+            max-width:
+                340px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                13px;
+
+            line-height:
+                1.7;
+
+        }
+
+
+        /* =========================================================
+           FEATURED RESEARCH
+        ========================================================= */
+
+        .featured {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1.2fr
+                0.8fr;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                22px;
+
+            overflow:
+                hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.055),
+                    rgba(255,255,255,0.012)
+                );
+
+        }
+
+
+        .featured-main {
+
+            padding:
+                58px;
+
+        }
+
+
+        .featured-side {
+
+            padding:
+                58px;
+
+            border-left:
+                1px solid
+                var(--border);
+
+            background:
+                radial-gradient(
+                    circle at 50% 15%,
+                    rgba(255,255,255,0.07),
+                    transparent 60%
+                );
+
+        }
+
+
+        .research-index {
+
+            color:
+                #55555b;
+
+            font-family:
+                "DM Mono",
+                monospace;
+
+            font-size:
+                10px;
+
+        }
+
+
+        .featured h3 {
+
+            margin-top:
+                90px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    36px,
+                    4vw,
+                    58px
+                );
+
+            line-height:
+                0.95;
+
+            letter-spacing:
+                -0.06em;
+
+        }
+
+
+        .featured-subtitle {
+
+            margin-top:
+                20px;
+
+            color:
+                var(--muted-light);
+
+            font-size:
+                14px;
+
+        }
+
+
+        .featured-description {
+
+            max-width:
+                650px;
+
+            margin-top:
+                25px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                14px;
+
+            line-height:
+                1.8;
+
+        }
+
+
+        .slots {
+
+            display:
+                grid;
+
+            gap:
+                8px;
+
+            margin-top:
+                34px;
+
+        }
+
+
+        .slot {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            padding:
+                13px
+                15px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                8px;
+
+            background:
+                rgba(255,255,255,0.025);
+
+        }
+
+
+        .slot strong {
+
+            font-size:
+                12px;
+
+        }
+
+
+        .slot span {
+
+            color:
+                #6d6d73;
+
+            font-family:
+                "DM Mono",
+                monospace;
+
+            font-size:
+                10px;
+
+        }
+
+
+        /* =========================================================
+           ARCHITECTURE
+        ========================================================= */
+
+        .architecture {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            margin-top:
+                25px;
+
+        }
+
+
+        .architecture-box {
+
+            width:
+                100%;
+
+            padding:
+                16px;
+
+            text-align:
+                center;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                8px;
+
+            background:
+                rgba(255,255,255,0.025);
+
+            color:
+                #c2c2c7;
+
+            font-size:
+                11px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .arrow {
+
+            color:
+                #55555b;
+
+            font-family:
+                "DM Mono",
+                monospace;
+
+            font-size:
+                12px;
+
+        }
+
+
+        /* =========================================================
+           MODEL
+        ========================================================= */
+
+        .model-card {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr
+                auto;
+
+            gap:
+                40px;
+
+            padding:
+                45px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                18px;
+
+            background:
+                var(--surface);
+
+            transition:
+                0.3s
+                ease;
+
+        }
+
+
+        .model-card:hover {
+
+            border-color:
+                var(--border-strong);
+
+            transform:
+                translateY(-4px);
+
+        }
+
+
+        .model-title {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                34px;
+
+            letter-spacing:
+                -0.055em;
+
+        }
+
+
+        .model-description {
+
+            max-width:
+                700px;
+
+            margin-top:
+                16px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                14px;
+
+            line-height:
+                1.8;
+
+        }
+
+
+        .model-meta {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+        }
+
+
+        .model-badge {
+
+            padding:
+                7px
+                10px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                999px;
+
+            color:
+                var(--muted);
+
+            font-family:
+                "DM Mono",
+                monospace;
+
+            font-size:
+                9px;
+
+            white-space:
+                nowrap;
+
+        }
+
+
+        .model-tags {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                7px;
+
+            margin-top:
+                25px;
+
+        }
+
+
+        .tag {
+
+            padding:
+                6px
+                9px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            border-radius:
+                5px;
+
+            color:
+                #85858b;
+
+            font-family:
+                "DM Mono",
+                monospace;
+
+            font-size:
+                9px;
+
+        }
+
+
+        /* =========================================================
+           PROJECTS
+        ========================================================= */
+
+        .projects-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    12,
+                    1fr
+                );
+
+            gap:
+                12px;
+
+        }
+
+
+        .project-card {
+
+            position:
+                relative;
+
+            min-height:
+                340px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            padding:
+                30px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                17px;
+
+            background:
+                var(--surface);
+
+            overflow:
+                hidden;
+
+            transition:
+                0.35s
+                ease;
+
+        }
+
+
+        .project-card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
+            opacity:
+                0;
+
+            transition:
+                0.35s
+                ease;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(255,255,255,0.07),
+                    transparent 55%
+                );
+
+            pointer-events:
+                none;
+
+        }
+
+
+        .project-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            border-color:
+                var(--border-strong);
+
+        }
+
+
+        .project-card:hover::before {
+
+            opacity:
+                1;
+
+        }
+
+
+        .project-card-large {
+
+            grid-column:
+                span 8;
+
+            min-height:
+                410px;
+
+        }
+
+
+        .project-card-medium {
+
+            grid-column:
+                span 4;
+
+            min-height:
+                410px;
+
+        }
+
+
+        .project-card-half {
+
+            grid-column:
+                span 6;
+
+            min-height:
+                330px;
+
+        }
+
+
+        .project-number {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            color:
+                #55555b;
+
+            font-family:
+                "DM Mono",
+                monospace;
+
+            font-size:
+                10px;
+
+        }
+
+
+        .project-category {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            align-self:
+                flex-start;
+
+            margin-top:
+                18px;
+
+            padding:
+                6px
+                9px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            border-radius:
+                5px;
+
+            color:
+                #8b8b91;
+
+            font-family:
+                "DM Mono",
+                monospace;
+
+            font-size:
+                9px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                0.08em;
+
+        }
+
+
+        .project-content {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            margin-top:
+                auto;
+
+        }
+
+
+        .project-card h3 {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                30px;
+
+            line-height:
+                1;
+
+            letter-spacing:
+                -0.055em;
+
+        }
+
+
+        .project-card-large h3 {
+
+            font-size:
+                clamp(
+                    34px,
+                    4vw,
+                    52px
+                );
+
+        }
+
+
+        .project-card p {
+
+            max-width:
+                620px;
+
+            margin-top:
+                13px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+
+            line-height:
+                1.75;
+
+        }
+
+
+        .project-link {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            margin-top:
+                22px;
+
+            color:
+                var(--white);
+
+            font-size:
+                11px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .project-link-arrow {
+
+            transition:
+                0.2s
+                ease;
+
+        }
+
+
+        .project-link:hover
+        .project-link-arrow {
+
+            transform:
+                translateX(4px);
+
+        }
+
+
+        /* =========================================================
+           RESEARCH AREAS
+        ========================================================= */
+
+        .research-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    1fr
+                );
+
+            gap:
+                10px;
+
+        }
+
+
+        .research-card {
+
+            min-height:
+                230px;
+
+            padding:
+                26px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                14px;
+
+            background:
+                rgba(255,255,255,0.025);
+
+            transition:
+                0.3s
+                ease;
+
+        }
+
+
+        .research-card:hover {
+
+            background:
+                rgba(255,255,255,0.05);
+
+            border-color:
+                var(--border-strong);
+
+        }
+
+
+        .research-card-number {
+
+            color:
+                #55555b;
+
+            font-family:
+                "DM Mono",
+                monospace;
+
+            font-size:
+                10px;
+
+        }
+
+
+        .research-card h3 {
+
+            margin-top:
+                65px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                19px;
+
+            letter-spacing:
+                -0.04em;
+
+        }
+
+
+        .research-card p {
+
+            margin-top:
+                9px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+
+            line-height:
+                1.7;
+
+        }
+
+
+        /* =========================================================
+           STACK
+        ========================================================= */
+
+        .stack {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                8px;
+
+        }
+
+
+        .stack-item {
+
+            padding:
+                10px
+                13px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                6px;
+
+            color:
+                #8f8f96;
+
+            font-family:
+                "DM Mono",
+                monospace;
+
+            font-size:
+                10px;
+
+        }
+
+
+        /* =========================================================
+           ABOUT
+        ========================================================= */
+
+        .about {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                0.7fr
+                1.3fr;
+
+            gap:
+                90px;
+
+        }
+
+
+        .about-text {
+
+            color:
+                var(--muted);
+
+            font-size:
+                16px;
+
+            line-height:
+                1.9;
+
+        }
+
+
+        .about-text p + p {
+
+            margin-top:
+                20px;
+
+        }
+
+
+        .big-statement {
+
+            margin-top:
+                60px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    34px,
+                    5vw,
+                    60px
+                );
+
+            line-height:
+                0.98;
+
+            letter-spacing:
+                -0.065em;
+
+            color:
+                var(--text);
+
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+
+            padding:
+                60px
+                0;
+
+            border-top:
+                1px solid
+                var(--border);
+
+        }
+
+
+        .footer-inner {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+        }
+
+
+        .footer-name {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                18px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .footer-links {
+
+            display:
+                flex;
+
+            gap:
+                24px;
+
+        }
+
+
+        .footer-links a {
+
+            color:
+                var(--muted);
+
+            font-size:
+                11px;
+
+        }
+
+
+        .footer-links a:hover {
+
+            color:
+                var(--white);
+
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            .projects-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        1fr
+                    );
+
+            }
+
+
+            .project-card-large,
+            .project-card-medium,
+            .project-card-half {
+
+                grid-column:
+                    span 1;
+
+            }
+
+
+            .project-card-large {
+
+                min-height:
+                    380px;
+
+            }
+
+
+            .research-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        1fr
+                    );
+
+            }
+
+        }
+
+
+        @media (max-width: 850px) {
+
+            .featured {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .featured-side {
+
+                border-left:
+                    none;
+
+                border-top:
+                    1px solid
+                    var(--border);
+
+            }
+
+
+            .about {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    50px;
+
+            }
+
+
+            .model-card {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .container {
+
+                width:
+                    calc(
+                        100% - 30px
+                    );
+
+            }
+
+
+            .nav-links {
+
+                display:
+                    none;
+
+            }
+
+
+            section {
+
+                padding:
+                    90px
+                    0;
+
+            }
+
+
+            .hero-focus {
+
+                width:
+                    100%;
+
+            }
+
+
+            .focus-item {
+
+                padding:
+                    12px
+                    0;
+
+                margin-right:
+                    12px;
+
+            }
+
+
+            .focus-item:not(:last-child)::after {
+
+                margin-left:
+                    12px;
+
+            }
+
+
+            .featured-main,
+            .featured-side {
+
+                padding:
+                    30px;
+
+            }
+
+
+            .model-card {
+
+                padding:
+                    28px;
+
+            }
+
+
+            .projects-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .project-card-large,
+            .project-card-medium,
+            .project-card-half {
+
+                grid-column:
+                    span 1;
+
+            }
+
+
+            .research-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .section-top {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+            }
+
+
+            .footer-inner {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+                gap:
+                    25px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav>
+
+    <div class="container nav-inner">
+
+        <a
+            href="#"
+            class="logo"
+        >
+            Miguel Penha Reis
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="#research">
+                    Research
+                </a>
+            </li>
+
+            <li>
+                <a href="#models">
+                    Models
+                </a>
+            </li>
+
+            <li>
+                <a href="#projects">
+                    Projects
+                </a>
+            </li>
+
+            <li>
+                <a href="#about">
+                    About
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</nav>
+
+
+<main>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+
+            <div class="hero-kicker">
+
+                <span class="kicker-line"></span>
+
+                Building at the intersection of
+                intelligence and software
+
+            </div>
+
+
+            <h1>
+
+                I build AI systems
+
+                <span class="dim">
+                    from the model weights
+                    to the interface.
+                </span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                I research and engineer language models,
+                latent reasoning architectures, retrieval
+                systems, developer tools and experimental
+                software.
+
+                My work moves between fundamental AI research
+                and the systems that turn those ideas into
+                something people can actually use.
+
+            </p>
+
+
+            <div class="hero-focus">
+
+                <div class="focus-item">
+                    AI Research
+                </div>
+
+                <div class="focus-item">
+                    LLMs
+                </div>
+
+                <div class="focus-item">
+                    Latent Reasoning
+                </div>
+
+                <div class="focus-item">
+                    Software
+                </div>
+
+            </div>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="#research"
+                    class="button button-primary"
+                >
+
+                    Explore the work
+
+                    <span>
+                        ↓
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="#projects"
+                    class="button button-secondary"
+                >
+
+                    View projects
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     RESEARCH
+========================================================= -->
+
+<section id="research">
+
+    <div class="container">
+
+
+        <div class="section-top">
+
+            <div>
+
+                <div class="section-label">
+                    01 / Research
+                </div>
+
+                <h2 class="section-title">
+                    Exploring what happens
+                    inside the model.
+                </h2>
+
+            </div>
+
+
+            <p class="section-note">
+
+                Experimental work on latent representations,
+                structured deliberation and the relationship
+                between internal reasoning and generation.
+
+            </p>
+
+        </div>
+
+
+        <div class="featured">
+
+
+            <div class="featured-main">
+
+
+                <div class="research-index">
+                    RESEARCH / 001
+                </div>
+
+
+                <h3>
+                    J-Space
+                    Deliberation Engine
+                </h3>
+
+
+                <p class="featured-subtitle">
+
+                    Structured Latent Deliberation
+                    for Gemma 4 E4B using Jacobian Lens.
+
+                </p>
+
+
+                <p class="featured-description">
+
+                    J-Space is an experimental latent reasoning
+                    architecture that introduces a structured
+                    five-slot workspace into the residual stream.
+
+                    The system organizes internal deliberation
+                    into Objective, Hypothesis, Evidence,
+                    Critic and Commit before final text generation.
+
+                </p>
+
+
+                <div class="slots">
+
+
+                    <div class="slot">
+
+                        <strong>
+                            Objective
+                        </strong>
+
+                        <span>
+                            Defines the goal
+                        </span>
+
+                    </div>
+
+
+                    <div class="slot">
+
+                        <strong>
+                            Hypothesis
+                        </strong>
+
+                        <span>
+                            Candidate solutions
+                        </span>
+
+                    </div>
+
+
+                    <div class="slot">
+
+                        <strong>
+                            Evidence
+                        </strong>
+
+                        <span>
+                            Relevant signals
+                        </span>
+
+                    </div>
+
+
+                    <div class="slot">
+
+                        <strong>
+                            Critic
+                        </strong>
+
+                        <span>
+                            Consistency check
+                        </span>
+
+                    </div>
+
+
+                    <div class="slot">
+
+                        <strong>
+                            Commit
+                        </strong>
+
+                        <span>
+                            Final consolidation
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="featured-side">
+
+
+                <div class="section-label">
+                    System Architecture
+                </div>
+
+
+                <div class="architecture">
+
+
+                    <div class="architecture-box">
+                        User Prompt
+                    </div>
+
+
+                    <div class="arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="architecture-box">
+                        Gemma 4 E4B-it
+                    </div>
+
+
+                    <div class="arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="architecture-box">
+                        J-Space Workspace
+                    </div>
+
+
+                    <div class="arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="architecture-box">
+                        Jacobian Lens
+                    </div>
+
+
+                    <div class="arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="architecture-box">
+                        Final Generation
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MODELS
+========================================================= -->
+
+<section id="models">
+
+    <div class="container">
+
+
+        <div class="section-top">
+
+            <div>
+
+                <div class="section-label">
+                    02 / Models
+                </div>
+
+                <h2 class="section-title">
+                    Models built to
+                    do something.
+                </h2>
+
+            </div>
+
+
+            <p class="section-note">
+
+                Specialized models designed around
+                coding, technical reasoning, multimodal
+                understanding and local inference.
+
+            </p>
+
+        </div>
+
+
+        <div class="model-card">
+
+
+            <div>
+
+
+                <h3 class="model-title">
+
+                    Nexora-Gemma-4-E4B-Coder
+
+                </h3>
+
+
+                <p class="model-description">
+
+                    A coding-focused multimodal language model
+                    fine-tuned from the Gemma 4 family and
+                    converted to GGUF for efficient local inference.
+
+                    Designed for programming, debugging,
+                    refactoring, technical reasoning and
+                    multimodal code understanding.
+
+                </p>
+
+
+                <div class="model-tags">
+
+                    <span class="tag">
+                        Code Generation
+                    </span>
+
+                    <span class="tag">
+                        Debugging
+                    </span>
+
+                    <span class="tag">
+                        Refactoring
+                    </span>
+
+                    <span class="tag">
+                        Technical Reasoning
+                    </span>
+
+                    <span class="tag">
+                        Multimodal
+                    </span>
+
+                    <span class="tag">
+                        GGUF
+                    </span>
+
+                    <span class="tag">
+                        Local Inference
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="model-meta">
+
+                <span class="model-badge">
+
+                    NEXORA / E4B / GGUF
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROJECTS
+========================================================= -->
+
+<section id="projects">
+
+    <div class="container">
+
+
+        <div class="section-top">
+
+            <div>
+
+                <div class="section-label">
+                    03 / Selected Work
+                </div>
+
+                <h2 class="section-title">
+                    The rest of
+                    the experiment.
+                </h2>
+
+            </div>
+
+
+            <p class="section-note">
+
+                Research is only one part of the work.
+                These projects explore software, AI,
+                interfaces and systems from different angles.
+
+            </p>
+
+        </div>
+
+
+        <div class="projects-grid">
+
+
+            <!-- J SPACE -->
+
+            <article class="project-card project-card-large">
+
+
+                <span class="project-number">
+                    001
+                </span>
+
+
+                <span class="project-category">
+                    AI Research
+                </span>
+
+
+                <div class="project-content">
+
+
+                    <h3>
+                        J-Space
+                        Deliberation Engine
+                    </h3>
+
+
+                    <p>
+
+                        A structured latent reasoning architecture
+                        exploring whether internal model representations
+                        can be actively organized into a deliberative
+                        workspace before generation.
+
+                    </p>
+
+
+                    <a
+                        href="https://huggingface.co/guell00/J-Space-Deliberation"
+                        target="_blank"
+                        class="project-link"
+                    >
+
+                        Explore research
+
+                        <span class="project-link-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+
+            </article>
+
+
+            <!-- NEXORA -->
+
+            <article class="project-card project-card-medium">
+
+
+                <span class="project-number">
+                    002
+                </span>
+
+
+                <span class="project-category">
+                    Language Model
+                </span>
+
+
+                <div class="project-content">
+
+
+                    <h3>
+                        Nexora
+                    </h3>
+
+
+                    <p>
+
+                        A coding-focused multimodal model
+                        built for technical reasoning,
+                        programming and efficient local use.
+
+                    </p>
+
+
+                    <a
+                        href="https://huggingface.co/guell00/Nexora-Gemma-4-E4B-Coder"
+                        target="_blank"
+                        class="project-link"
+                    >
+
+                        View model
+
+                        <span class="project-link-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+
+            </article>
+
+
+            <!-- LUNAR -->
+
+            <article class="project-card project-card-half">
+
+
+                <span class="project-number">
+                    003
+                </span>
+
+
+                <span class="project-category">
+                    Software
+                </span>
+
+
+                <div class="project-content">
+
+
+                    <h3>
+                        Projeto Lunar
+                    </h3>
+
+
+                    <p>
+
+                        An independent software project
+                        exploring a different direction of
+                        engineering and experimentation.
+
+                    </p>
+
+
+                    <a
+                        href="https://github.com/guell11/projeto-lunar-public"
+                        target="_blank"
+                        class="project-link"
+                    >
+
+                        Open repository
+
+                        <span class="project-link-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+
+            </article>
+
+
+            <!-- LUMI -->
+
+            <article class="project-card project-card-half">
+
+
+                <span class="project-number">
+                    004
+                </span>
+
+
+                <span class="project-category">
+                    Creative Technology
+                </span>
+
+
+                <div class="project-content">
+
+
+                    <h3>
+                        Lumi Motion
+                    </h3>
+
+
+                    <p>
+
+                        An experimental project exploring
+                        motion, interaction and digital
+                        experiences through technology.
+
+                    </p>
+
+
+                    <a
+                        href="https://github.com/guell11/Lumi-motion"
+                        target="_blank"
+                        class="project-link"
+                    >
+
+                        Open repository
+
+                        <span class="project-link-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+
+            </article>
+
+
+            <!-- AGNER -->
+
+            <article class="project-card project-card-large">
+
+
+                <span class="project-number">
+                    005
+                </span>
+
+
+                <span class="project-category">
+                    Software Engineering
+                </span>
+
+
+                <div class="project-content">
+
+
+                    <h3>
+                        Agner Browser Project
+                    </h3>
+
+
+                    <p>
+
+                        An independent browser project
+                        exploring software construction
+                        at the application and platform level.
+
+                    </p>
+
+
+                    <a
+                        href="https://github.com/guell11/Agner-Browser-Project"
+                        target="_blank"
+                        class="project-link"
+                    >
+
+                        Open repository
+
+                        <span class="project-link-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+
+            </article>
+
+
+            <!-- MERGECRAFT -->
+
+            <article class="project-card project-card-medium">
+
+
+                <span class="project-number">
+                    006
+                </span>
+
+
+                <span class="project-category">
+                    Engineering
+                </span>
+
+
+                <div class="project-content">
+
+
+                    <h3>
+                        MergeCraft
+                    </h3>
+
+
+                    <p>
+
+                        An experimental software engineering
+                        project focused on building and exploring
+                        new development ideas.
+
+                    </p>
+
+
+                    <a
+                        href="https://github.com/guell11/MergeCraft"
+                        target="_blank"
+                        class="project-link"
+                    >
+
+                        Open repository
+
+                        <span class="project-link-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+
+            </article>
+
+
+            <!-- RAG NEXA -->
+
+            <article class="project-card project-card-large">
+
+
+                <span class="project-number">
+                    007
+                </span>
+
+
+                <span class="project-category">
+                    Retrieval-Augmented AI
+                </span>
+
+
+                <div class="project-content">
+
+
+                    <h3>
+                        IA RAG Nexa
+                    </h3>
+
+
+                    <p>
+
+                        An AI project exploring Retrieval-Augmented
+                        Generation and the connection between
+                        language models and external knowledge.
+
+                    </p>
+
+
+                    <a
+                        href="https://github.com/guell11/Ia-RAG-Nexa"
+                        target="_blank"
+                        class="project-link"
+                    >
+
+                        Open repository
+
+                        <span class="project-link-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+
+            </article>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     RESEARCH AREAS
+========================================================= -->
+
+<section>
+
+    <div class="container">
+
+
+        <div class="section-top">
+
+            <div>
+
+                <div class="section-label">
+                    04 / Areas
+                </div>
+
+                <h2 class="section-title">
+                    What I work on.
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="research-grid">
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    01
+                </span>
+
+                <h3>
+                    Latent Reasoning
+                </h3>
+
+                <p>
+                    Structured internal representations
+                    and experimental reasoning architectures.
+                </p>
+
+            </div>
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    02
+                </span>
+
+                <h3>
+                    Large Language Models
+                </h3>
+
+                <p>
+                    Fine-tuning, model behavior,
+                    coding models and technical reasoning.
+                </p>
+
+            </div>
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    03
+                </span>
+
+                <h3>
+                    RAG Systems
+                </h3>
+
+                <p>
+                    Connecting language models with
+                    external knowledge and retrieval systems.
+                </p>
+
+            </div>
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    04
+                </span>
+
+                <h3>
+                    Multimodal AI
+                </h3>
+
+                <p>
+                    Models that combine language with
+                    visual and technical information.
+                </p>
+
+            </div>
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    05
+                </span>
+
+                <h3>
+                    Local AI
+                </h3>
+
+                <p>
+                    Quantization and inference systems
+                    for practical local deployment.
+                </p>
+
+            </div>
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    06
+                </span>
+
+                <h3>
+                    AI Infrastructure
+                </h3>
+
+                <p>
+                    The tools and systems required
+                    to build and run modern AI.
+                </p>
+
+            </div>
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    07
+                </span>
+
+                <h3>
+                    Software Engineering
+                </h3>
+
+                <p>
+                    Building complete applications,
+                    tools and experimental platforms.
+                </p>
+
+            </div>
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    08
+                </span>
+
+                <h3>
+                    Experimental Systems
+                </h3>
+
+                <p>
+                    Projects that explore ideas
+                    outside conventional categories.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TECHNOLOGY
+========================================================= -->
+
+<section>
+
+    <div class="container">
+
+
+        <div class="section-top">
+
+            <div>
+
+                <div class="section-label">
+                    05 / Stack
+                </div>
+
+                <h2 class="section-title">
+                    Tools of the trade.
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="stack">
+
+
+            <span class="stack-item">
+                Python
+            </span>
+
+
+            <span class="stack-item">
+                PyTorch
+            </span>
+
+
+            <span class="stack-item">
+                Transformers
+            </span>
+
+
+            <span class="stack-item">
+                Hugging Face
+            </span>
+
+
+            <span class="stack-item">
+                Unsloth
+            </span>
+
+
+            <span class="stack-item">
+                llama.cpp
+            </span>
+
+
+            <span class="stack-item">
+                GGUF
+            </span>
+
+
+            <span class="stack-item">
+                BitsAndBytes
+            </span>
+
+
+            <span class="stack-item">
+                Accelerate
+            </span>
+
+
+            <span class="stack-item">
+                CUDA
+            </span>
+
+
+            <span class="stack-item">
+                RAG
+            </span>
+
+
+            <span class="stack-item">
+                LLMs
+            </span>
+
+
+            <span class="stack-item">
+                Multimodal AI
+            </span>
+
+
+            <span class="stack-item">
+                Software Engineering
+            </span>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section id="about">
+
+    <div class="container">
+
+
+        <div class="about">
+
+
+            <div>
+
+                <div class="section-label">
+                    06 / About
+                </div>
+
+
+                <h2 class="section-title">
+                    Miguel
+                    Penha Reis
+                </h2>
+
+            </div>
+
+
+            <div class="about-text">
+
+
+                <p>
+
+                    I'm an AI Engineer and researcher
+                    working across large language models,
+                    latent reasoning, model fine-tuning,
+                    multimodal AI and software systems.
+
+                </p>
+
+
+                <p>
+
+                    I build both the models and the systems
+                    around them, moving between research
+                    experiments and practical engineering.
+
+                </p>
+
+
+                <p>
+
+                    My work explores what happens inside
+                    intelligent systems, how their internal
+                    representations can be structured,
+                    and how those ideas can become useful
+                    tools in the real world.
+
+                </p>
+
+
+                <div class="big-statement">
+
+                    Build the model.
+                    Build the system.
+                    Understand both.
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="container">
+
+
+        <div class="footer-inner">
+
+
+            <div class="footer-name">
+
+                Miguel Penha Reis
+
+            </div>
+
+
+            <div class="footer-links">
+
+
+                <a
+                    href="https://huggingface.co/guell00"
+                    target="_blank"
+                >
+                    Hugging Face
+                </a>
+
+
+                <a
+                    href="https://github.com/guell11"
+                    target="_blank"
+                >
+                    GitHub
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>
