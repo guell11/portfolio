@@ -971,6 +971,11 @@
            MODEL
         ========================================================= */
 
+        .model-list {
+            display: grid;
+            gap: 12px;
+        }
+
         .model-card {
 
             display:
@@ -1351,6 +1356,36 @@
 
         }
 
+
+        .project-visual {
+            position: relative;
+            z-index: 2;
+            height: 154px;
+            margin: 24px 0 28px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(145deg, #0b0b0c, #070708);
+        }
+
+        .project-visual::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(255,255,255,.025), transparent 42%, rgba(0,0,0,.18));
+        }
+
+        .project-visual svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .35s ease;
+        }
+
+        .project-card:hover .project-visual svg {
+            transform: scale(1.018) translateY(-1px);
+        }
 
         .project-card h3 {
 
@@ -1959,6 +1994,532 @@
 
         }
 
+
+        /* =========================================================
+           PROJECT README MODAL
+        ========================================================= */
+
+        .project-card {
+            cursor: pointer;
+        }
+
+        .project-card:focus-visible {
+            outline: 1px solid var(--white);
+            outline-offset: 4px;
+        }
+
+        .project-card .project-hint {
+            position: relative;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+            color: #696970;
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .project-card:hover .project-hint {
+            color: #b9b9bf;
+        }
+
+
+        /* =========================================================
+           PROJECT SHOWCASE / CSS-ONLY BANNERS
+        ========================================================= */
+
+        .project-showcase {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .showcase-banner {
+            position: relative;
+            min-height: 310px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            background: var(--surface);
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.35s ease;
+        }
+
+        .showcase-banner:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-strong);
+        }
+
+        .showcase-banner:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 3px;
+        }
+
+        .showcase-banner-head,
+        .showcase-banner-copy {
+            position: relative;
+            z-index: 3;
+        }
+
+        .showcase-banner-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .showcase-banner-index,
+        .showcase-banner-type {
+            color: #66666d;
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .showcase-banner-copy {
+            position: absolute;
+            left: 30px;
+            right: 30px;
+            bottom: 28px;
+        }
+
+        .showcase-banner h3 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(30px, 3vw, 46px);
+            line-height: 0.95;
+            letter-spacing: -0.06em;
+        }
+
+        .showcase-banner p {
+            max-width: 600px;
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .showcase-banner-link {
+            display: inline-flex;
+            margin-top: 18px;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .banner-code-grid,
+        .banner-gemma-vision {
+            position: absolute;
+            inset: 0;
+            opacity: .58;
+            background:
+                radial-gradient(circle at 74% 42%, rgba(255,255,255,.10) 0 2px, transparent 3px),
+                radial-gradient(circle at 68% 56%, rgba(255,255,255,.08) 0 1px, transparent 2px),
+                linear-gradient(135deg, transparent 52%, rgba(255,255,255,.035) 52% 53%, transparent 53%);
+        }
+
+        .banner-gemma-vision::before {
+            content: "";
+            position: absolute;
+            width: 170px;
+            height: 112px;
+            right: 52px;
+            top: 72px;
+            border: 1px solid rgba(255,255,255,.16);
+            border-radius: 16px;
+            transform: rotate(-6deg);
+            box-shadow: -18px 18px 0 -1px #0d0d0e, -18px 18px 0 0 rgba(255,255,255,.08);
+        }
+
+        .banner-gemma-vision::after {
+            content: "</>  +  ◉";
+            position: absolute;
+            right: 78px;
+            top: 111px;
+            color: rgba(255,255,255,.34);
+            font-family: "DM Mono", monospace;
+            font-size: 15px;
+            letter-spacing: .22em;
+            transform: rotate(-6deg);
+        }
+
+        .banner-latent-space {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .banner-code-grid {
+            background:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 28px 28px;
+            mask-image: linear-gradient(to bottom, #000, transparent 72%);
+        }
+
+        .banner-code-grid::before,
+        .banner-code-grid::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(255,255,255,0.11);
+            background: rgba(255,255,255,0.025);
+        }
+
+        .banner-code-grid::before {
+            width: 180px;
+            height: 105px;
+            top: 55px;
+            right: 58px;
+            border-radius: 12px;
+            box-shadow:
+                -24px 24px 0 -1px #0d0d0e,
+                -24px 24px 0 0 rgba(255,255,255,0.08);
+            transform: rotate(-4deg);
+        }
+
+        .banner-code-grid::after {
+            width: 66px;
+            height: 5px;
+            top: 86px;
+            right: 107px;
+            border: none;
+            border-radius: 99px;
+            background: #8d8d94;
+            box-shadow:
+                0 15px 0 #44444a,
+                34px 30px 0 #68686f,
+                -18px 45px 0 #35353a;
+            transform: rotate(-4deg);
+        }
+
+        .banner-latent-space::before,
+        .banner-latent-space::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 44%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        .banner-latent-space::before {
+            width: 190px;
+            height: 190px;
+            border: 1px solid rgba(255,255,255,0.11);
+            box-shadow:
+                inset 0 0 0 30px rgba(255,255,255,0.012),
+                inset 0 0 0 60px rgba(255,255,255,0.018);
+        }
+
+        .banner-latent-space::after {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            box-shadow:
+                63px -42px 0 #67676e,
+                -69px -22px 0 #44444a,
+                50px 58px 0 #8b8b91,
+                -48px 61px 0 #55555b;
+        }
+
+        .project-group-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 44px 0 18px;
+            color: #68686f;
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .project-group-label::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: var(--border);
+        }
+
+        @media (max-width: 850px) {
+            .project-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .showcase-banner {
+                min-height: 285px;
+                padding: 24px;
+            }
+
+            .showcase-banner-copy {
+                left: 24px;
+                right: 24px;
+                bottom: 24px;
+            }
+
+            .banner-code-grid::before {
+                right: 20px;
+                opacity: 0.7;
+            }
+        }
+
+        .project-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .project-modal.is-open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .project-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .project-modal-panel {
+            position: relative;
+            width: min(920px, 100%);
+            max-height: min(86vh, 820px);
+            overflow-y: auto;
+            border: 1px solid var(--border-strong);
+            border-radius: 22px;
+            background: #090909;
+            box-shadow: 0 40px 120px rgba(0,0,0,0.7);
+            transform: translateY(18px) scale(0.985);
+            transition: transform 0.3s ease;
+        }
+
+        .project-modal.is-open .project-modal-panel {
+            transform: translateY(0) scale(1);
+        }
+
+        .project-modal-header {
+            position: sticky;
+            top: 0;
+            z-index: 3;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+            padding: 30px 32px 24px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(9,9,9,0.94);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .project-modal-label {
+            color: #66666d;
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .project-modal-title {
+            margin-top: 8px;
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(34px, 5vw, 58px);
+            line-height: 0.95;
+            letter-spacing: -0.06em;
+        }
+
+        .project-modal-close {
+            width: 38px;
+            height: 38px;
+            flex: 0 0 auto;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: #a1a1a7;
+            background: #0e0e0f;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.2s ease;
+        }
+
+        .project-modal-close:hover {
+            color: #fff;
+            border-color: var(--border-strong);
+            background: #151516;
+        }
+
+        .project-modal-body {
+            display: grid;
+            grid-template-columns: 1.35fr 0.65fr;
+            gap: 0;
+        }
+
+        .project-readme-main {
+            padding: 34px 32px 40px;
+        }
+
+        .project-readme-side {
+            padding: 34px 32px 40px;
+            border-left: 1px solid var(--border);
+            background: rgba(255,255,255,0.018);
+        }
+
+        .readme-heading {
+            margin-top: 30px;
+            margin-bottom: 12px;
+            color: #d4d4d8;
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 18px;
+            letter-spacing: -0.035em;
+        }
+
+        .readme-heading:first-child {
+            margin-top: 0;
+        }
+
+        .readme-text {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.85;
+        }
+
+        .readme-list {
+            display: grid;
+            gap: 10px;
+            list-style: none;
+        }
+
+        .readme-list li {
+            position: relative;
+            padding-left: 18px;
+            color: #9c9ca3;
+            font-size: 12px;
+            line-height: 1.65;
+        }
+
+        .readme-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #4f4f55;
+        }
+
+        .readme-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .readme-stack span {
+            padding: 7px 9px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: #8f8f96;
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+        }
+
+        .readme-meta {
+            display: grid;
+            gap: 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .readme-meta-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .readme-meta-row span {
+            color: #5f5f66;
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .readme-meta-row strong {
+            color: #bcbcc2;
+            font-size: 11px;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .readme-button {
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 26px;
+            padding: 13px 15px;
+            border: 1px solid var(--border-strong);
+            border-radius: 9px;
+            color: #050505;
+            background: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            transition: 0.22s ease;
+        }
+
+        .readme-button:hover {
+            transform: translateY(-2px);
+            opacity: 0.88;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        @media (max-width: 760px) {
+            .project-modal {
+                padding: 10px;
+                align-items: end;
+            }
+
+            .project-modal-panel {
+                width: 100%;
+                max-height: 92vh;
+                border-radius: 18px 18px 0 0;
+            }
+
+            .project-modal-header {
+                padding: 24px 22px 20px;
+            }
+
+            .project-modal-body {
+                grid-template-columns: 1fr;
+            }
+
+            .project-readme-main,
+            .project-readme-side {
+                padding: 28px 22px;
+            }
+
+            .project-readme-side {
+                border-left: none;
+                border-top: 1px solid var(--border);
+            }
+        }
+
     </style>
 
 </head>
@@ -1985,29 +2546,12 @@
 
         <ul class="nav-links">
 
-            <li>
-                <a href="#research">
-                    Research
-                </a>
-            </li>
-
-            <li>
-                <a href="#models">
-                    Models
-                </a>
-            </li>
-
-            <li>
-                <a href="#projects">
-                    Projects
-                </a>
-            </li>
-
-            <li>
-                <a href="#about">
-                    About
-                </a>
-            </li>
+            <li><a href="#models">Models</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#areas">Areas</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#stack">Stack</a></li>
+            <li><a href="#about">About</a></li>
 
         </ul>
 
@@ -2090,7 +2634,7 @@
             <div class="hero-actions">
 
                 <a
-                    href="#research"
+                    href="#projects"
                     class="button button-primary"
                 >
 
@@ -2125,6 +2669,268 @@
 </section>
 
 
+
+<!-- =========================================================
+     PROJECTS
+========================================================= -->
+
+<section id="projects">
+
+    <div class="container">
+
+        <div class="section-top">
+
+            <div>
+
+                <div class="section-label">
+                    01–02 / Models & Selected Work
+                </div>
+
+                <h2 class="section-title">
+                    Models, engines<br>
+                    and products.
+                </h2>
+
+            </div>
+
+            <p class="section-note">
+                A single curated archive of models, research and software. Open any item to read its compact README, architecture, stack and main features.
+            </p>
+
+        </div>
+
+        <div class="project-showcase">
+
+            <article class="showcase-banner" tabindex="0" role="button" data-featured-project="Nexora-Qwen-Coder-4B" aria-label="Open README for Nexora-Qwen-Coder-4B">
+                <div class="banner-code-grid"></div>
+                <div class="showcase-banner-head">
+                    <span class="showcase-banner-type">Language Model</span>
+                    <span class="showcase-banner-index">MODEL / 001</span>
+                </div>
+                <div class="showcase-banner-copy">
+                    <h3>Nexora-Qwen-Coder-4B</h3>
+                    <p>Compact coding model fine-tuned for debugging, structured reasoning, tool use and local agentic workflows.</p>
+                    <span class="showcase-banner-link">Open mini README ↗</span>
+                </div>
+            </article>
+
+            <article class="showcase-banner" tabindex="0" role="button" data-featured-project="J-Space Deliberation" aria-label="Open README for J-Space Deliberation">
+                <div class="banner-latent-space"></div>
+                <div class="showcase-banner-head">
+                    <span class="showcase-banner-type">AI Research</span>
+                    <span class="showcase-banner-index">RESEARCH / 002</span>
+                </div>
+                <div class="showcase-banner-copy">
+                    <h3>J-Space Deliberation</h3>
+                    <p>Structured latent deliberation for Gemma 4 E4B using a five-slot workspace and Jacobian Lens projections.</p>
+                    <span class="showcase-banner-link">Open mini README ↗</span>
+                </div>
+            </article>
+
+            <article class="showcase-banner" tabindex="0" role="button" data-featured-project="Nexora-Gemma-4-E4B-Coder" aria-label="Open README for Nexora-Gemma-4-E4B-Coder">
+                <div class="banner-gemma-vision"></div>
+                <div class="showcase-banner-head">
+                    <span class="showcase-banner-type">Multimodal Coding Model</span>
+                    <span class="showcase-banner-index">MODEL / 003</span>
+                </div>
+                <div class="showcase-banner-copy">
+                    <h3>Nexora-Gemma-4-E4B-Coder</h3>
+                    <p>Gemma 4 E4B coding model with vision support, GGUF quantizations and efficient local inference through llama.cpp.</p>
+                    <span class="showcase-banner-link">Open mini README ↗</span>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="project-group-label">Engines, applications and experiments</div>
+        <div class="projects-grid" id="projectsGrid"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     RESEARCH AREAS
+========================================================= -->
+
+<section id="areas">
+
+    <div class="container">
+
+
+        <div class="section-top">
+
+            <div>
+
+                <div class="section-label">
+                    03 / Areas
+                </div>
+
+                <h2 class="section-title">
+                    What I work on.
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="research-grid">
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    01
+                </span>
+
+                <h3>
+                    Latent Reasoning
+                </h3>
+
+                <p>
+                    Structured internal representations
+                    and experimental reasoning architectures.
+                </p>
+
+            </div>
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    02
+                </span>
+
+                <h3>
+                    Large Language Models
+                </h3>
+
+                <p>
+                    Fine-tuning, model behavior,
+                    coding models and technical reasoning.
+                </p>
+
+            </div>
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    03
+                </span>
+
+                <h3>
+                    RAG Systems
+                </h3>
+
+                <p>
+                    Connecting language models with
+                    external knowledge and retrieval systems.
+                </p>
+
+            </div>
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    04
+                </span>
+
+                <h3>
+                    Multimodal AI
+                </h3>
+
+                <p>
+                    Models that combine language with
+                    visual and technical information.
+                </p>
+
+            </div>
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    05
+                </span>
+
+                <h3>
+                    Local AI
+                </h3>
+
+                <p>
+                    Quantization and inference systems
+                    for practical local deployment.
+                </p>
+
+            </div>
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    06
+                </span>
+
+                <h3>
+                    AI Infrastructure
+                </h3>
+
+                <p>
+                    The tools and systems required
+                    to build and run modern AI.
+                </p>
+
+            </div>
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    07
+                </span>
+
+                <h3>
+                    Software Engineering
+                </h3>
+
+                <p>
+                    Building complete applications,
+                    tools and experimental platforms.
+                </p>
+
+            </div>
+
+
+            <div class="research-card">
+
+                <span class="research-card-number">
+                    08
+                </span>
+
+                <h3>
+                    Experimental Systems
+                </h3>
+
+                <p>
+                    Projects that explore ideas
+                    outside conventional categories.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
 <!-- =========================================================
      RESEARCH
 ========================================================= -->
@@ -2139,7 +2945,7 @@
             <div>
 
                 <div class="section-label">
-                    01 / Research
+                    04 / Research
                 </div>
 
                 <h2 class="section-title">
@@ -2343,729 +3149,13 @@
 </section>
 
 
-<!-- =========================================================
-     MODELS
-========================================================= -->
-
-<section id="models">
-
-    <div class="container">
-
-
-        <div class="section-top">
-
-            <div>
-
-                <div class="section-label">
-                    02 / Models
-                </div>
-
-                <h2 class="section-title">
-                    Models built to
-                    do something.
-                </h2>
-
-            </div>
-
-
-            <p class="section-note">
-
-                Specialized models designed around
-                coding, technical reasoning, multimodal
-                understanding and local inference.
-
-            </p>
-
-        </div>
-
-
-        <div class="model-card">
-
-
-            <div>
-
-
-                <h3 class="model-title">
-
-                    Nexora-Gemma-4-E4B-Coder
-
-                </h3>
-
-
-                <p class="model-description">
-
-                    A coding-focused multimodal language model
-                    fine-tuned from the Gemma 4 family and
-                    converted to GGUF for efficient local inference.
-
-                    Designed for programming, debugging,
-                    refactoring, technical reasoning and
-                    multimodal code understanding.
-
-                </p>
-
-
-                <div class="model-tags">
-
-                    <span class="tag">
-                        Code Generation
-                    </span>
-
-                    <span class="tag">
-                        Debugging
-                    </span>
-
-                    <span class="tag">
-                        Refactoring
-                    </span>
-
-                    <span class="tag">
-                        Technical Reasoning
-                    </span>
-
-                    <span class="tag">
-                        Multimodal
-                    </span>
-
-                    <span class="tag">
-                        GGUF
-                    </span>
-
-                    <span class="tag">
-                        Local Inference
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-            <div class="model-meta">
-
-                <span class="model-badge">
-
-                    NEXORA / E4B / GGUF
-
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     PROJECTS
-========================================================= -->
-
-<section id="projects">
-
-    <div class="container">
-
-
-        <div class="section-top">
-
-            <div>
-
-                <div class="section-label">
-                    03 / Selected Work
-                </div>
-
-                <h2 class="section-title">
-                    The rest of
-                    the experiment.
-                </h2>
-
-            </div>
-
-
-            <p class="section-note">
-
-                Research is only one part of the work.
-                These projects explore software, AI,
-                interfaces and systems from different angles.
-
-            </p>
-
-        </div>
-
-
-        <div class="projects-grid">
-
-
-            <!-- J SPACE -->
-
-            <article class="project-card project-card-large">
-
-
-                <span class="project-number">
-                    001
-                </span>
-
-
-                <span class="project-category">
-                    AI Research
-                </span>
-
-
-                <div class="project-content">
-
-
-                    <h3>
-                        J-Space
-                        Deliberation Engine
-                    </h3>
-
-
-                    <p>
-
-                        A structured latent reasoning architecture
-                        exploring whether internal model representations
-                        can be actively organized into a deliberative
-                        workspace before generation.
-
-                    </p>
-
-
-                    <a
-                        href="https://huggingface.co/guell00/J-Space-Deliberation"
-                        target="_blank"
-                        class="project-link"
-                    >
-
-                        Explore research
-
-                        <span class="project-link-arrow">
-                            →
-                        </span>
-
-                    </a>
-
-
-                </div>
-
-
-            </article>
-
-
-            <!-- NEXORA -->
-
-            <article class="project-card project-card-medium">
-
-
-                <span class="project-number">
-                    002
-                </span>
-
-
-                <span class="project-category">
-                    Language Model
-                </span>
-
-
-                <div class="project-content">
-
-
-                    <h3>
-                        Nexora
-                    </h3>
-
-
-                    <p>
-
-                        A coding-focused multimodal model
-                        built for technical reasoning,
-                        programming and efficient local use.
-
-                    </p>
-
-
-                    <a
-                        href="https://huggingface.co/guell00/Nexora-Gemma-4-E4B-Coder"
-                        target="_blank"
-                        class="project-link"
-                    >
-
-                        View model
-
-                        <span class="project-link-arrow">
-                            →
-                        </span>
-
-                    </a>
-
-
-                </div>
-
-
-            </article>
-
-
-            <!-- LUNAR -->
-
-            <article class="project-card project-card-half">
-
-
-                <span class="project-number">
-                    003
-                </span>
-
-
-                <span class="project-category">
-                    Software
-                </span>
-
-
-                <div class="project-content">
-
-
-                    <h3>
-                        Projeto Lunar
-                    </h3>
-
-
-                    <p>
-
-                        An independent software project
-                        exploring a different direction of
-                        engineering and experimentation.
-
-                    </p>
-
-
-                    <a
-                        href="https://github.com/guell11/projeto-lunar-public"
-                        target="_blank"
-                        class="project-link"
-                    >
-
-                        Open repository
-
-                        <span class="project-link-arrow">
-                            →
-                        </span>
-
-                    </a>
-
-
-                </div>
-
-
-            </article>
-
-
-            <!-- LUMI -->
-
-            <article class="project-card project-card-half">
-
-
-                <span class="project-number">
-                    004
-                </span>
-
-
-                <span class="project-category">
-                    Creative Technology
-                </span>
-
-
-                <div class="project-content">
-
-
-                    <h3>
-                        Lumi Motion
-                    </h3>
-
-
-                    <p>
-
-                        An experimental project exploring
-                        motion, interaction and digital
-                        experiences through technology.
-
-                    </p>
-
-
-                    <a
-                        href="https://github.com/guell11/Lumi-motion"
-                        target="_blank"
-                        class="project-link"
-                    >
-
-                        Open repository
-
-                        <span class="project-link-arrow">
-                            →
-                        </span>
-
-                    </a>
-
-
-                </div>
-
-
-            </article>
-
-
-            <!-- AGNER -->
-
-            <article class="project-card project-card-large">
-
-
-                <span class="project-number">
-                    005
-                </span>
-
-
-                <span class="project-category">
-                    Software Engineering
-                </span>
-
-
-                <div class="project-content">
-
-
-                    <h3>
-                        Agner Browser Project
-                    </h3>
-
-
-                    <p>
-
-                        An independent browser project
-                        exploring software construction
-                        at the application and platform level.
-
-                    </p>
-
-
-                    <a
-                        href="https://github.com/guell11/Agner-Browser-Project"
-                        target="_blank"
-                        class="project-link"
-                    >
-
-                        Open repository
-
-                        <span class="project-link-arrow">
-                            →
-                        </span>
-
-                    </a>
-
-
-                </div>
-
-
-            </article>
-
-
-            <!-- MERGECRAFT -->
-
-            <article class="project-card project-card-medium">
-
-
-                <span class="project-number">
-                    006
-                </span>
-
-
-                <span class="project-category">
-                    Engineering
-                </span>
-
-
-                <div class="project-content">
-
-
-                    <h3>
-                        MergeCraft
-                    </h3>
-
-
-                    <p>
-
-                        An experimental software engineering
-                        project focused on building and exploring
-                        new development ideas.
-
-                    </p>
-
-
-                    <a
-                        href="https://github.com/guell11/MergeCraft"
-                        target="_blank"
-                        class="project-link"
-                    >
-
-                        Open repository
-
-                        <span class="project-link-arrow">
-                            →
-                        </span>
-
-                    </a>
-
-
-                </div>
-
-
-            </article>
-
-
-            <!-- RAG NEXA -->
-
-            <article class="project-card project-card-large">
-
-
-                <span class="project-number">
-                    007
-                </span>
-
-
-                <span class="project-category">
-                    Retrieval-Augmented AI
-                </span>
-
-
-                <div class="project-content">
-
-
-                    <h3>
-                        IA RAG Nexa
-                    </h3>
-
-
-                    <p>
-
-                        An AI project exploring Retrieval-Augmented
-                        Generation and the connection between
-                        language models and external knowledge.
-
-                    </p>
-
-
-                    <a
-                        href="https://github.com/guell11/Ia-RAG-Nexa"
-                        target="_blank"
-                        class="project-link"
-                    >
-
-                        Open repository
-
-                        <span class="project-link-arrow">
-                            →
-                        </span>
-
-                    </a>
-
-
-                </div>
-
-
-            </article>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     RESEARCH AREAS
-========================================================= -->
-
-<section>
-
-    <div class="container">
-
-
-        <div class="section-top">
-
-            <div>
-
-                <div class="section-label">
-                    04 / Areas
-                </div>
-
-                <h2 class="section-title">
-                    What I work on.
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="research-grid">
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    01
-                </span>
-
-                <h3>
-                    Latent Reasoning
-                </h3>
-
-                <p>
-                    Structured internal representations
-                    and experimental reasoning architectures.
-                </p>
-
-            </div>
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    02
-                </span>
-
-                <h3>
-                    Large Language Models
-                </h3>
-
-                <p>
-                    Fine-tuning, model behavior,
-                    coding models and technical reasoning.
-                </p>
-
-            </div>
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    03
-                </span>
-
-                <h3>
-                    RAG Systems
-                </h3>
-
-                <p>
-                    Connecting language models with
-                    external knowledge and retrieval systems.
-                </p>
-
-            </div>
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    04
-                </span>
-
-                <h3>
-                    Multimodal AI
-                </h3>
-
-                <p>
-                    Models that combine language with
-                    visual and technical information.
-                </p>
-
-            </div>
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    05
-                </span>
-
-                <h3>
-                    Local AI
-                </h3>
-
-                <p>
-                    Quantization and inference systems
-                    for practical local deployment.
-                </p>
-
-            </div>
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    06
-                </span>
-
-                <h3>
-                    AI Infrastructure
-                </h3>
-
-                <p>
-                    The tools and systems required
-                    to build and run modern AI.
-                </p>
-
-            </div>
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    07
-                </span>
-
-                <h3>
-                    Software Engineering
-                </h3>
-
-                <p>
-                    Building complete applications,
-                    tools and experimental platforms.
-                </p>
-
-            </div>
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    08
-                </span>
-
-                <h3>
-                    Experimental Systems
-                </h3>
-
-                <p>
-                    Projects that explore ideas
-                    outside conventional categories.
-                </p>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-</section>
 
 
 <!-- =========================================================
      TECHNOLOGY
 ========================================================= -->
 
-<section>
+<section id="stack">
 
     <div class="container">
 
@@ -3250,6 +3340,67 @@
 
 </main>
 
+<div class="project-modal" id="projectModal" aria-hidden="true">
+    <div class="project-modal-backdrop" data-close-modal></div>
+
+    <article class="project-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
+
+        <header class="project-modal-header">
+            <div>
+                <div class="project-modal-label" id="modalProjectCategory">Project README</div>
+                <h2 class="project-modal-title" id="modalProjectTitle"></h2>
+            </div>
+
+            <button class="project-modal-close" type="button" aria-label="Close project README" data-close-modal>
+                ×
+            </button>
+        </header>
+
+        <div class="project-modal-body">
+
+            <div class="project-readme-main">
+                <h3 class="readme-heading">Overview</h3>
+                <p class="readme-text" id="modalProjectOverview"></p>
+
+                <h3 class="readme-heading">What it does</h3>
+                <ul class="readme-list" id="modalProjectFeatures"></ul>
+
+                <h3 class="readme-heading">Technology</h3>
+                <div class="readme-stack" id="modalProjectStack"></div>
+            </div>
+
+            <aside class="project-readme-side">
+                <h3 class="readme-heading">Project information</h3>
+
+                <div class="readme-meta">
+                    <div class="readme-meta-row">
+                        <span>Type</span>
+                        <strong id="modalProjectType"></strong>
+                    </div>
+
+                    <div class="readme-meta-row">
+                        <span>Focus</span>
+                        <strong id="modalProjectFocus"></strong>
+                    </div>
+
+                    <div class="readme-meta-row">
+                        <span>Runtime</span>
+                        <strong id="modalProjectRuntime"></strong>
+                    </div>
+                </div>
+
+                <a class="readme-button" id="modalProjectLink" href="#" target="_blank" rel="noreferrer">
+                    Open repository
+                    <span>↗</span>
+                </a>
+            </aside>
+
+        </div>
+
+    </article>
+</div>
+
+
 
 <!-- =========================================================
      FOOTER
@@ -3299,6 +3450,202 @@
 
 </footer>
 
+
+
+<script>
+    const projects = [{"name":"Nexora-Qwen-Coder-4B","category":"Language Model","size":"large","overview":"A compact coding-focused model fine-tuned from the Qwen 3.5 4B family for code generation, debugging, structured reasoning, tool use and local agentic workflows.","features":["Targets bug localization, code repair and technical instruction following.","Learns tool-oriented behavior from agent trajectories and feedback loops.","Distributed for efficient local inference through GGUF and llama.cpp workflows."],"stack":["Qwen 3.5 4B","Unsloth","GGUF","llama.cpp","SFT"],"type":"Coding language model","focus":"Agentic coding","runtime":"Local inference","url":"https://huggingface.co/guell00/Nexora-Qwen-Coder-4B","icon":"code"},{"name":"J-Space Deliberation","category":"AI Research","size":"medium","overview":"An experimental latent reasoning architecture that introduces a structured five-slot workspace into the residual stream before final text generation.","features":["Organizes deliberation into Objective, Hypothesis, Evidence, Critic and Commit slots.","Uses recurrent memory and Jacobian Lens projections to inspect internal representations.","Explores structured continuous reasoning on top of Gemma 4 E4B-it."],"stack":["Gemma 4 E4B","PyTorch","Jacobian Lens","NF4","Latent Reasoning"],"type":"Research architecture","focus":"Latent deliberation","runtime":"GPU / Notebook","url":"https://huggingface.co/guell00/J-Space-Deliberation","icon":"latent"},{"name":"Nexora-Gemma-4-E4B-Coder","category":"Multimodal Language Model","size":"large","overview":"A code-focused multimodal language model fine-tuned from Gemma 4 E4B and converted to GGUF for efficient local inference, programming and visual debugging.","features":["Supports code generation, explanation, debugging, refactoring and technical reasoning.","Uses a separate BF16 multimodal projector for screenshots, interfaces, diagrams and code shown in images.","Ships Q8_0 and Q4_K_M GGUF quantizations for llama.cpp-compatible local inference."],"stack":["Gemma 4 E4B","Unsloth","GGUF","llama.cpp","Multimodal"],"type":"Multimodal coding LLM","focus":"Code and visual debugging","runtime":"Local inference","url":"https://huggingface.co/guell00/Nexora-Gemma-4-Coder","icon":"vision"},{"name":"Forge3D","category":"Local Generative AI","size":"half","overview":"A browser-based local engine that turns reference images into production-ready 3D assets without sending the workflow to a hosted service.","features":["Runs an image-to-mesh pipeline with TRELLIS.","Refines geometry using UltraShape-oriented workflows.","Generates UVs, PBR textures and validated GLB exports."],"stack":["TRELLIS","UltraShape","FastAPI","React","Three.js"],"type":"AI 3D engine","focus":"Image to 3D","runtime":"Local GPU","url":"https://github.com/guell11/Forge3D","icon":"cube"},{"name":"IA RAG Nexa","category":"Retrieval-Augmented AI","size":"half","overview":"A local RAG assistant designed to connect language models with private documents through hybrid retrieval and traceable citations.","features":["Combines semantic retrieval with SQLite FTS5/BM25.","Uses reciprocal-rank fusion and optional reranking.","Supports document ingestion, local chat and clickable source references."],"stack":["Flask","Ollama","Chroma","BM25","SQLite"],"type":"RAG application","focus":"Private knowledge","runtime":"Local-first","url":"https://github.com/guell11/Ia-RAG-Nexa","icon":"rag"},{"name":"LeBron Local UI","category":"AI Interface","size":"large","overview":"A local interface for configuring and running the J-Space deliberation architecture through a practical browser-based workflow.","features":["Exposes inference and model configuration controls.","Packages research functionality into a usable local UI.","Includes deployment-oriented workflows for notebook and GPU environments."],"stack":["Python","Flask","J-Space","Gemma 4","Kaggle"],"type":"Research interface","focus":"Latent AI runtime","runtime":"Local / Notebook","url":"https://github.com/guell11/Lebron-Local-UI","icon":"ui"},{"name":"LeBron","category":"AI Research Runtime","size":"medium","overview":"The research runtime and experimentation package surrounding the J-Space architecture and its latent-deliberation workflow.","features":["Provides notebooks and execution flows for J-Space experiments.","Connects Gemma 4 inference with recurrent latent memory.","Supports reproducible experimentation outside the visual interface."],"stack":["PyTorch","Transformers","Gemma 4","Notebooks"],"type":"Research runtime","focus":"Deliberation experiments","runtime":"GPU / Notebook","url":"https://github.com/guell11/Lebron","icon":"brain"},{"name":"Projeto Lunar","category":"AI Education Platform","size":"large","overview":"An AI-powered educational ecosystem combining learning dashboards, streaming, pedagogical tools and intelligent assistance in a unified platform.","features":["Brings educational content, streaming and learning tools into one environment.","Uses AI-assisted experiences to support students and pedagogical workflows.","Organizes activity through dashboards designed for education and institutional use."],"stack":["Python","Flask","JavaScript","AI Assistants","Dashboards","Streaming"],"type":"Educational AI ecosystem","focus":"Learning and pedagogy","runtime":"Web application","url":"https://github.com/guell11/projeto-lunar-public","icon":"lunar"},{"name":"MergeCraft","category":"Model Engineering","size":"large","overview":"A graph-first local workbench for composing, validating, merging and benchmarking language models without manually maintaining large MergeKit configuration files.","features":["Visual node editor for model-merging recipes.","Compatibility validation and memory planning before execution.","Integrated runtime monitoring, chat and benchmark workflows."],"stack":["MergeKit","Flask","Python","LLM Benchmarks","Graph UI"],"type":"LLM workbench","focus":"Model merging","runtime":"Local GPU","url":"https://github.com/guell11/MergeCraft","icon":"merge"},{"name":"Lyra Engine","category":"Creative AI","size":"medium","overview":"An offline AI music-production suite built around local generation, lyric assistance, vocal references and track management.","features":["Generates music from natural-language prompts.","Supports lyrics, vocal references and model switching.","Manages GPU and RAM retention policies for consumer hardware."],"stack":["ACE-Step 1.5","Ollama","Flask","Python","Audio AI"],"type":"AI music suite","focus":"Music generation","runtime":"Local GPU","url":"https://github.com/guell11/Lyra-Engine-Local-AI-Music-Production-Suite","icon":"audio"},{"name":"OBSIDIAN WIRE","category":"Cybersecurity","size":"half","overview":"A zero-trust encrypted vault combining modern authenticated encryption with post-quantum key encapsulation.","features":["Encrypts data with AES-256-GCM.","Uses CRYSTALS-Kyber512 for key encapsulation.","Keeps readable secrets away from the server-side storage layer."],"stack":["AES-256-GCM","Kyber512","Zero Trust","Cryptography"],"type":"Encrypted vault","focus":"Post-quantum security","runtime":"Secure local/web","url":"https://github.com/guell11/OBSIDIAN-WIRE","icon":"lock"},{"name":"BitLoja","category":"Bitcoin Commerce","size":"half","overview":"A marketplace experiment built around native Bitcoin payments and escrow rather than conventional payment processors.","features":["Supports 2-of-3 multisignature escrow.","Includes Lightning Network and PSBT-oriented flows.","Provides storefronts, disputes and administrative controls."],"stack":["Flask","Bitcoin","Lightning","PSBT","Multisig"],"type":"Marketplace","focus":"Bitcoin payments","runtime":"Web application","url":"https://github.com/guell11/BitLoja","icon":"bitcoin"},{"name":"Agner Browser Project","category":"Desktop Software","size":"large","overview":"An independent browser project exploring application-level browser construction with a custom desktop interface.","features":["Desktop browsing powered by Qt WebEngine.","Custom navigation and interface components.","Explores browser software beyond a simple embedded webpage."],"stack":["Python","PyQt6","QtWebEngine","Desktop UI"],"type":"Desktop browser","focus":"Browser engineering","runtime":"Desktop","url":"https://github.com/guell11/Agner-Browser-Project","icon":"browser"},{"name":"Lumi Motion","category":"Creative Technology","size":"medium","overview":"An open-source video-editing experiment focused on a modern timeline workflow and accessible creative tooling.","features":["Timeline-oriented media editing.","Modern interface for creative workflows.","Designed as an independent, extensible editing project."],"stack":["Video Editing","Open Source","Media UI"],"type":"Creative application","focus":"Video editing","runtime":"Desktop / Web","url":"https://github.com/guell11/Lumi-motion","icon":"video"},{"name":"HabitFlow","category":"Personal Analytics","size":"half","overview":"A local-first habit tracker that combines daily logging with long-term visual feedback and performance-oriented routines.","features":["GitHub-style annual heatmaps and progress history.","Milestones, bilingual interface and JSON backups.","No external database or behavioral tracking requirement."],"stack":["React 19","Vite","D3.js","LocalStorage"],"type":"Productivity app","focus":"Habit tracking","runtime":"Browser / Local","url":"https://github.com/guell11/HabitFlow","icon":"habit"},{"name":"FinPro SaaS","category":"Financial Product","size":"half","overview":"A financial-control SaaS experiment centered on organizing financial information through a modern dashboard-driven experience.","features":["Consolidates financial records and indicators.","Uses dashboard-based product navigation.","Explores a clean SaaS interface for financial workflows."],"stack":["SaaS","Finance","Dashboard","Web App"],"type":"Financial SaaS","focus":"Financial control","runtime":"Web application","url":"https://github.com/guell11/FinProSaas","icon":"chart"},{"name":"UPAÉFLIX","category":"Streaming Platform","size":"large","overview":"An open-source on-demand streaming platform focused on organized media access, personalized viewing and content administration.","features":["Catalog and on-demand playback experience.","Personalized viewing and organized content discovery.","Administration features for platform content."],"stack":["Streaming","Media","Administration","Web UX"],"type":"Streaming platform","focus":"On-demand media","runtime":"Web application","url":"https://github.com/guell11/UPAEFLIX","icon":"stream"}];
+
+    const projectsGrid = document.getElementById("projectsGrid");
+    const modal = document.getElementById("projectModal");
+    const modalPanel = modal.querySelector(".project-modal-panel");
+    let lastFocusedElement = null;
+
+    function projectSvg(project, index) {
+        const id = `p${index}`;
+        const title = project.name.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        const base = `
+            <defs>
+                <linearGradient id="${id}-stroke" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#ffffff" stop-opacity=".62"/>
+                    <stop offset="1" stop-color="#ffffff" stop-opacity=".14"/>
+                </linearGradient>
+                <linearGradient id="${id}-panel" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#ffffff" stop-opacity=".065"/>
+                    <stop offset="1" stop-color="#ffffff" stop-opacity=".012"/>
+                </linearGradient>
+                <filter id="${id}-glow" x="-60%" y="-60%" width="220%" height="220%">
+                    <feGaussianBlur stdDeviation="5" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+            </defs>
+            <rect width="360" height="170" fill="#080809"/>
+            <rect x="15" y="15" width="330" height="140" rx="14" fill="url(#${id}-panel)" stroke="#fff" stroke-opacity=".075"/>
+            <text x="31" y="39" fill="#fff" fill-opacity=".30" font-family="DM Mono, monospace" font-size="8" letter-spacing="1.4">${String(index + 1).padStart(3, "0")} / ${project.category.toUpperCase()}</text>
+            <text x="31" y="145" fill="#fff" fill-opacity=".22" font-family="DM Mono, monospace" font-size="7.5" letter-spacing="1">${title.toUpperCase()}</text>
+        `;
+
+        const s = `url(#${id}-stroke)`;
+        const diagrams = {
+            cube: `<g transform="translate(208 37)" fill="none" stroke="${s}" stroke-width="1.8" stroke-linejoin="round"><path d="m50 0 46 24v48L50 98 4 72V24Z"/><path d="M4 24 50 49 96 24M50 49v49"/><path d="m26 12 46 24v48"/></g><g fill="#fff"><circle cx="188" cy="61" r="3" opacity=".35"/><circle cx="305" cy="115" r="3" opacity=".18"/></g>`,
+            rag: `<g transform="translate(190 42)" fill="none" stroke="${s}" stroke-width="1.7"><rect x="0" y="0" width="54" height="70" rx="8"/><rect x="96" y="0" width="54" height="70" rx="8"/><circle cx="75" cy="35" r="19"/><path d="M54 35h2M94 35h2M68 35h14"/><path d="M12 17h30M12 28h24M108 17h30M108 28h22" opacity=".55"/></g>`,
+            ui: `<g transform="translate(180 38)" fill="none" stroke="${s}" stroke-width="1.6"><rect x="0" y="0" width="150" height="84" rx="9"/><path d="M0 21h150M42 21v63"/><rect x="54" y="34" width="40" height="28" rx="5"/><path d="M104 36h30M104 46h23M104 56h27M55 72h78" opacity=".55"/></g>`,
+            brain: `<g transform="translate(221 82)" fill="none" stroke="${s}" stroke-width="1.7"><path d="M-4-43c-22-8-39 8-34 25-15 7-12 27 4 31 2 17 25 23 36 10 8 12 28 10 33-5 16 5 29-12 20-25 12-14-2-32-18-28-5-15-27-18-41-8Z"/><path d="M0-41v63M-20-27c12 2 18 9 20 20M-20 8c12-1 18-7 20-17M30-27c-11 2-17 9-19 19M30 9c-11-2-17-8-19-18" opacity=".55"/></g>`,
+            lunar: `<g transform="translate(178 35)" fill="none" stroke="${s}" stroke-width="1.65"><path d="M92 6c-31 5-51 31-46 60 5 30 32 49 61 43-18-8-29-26-26-45 3-20 18-35 38-39-8-12-17-18-27-19Z"/><circle cx="117" cy="24" r="3" fill="#fff" opacity=".5" stroke="none"/><circle cx="137" cy="51" r="2" fill="#fff" opacity=".28" stroke="none"/><path d="M0 92h53l16-18 19 11 18-25 22 15 24-31" opacity=".52"/><rect x="0" y="8" width="46" height="49" rx="7"/><path d="M11 20h24M11 30h18M11 40h27" opacity=".55"/></g>`,
+            merge: `<g transform="translate(190 47)" fill="none" stroke="${s}" stroke-width="1.8"><circle cx="18" cy="16" r="15"/><circle cx="18" cy="64" r="15"/><rect x="72" y="24" width="43" height="32" rx="7"/><circle cx="145" cy="40" r="17"/><path d="M33 16h19c13 0 20 9 20 18M33 64h19c13 0 20-9 20-18M115 40h13"/></g>`,
+            audio: `<g transform="translate(181 48)" fill="none" stroke="${s}" stroke-width="1.9" stroke-linecap="round"><path d="M0 38h12l8-27 12 56 13-41 12 24 14-12h12l11-34 13 68 12-44 12 22 12-12h18"/><path d="M0 82h168" opacity=".25"/></g>`,
+            lock: `<g transform="translate(218 40)" fill="none" stroke="${s}" stroke-width="1.8"><rect x="0" y="38" width="94" height="62" rx="11"/><path d="M20 38V24c0-34 54-34 54 0v14"/><circle cx="47" cy="66" r="7"/><path d="M47 73v13"/></g>`,
+            bitcoin: `<g transform="translate(252 83)" fill="none" stroke="${s}" stroke-width="1.8"><circle r="47"/><path d="M-10-29v58M10-29v58M-22-23H8c19 0 19 19 1 19h-31 33c20 0 20 22-2 22h-31" stroke-width="2.5"/></g>`,
+            browser: `<g transform="translate(178 38)" fill="none" stroke="${s}" stroke-width="1.6"><rect width="154" height="88" rx="9"/><path d="M0 22h154"/><circle cx="14" cy="11" r="2" fill="#fff" opacity=".4"/><circle cx="24" cy="11" r="2" fill="#fff" opacity=".25"/><circle cx="34" cy="11" r="2" fill="#fff" opacity=".15"/><path d="M19 43h53M19 56h89M19 69h70" opacity=".5"/></g>`,
+            video: `<g transform="translate(178 38)" fill="none" stroke="${s}" stroke-width="1.6"><rect width="154" height="88" rx="9"/><path d="M0 59h154M38 59v29M78 59v29M121 59v29"/><path d="m66 19 35 20-35 20Z"/></g>`,
+            habit: `<g transform="translate(188 43)"><g fill="#fff"><rect x="0" y="0" width="13" height="13" opacity=".08"/><rect x="19" y="0" width="13" height="13" opacity=".19"/><rect x="38" y="0" width="13" height="13" opacity=".32"/><rect x="57" y="0" width="13" height="13" opacity=".12"/><rect x="76" y="0" width="13" height="13" opacity=".26"/><rect x="95" y="0" width="13" height="13" opacity=".43"/><rect x="114" y="0" width="13" height="13" opacity=".17"/><rect x="133" y="0" width="13" height="13" opacity=".30"/></g><path d="m3 62 20 15 31-38 26 21 30-34 38 40" fill="none" stroke="${s}" stroke-width="2.4"/></g>`,
+            chart: `<g transform="translate(184 39)" fill="none" stroke="${s}" stroke-width="1.6"><path d="M0 85V0M0 85h146"/><path d="m10 72 31-22 28 9 32-35 23 16 20-20" stroke-width="2.4"/><g fill="#fff" stroke="none"><rect x="20" y="59" width="13" height="26" opacity=".10"/><rect x="53" y="45" width="13" height="40" opacity=".18"/><rect x="86" y="52" width="13" height="33" opacity=".12"/><rect x="119" y="29" width="13" height="56" opacity=".24"/></g></g>`,
+            stream: `<g transform="translate(178 38)" fill="none" stroke="${s}" stroke-width="1.6"><rect width="154" height="88" rx="9"/><path d="m65 20 38 24-38 24Z"/><path d="M15 12h34M105 12h34M15 77h53M91 77h48" opacity=".45"/></g>`
+        };
+
+        return `<svg viewBox="0 0 360 170" aria-hidden="true">${base}${diagrams[project.icon] || diagrams.ui}</svg>`;
+    }
+
+    function projectCard(project, index) {
+        const sizeClass = project.size === "large"
+            ? "project-card-large"
+            : project.size === "medium"
+                ? "project-card-medium"
+                : "project-card-half";
+
+        return `
+            <article
+                class="project-card ${sizeClass}"
+                tabindex="0"
+                role="button"
+                aria-label="Open README for ${project.name}"
+                data-project-index="${index}"
+            >
+                <span class="project-number">${String(index + 1).padStart(3, "0")}</span>
+                <span class="project-category">${project.category}</span>
+
+                <div class="project-visual">${projectSvg(project, index)}</div>
+
+                <div class="project-content">
+                    <h3>${project.name}</h3>
+                    <p>${project.overview}</p>
+                    <span class="project-hint">Open mini README <span>↗</span></span>
+                </div>
+            </article>
+        `;
+    }
+
+    projectsGrid.innerHTML = projects.slice(3).map((project, index) => projectCard(project, index + 3)).join("");
+
+    document.querySelectorAll("[data-featured-project]").forEach(banner => {
+        const openFeatured = () => {
+            const index = projects.findIndex(project => project.name === banner.dataset.featuredProject);
+            if (index >= 0) openProjectModal(index);
+        };
+
+        banner.addEventListener("click", openFeatured);
+        banner.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openFeatured();
+            }
+        });
+    });
+
+    function openProjectModal(index) {
+        const project = projects[index];
+        if (!project) return;
+
+        lastFocusedElement = document.activeElement;
+
+        document.getElementById("modalProjectCategory").textContent = project.category;
+        document.getElementById("modalProjectTitle").textContent = project.name;
+        document.getElementById("modalProjectOverview").textContent = project.overview;
+        document.getElementById("modalProjectType").textContent = project.type;
+        document.getElementById("modalProjectFocus").textContent = project.focus;
+        document.getElementById("modalProjectRuntime").textContent = project.runtime;
+
+        document.getElementById("modalProjectFeatures").innerHTML = project.features
+            .map(feature => `<li>${feature}</li>`)
+            .join("");
+
+        document.getElementById("modalProjectStack").innerHTML = project.stack
+            .map(item => `<span>${item}</span>`)
+            .join("");
+
+        const link = document.getElementById("modalProjectLink");
+        link.href = project.url;
+        link.textContent = project.name === "Projeto Lunar"
+            ? "Open original repository ↗"
+            : project.url.includes("huggingface.co")
+                ? "Open on Hugging Face ↗"
+                : "Open repository ↗";
+
+        modal.classList.add("is-open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+
+        window.setTimeout(() => {
+            modal.querySelector(".project-modal-close").focus();
+        }, 50);
+    }
+
+    function closeProjectModal() {
+        modal.classList.remove("is-open");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+
+        if (lastFocusedElement) {
+            lastFocusedElement.focus();
+        }
+    }
+
+    projectsGrid.addEventListener("click", event => {
+        const card = event.target.closest(".project-card");
+        if (!card) return;
+        openProjectModal(Number(card.dataset.projectIndex));
+    });
+
+    projectsGrid.addEventListener("keydown", event => {
+        const card = event.target.closest(".project-card");
+        if (!card) return;
+
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openProjectModal(Number(card.dataset.projectIndex));
+        }
+    });
+
+    modal.addEventListener("click", event => {
+        if (event.target.closest("[data-close-modal]")) {
+            closeProjectModal();
+        }
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && modal.classList.contains("is-open")) {
+            closeProjectModal();
+        }
+
+        if (event.key === "Tab" && modal.classList.contains("is-open")) {
+            const focusable = [...modalPanel.querySelectorAll(
+                'button, a[href], [tabindex]:not([tabindex="-1"])'
+            )].filter(element => !element.hasAttribute("disabled"));
+
+            if (!focusable.length) return;
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        }
+    });
+</script>
 
 </body>
 
