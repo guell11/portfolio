@@ -1,3652 +1,1107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
-        Miguel Penha Reis — AI Engineer & Researcher
-    </title>
-
-    <meta
-        name="description"
-        content="Miguel Penha Reis builds AI systems, language models, research architectures, developer tools and experimental software."
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <style>
-
-        /* =========================================================
-           ROOT
-        ========================================================= */
-
-        :root {
-
-            --bg:
-                #050505;
-
-            --bg-soft:
-                #090909;
-
-            --surface:
-                #0d0d0e;
-
-            --surface-light:
-                #111112;
-
-            --border:
-                rgba(255,255,255,0.09);
-
-            --border-strong:
-                rgba(255,255,255,0.16);
-
-            --text:
-                #f4f4f5;
-
-            --muted:
-                #8c8c94;
-
-            --muted-light:
-                #b5b5bb;
-
-            --white:
-                #ffffff;
-
-            --max:
-                1180px;
-
-        }
-
-
-        /* =========================================================
-           RESET
-        ========================================================= */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-
-        body {
-
-            background:
-                var(--bg);
-
-            color:
-                var(--text);
-
-            font-family:
-                "Inter",
-                sans-serif;
-
-            line-height:
-                1.6;
-
-            overflow-x:
-                hidden;
-
-        }
-
-
-        body::before {
-
-            content: "";
-
-            position:
-                fixed;
-
-            inset:
-                0;
-
-            z-index:
-                -2;
-
-            pointer-events:
-                none;
-
-            background:
-
-                radial-gradient(
-                    circle at 50% -15%,
-                    rgba(255,255,255,0.08),
-                    transparent 38%
-                );
-
-        }
-
-
-        body::after {
-
-            content: "";
-
-            position:
-                fixed;
-
-            inset:
-                0;
-
-            z-index:
-                -1;
-
-            pointer-events:
-                none;
-
-            opacity:
-                0.025;
-
-            background-image:
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-
-        }
-
-
-        a {
-
-            color:
-                inherit;
-
-            text-decoration:
-                none;
-
-        }
-
-
-        .container {
-
-            width:
-                min(
-                    var(--max),
-                    calc(100% - 48px)
-                );
-
-            margin:
-                auto;
-
-        }
-
-
-        /* =========================================================
-           NAV
-        ========================================================= */
-
-        nav {
-
-            position:
-                fixed;
-
-            top:
-                0;
-
-            left:
-                0;
-
-            width:
-                100%;
-
-            z-index:
-                100;
-
-            border-bottom:
-                1px solid
-                rgba(255,255,255,0.055);
-
-            background:
-                rgba(5,5,5,0.72);
-
-            backdrop-filter:
-                blur(22px);
-
-            -webkit-backdrop-filter:
-                blur(22px);
-
-        }
-
-
-        .nav-inner {
-
-            height:
-                70px;
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                space-between;
-
-        }
-
-
-        .logo {
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                17px;
-
-            font-weight:
-                700;
-
-            letter-spacing:
-                -0.045em;
-
-        }
-
-
-        .nav-links {
-
-            display:
-                flex;
-
-            gap:
-                32px;
-
-            list-style:
-                none;
-
-        }
-
-
-        .nav-links a {
-
-            color:
-                var(--muted);
-
-            font-size:
-                12px;
-
-            transition:
-                0.25s
-                ease;
-
-        }
-
-
-        .nav-links a:hover {
-
-            color:
-                var(--white);
-
-        }
-
-
-        /* =========================================================
-           HERO
-        ========================================================= */
-
-        .hero {
-
-            min-height:
-                100vh;
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            padding-top:
-                70px;
-
-        }
-
-
-        .hero-content {
-
-            width:
-                100%;
-
-            max-width:
-                1040px;
-
-        }
-
-
-        .hero-kicker {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            gap:
-                12px;
-
-            margin-bottom:
-                34px;
-
-            color:
-                var(--muted);
-
-            font-family:
-                "DM Mono",
-                monospace;
-
-            font-size:
-                10px;
-
-            text-transform:
-                uppercase;
-
-            letter-spacing:
-                0.12em;
-
-        }
-
-
-        .kicker-line {
-
-            width:
-                36px;
-
-            height:
-                1px;
-
-            background:
-                rgba(255,255,255,0.4);
-
-        }
-
-
-        .hero h1 {
-
-            max-width:
-                1050px;
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                clamp(
-                    54px,
-                    8.5vw,
-                    108px
-                );
-
-            line-height:
-                0.91;
-
-            letter-spacing:
-                -0.075em;
-
-            font-weight:
-                600;
-
-        }
-
-
-        .hero h1 .dim {
-
-            color:
-                #6f6f76;
-
-        }
-
-
-        .hero-description {
-
-            max-width:
-                680px;
-
-            margin-top:
-                40px;
-
-            color:
-                var(--muted-light);
-
-            font-size:
-                17px;
-
-            line-height:
-                1.8;
-
-        }
-
-
-        /* NEW HEADER IDENTITY */
-
-        .hero-focus {
-
-            display:
-                flex;
-
-            flex-wrap:
-                wrap;
-
-            gap:
-                0;
-
-            margin-top:
-                34px;
-
-            border-top:
-                1px solid
-                var(--border);
-
-            border-bottom:
-                1px solid
-                var(--border);
-
-            width:
-                fit-content;
-
-        }
-
-
-        .focus-item {
-
-            padding:
-                13px
-                18px;
-
-            padding-left:
-                0;
-
-            margin-right:
-                18px;
-
-            color:
-                #a4a4aa;
-
-            font-family:
-                "DM Mono",
-                monospace;
-
-            font-size:
-                10px;
-
-            text-transform:
-                uppercase;
-
-            letter-spacing:
-                0.08em;
-
-        }
-
-
-        .focus-item:not(:last-child)::after {
-
-            content:
-                " / ";
-
-            margin-left:
-                18px;
-
-            color:
-                #444449;
-
-        }
-
-
-        .hero-actions {
-
-            display:
-                flex;
-
-            gap:
-                10px;
-
-            margin-top:
-                38px;
-
-        }
-
-
-        .button {
-
-            display:
-                inline-flex;
-
-            align-items:
-                center;
-
-            gap:
-                9px;
-
-            padding:
-                12px
-                17px;
-
-            border-radius:
-                7px;
-
-            font-size:
-                12px;
-
-            font-weight:
-                600;
-
-            transition:
-                0.25s
-                ease;
-
-        }
-
-
-        .button-primary {
-
-            color:
-                #000;
-
-            background:
-                #fff;
-
-        }
-
-
-        .button-primary:hover {
-
-            transform:
-                translateY(-2px);
-
-            opacity:
-                0.88;
-
-        }
-
-
-        .button-secondary {
-
-            border:
-                1px solid
-                var(--border);
-
-            color:
-                var(--text);
-
-        }
-
-
-        .button-secondary:hover {
-
-            background:
-                rgba(255,255,255,0.06);
-
-            border-color:
-                var(--border-strong);
-
-        }
-
-
-        /* =========================================================
-           SECTION
-        ========================================================= */
-
-        section {
-
-            padding:
-                130px
-                0;
-
-        }
-
-
-        .section-top {
-
-            display:
-                flex;
-
-            justify-content:
-                space-between;
-
-            align-items:
-                flex-end;
-
-            gap:
-                40px;
-
-            margin-bottom:
-                55px;
-
-        }
-
-
-        .section-label {
-
-            margin-bottom:
-                13px;
-
-            color:
-                #68686f;
-
-            font-family:
-                "DM Mono",
-                monospace;
-
-            font-size:
-                10px;
-
-            text-transform:
-                uppercase;
-
-            letter-spacing:
-                0.14em;
-
-        }
-
-
-        .section-title {
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                clamp(
-                    38px,
-                    5vw,
-                    62px
-                );
-
-            line-height:
-                0.98;
-
-            letter-spacing:
-                -0.065em;
-
-        }
-
-
-        .section-note {
-
-            max-width:
-                340px;
-
-            color:
-                var(--muted);
-
-            font-size:
-                13px;
-
-            line-height:
-                1.7;
-
-        }
-
-
-        /* =========================================================
-           FEATURED RESEARCH
-        ========================================================= */
-
-        .featured {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                1.2fr
-                0.8fr;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius:
-                22px;
-
-            overflow:
-                hidden;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255,255,255,0.055),
-                    rgba(255,255,255,0.012)
-                );
-
-        }
-
-
-        .featured-main {
-
-            padding:
-                58px;
-
-        }
-
-
-        .featured-side {
-
-            padding:
-                58px;
-
-            border-left:
-                1px solid
-                var(--border);
-
-            background:
-                radial-gradient(
-                    circle at 50% 15%,
-                    rgba(255,255,255,0.07),
-                    transparent 60%
-                );
-
-        }
-
-
-        .research-index {
-
-            color:
-                #55555b;
-
-            font-family:
-                "DM Mono",
-                monospace;
-
-            font-size:
-                10px;
-
-        }
-
-
-        .featured h3 {
-
-            margin-top:
-                90px;
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                clamp(
-                    36px,
-                    4vw,
-                    58px
-                );
-
-            line-height:
-                0.95;
-
-            letter-spacing:
-                -0.06em;
-
-        }
-
-
-        .featured-subtitle {
-
-            margin-top:
-                20px;
-
-            color:
-                var(--muted-light);
-
-            font-size:
-                14px;
-
-        }
-
-
-        .featured-description {
-
-            max-width:
-                650px;
-
-            margin-top:
-                25px;
-
-            color:
-                var(--muted);
-
-            font-size:
-                14px;
-
-            line-height:
-                1.8;
-
-        }
-
-
-        .slots {
-
-            display:
-                grid;
-
-            gap:
-                8px;
-
-            margin-top:
-                34px;
-
-        }
-
-
-        .slot {
-
-            display:
-                flex;
-
-            justify-content:
-                space-between;
-
-            align-items:
-                center;
-
-            padding:
-                13px
-                15px;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius:
-                8px;
-
-            background:
-                rgba(255,255,255,0.025);
-
-        }
-
-
-        .slot strong {
-
-            font-size:
-                12px;
-
-        }
-
-
-        .slot span {
-
-            color:
-                #6d6d73;
-
-            font-family:
-                "DM Mono",
-                monospace;
-
-            font-size:
-                10px;
-
-        }
-
-
-        /* =========================================================
-           ARCHITECTURE
-        ========================================================= */
-
-        .architecture {
-
-            display:
-                flex;
-
-            flex-direction:
-                column;
-
-            align-items:
-                center;
-
-            gap:
-                9px;
-
-            margin-top:
-                25px;
-
-        }
-
-
-        .architecture-box {
-
-            width:
-                100%;
-
-            padding:
-                16px;
-
-            text-align:
-                center;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius:
-                8px;
-
-            background:
-                rgba(255,255,255,0.025);
-
-            color:
-                #c2c2c7;
-
-            font-size:
-                11px;
-
-            font-weight:
-                600;
-
-        }
-
-
-        .arrow {
-
-            color:
-                #55555b;
-
-            font-family:
-                "DM Mono",
-                monospace;
-
-            font-size:
-                12px;
-
-        }
-
-
-        /* =========================================================
-           MODEL
-        ========================================================= */
-
-        .model-list {
-            display: grid;
-            gap: 12px;
-        }
-
-        .model-card {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                1fr
-                auto;
-
-            gap:
-                40px;
-
-            padding:
-                45px;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius:
-                18px;
-
-            background:
-                var(--surface);
-
-            transition:
-                0.3s
-                ease;
-
-        }
-
-
-        .model-card:hover {
-
-            border-color:
-                var(--border-strong);
-
-            transform:
-                translateY(-4px);
-
-        }
-
-
-        .model-title {
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                34px;
-
-            letter-spacing:
-                -0.055em;
-
-        }
-
-
-        .model-description {
-
-            max-width:
-                700px;
-
-            margin-top:
-                16px;
-
-            color:
-                var(--muted);
-
-            font-size:
-                14px;
-
-            line-height:
-                1.8;
-
-        }
-
-
-        .model-meta {
-
-            display:
-                flex;
-
-            align-items:
-                flex-start;
-
-        }
-
-
-        .model-badge {
-
-            padding:
-                7px
-                10px;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius:
-                999px;
-
-            color:
-                var(--muted);
-
-            font-family:
-                "DM Mono",
-                monospace;
-
-            font-size:
-                9px;
-
-            white-space:
-                nowrap;
-
-        }
-
-
-        .model-tags {
-
-            display:
-                flex;
-
-            flex-wrap:
-                wrap;
-
-            gap:
-                7px;
-
-            margin-top:
-                25px;
-
-        }
-
-
-        .tag {
-
-            padding:
-                6px
-                9px;
-
-            border:
-                1px solid
-                rgba(255,255,255,0.07);
-
-            border-radius:
-                5px;
-
-            color:
-                #85858b;
-
-            font-family:
-                "DM Mono",
-                monospace;
-
-            font-size:
-                9px;
-
-        }
-
-
-        /* =========================================================
-           PROJECTS
-        ========================================================= */
-
-        .projects-grid {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                repeat(
-                    12,
-                    1fr
-                );
-
-            gap:
-                12px;
-
-        }
-
-
-        .project-card {
-
-            position:
-                relative;
-
-            min-height:
-                340px;
-
-            display:
-                flex;
-
-            flex-direction:
-                column;
-
-            padding:
-                30px;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius:
-                17px;
-
-            background:
-                var(--surface);
-
-            overflow:
-                hidden;
-
-            transition:
-                0.35s
-                ease;
-
-        }
-
-
-        .project-card::before {
-
-            content:
-                "";
-
-            position:
-                absolute;
-
-            inset:
-                0;
-
-            opacity:
-                0;
-
-            transition:
-                0.35s
-                ease;
-
-            background:
-                radial-gradient(
-                    circle at 50% 0%,
-                    rgba(255,255,255,0.07),
-                    transparent 55%
-                );
-
-            pointer-events:
-                none;
-
-        }
-
-
-        .project-card:hover {
-
-            transform:
-                translateY(-5px);
-
-            border-color:
-                var(--border-strong);
-
-        }
-
-
-        .project-card:hover::before {
-
-            opacity:
-                1;
-
-        }
-
-
-        .project-card-large {
-
-            grid-column:
-                span 8;
-
-            min-height:
-                410px;
-
-        }
-
-
-        .project-card-medium {
-
-            grid-column:
-                span 4;
-
-            min-height:
-                410px;
-
-        }
-
-
-        .project-card-half {
-
-            grid-column:
-                span 6;
-
-            min-height:
-                330px;
-
-        }
-
-
-        .project-number {
-
-            position:
-                relative;
-
-            z-index:
-                2;
-
-            color:
-                #55555b;
-
-            font-family:
-                "DM Mono",
-                monospace;
-
-            font-size:
-                10px;
-
-        }
-
-
-        .project-category {
-
-            position:
-                relative;
-
-            z-index:
-                2;
-
-            align-self:
-                flex-start;
-
-            margin-top:
-                18px;
-
-            padding:
-                6px
-                9px;
-
-            border:
-                1px solid
-                rgba(255,255,255,0.07);
-
-            border-radius:
-                5px;
-
-            color:
-                #8b8b91;
-
-            font-family:
-                "DM Mono",
-                monospace;
-
-            font-size:
-                9px;
-
-            text-transform:
-                uppercase;
-
-            letter-spacing:
-                0.08em;
-
-        }
-
-
-        .project-content {
-
-            position:
-                relative;
-
-            z-index:
-                2;
-
-            margin-top:
-                auto;
-
-        }
-
-
-        .project-visual {
-            position: relative;
-            z-index: 2;
-            height: 154px;
-            margin: 24px 0 28px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            background: linear-gradient(145deg, #0b0b0c, #070708);
-        }
-
-        .project-visual::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background: linear-gradient(180deg, rgba(255,255,255,.025), transparent 42%, rgba(0,0,0,.18));
-        }
-
-        .project-visual svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-            transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .35s ease;
-        }
-
-        .project-card:hover .project-visual svg {
-            transform: scale(1.018) translateY(-1px);
-        }
-
-        .project-card h3 {
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                30px;
-
-            line-height:
-                1;
-
-            letter-spacing:
-                -0.055em;
-
-        }
-
-
-        .project-card-large h3 {
-
-            font-size:
-                clamp(
-                    34px,
-                    4vw,
-                    52px
-                );
-
-        }
-
-
-        .project-card p {
-
-            max-width:
-                620px;
-
-            margin-top:
-                13px;
-
-            color:
-                var(--muted);
-
-            font-size:
-                12px;
-
-            line-height:
-                1.75;
-
-        }
-
-
-        .project-link {
-
-            display:
-                inline-flex;
-
-            align-items:
-                center;
-
-            gap:
-                8px;
-
-            margin-top:
-                22px;
-
-            color:
-                var(--white);
-
-            font-size:
-                11px;
-
-            font-weight:
-                600;
-
-        }
-
-
-        .project-link-arrow {
-
-            transition:
-                0.2s
-                ease;
-
-        }
-
-
-        .project-link:hover
-        .project-link-arrow {
-
-            transform:
-                translateX(4px);
-
-        }
-
-
-        /* =========================================================
-           RESEARCH AREAS
-        ========================================================= */
-
-        .research-grid {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                repeat(
-                    4,
-                    1fr
-                );
-
-            gap:
-                10px;
-
-        }
-
-
-        .research-card {
-
-            min-height:
-                230px;
-
-            padding:
-                26px;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius:
-                14px;
-
-            background:
-                rgba(255,255,255,0.025);
-
-            transition:
-                0.3s
-                ease;
-
-        }
-
-
-        .research-card:hover {
-
-            background:
-                rgba(255,255,255,0.05);
-
-            border-color:
-                var(--border-strong);
-
-        }
-
-
-        .research-card-number {
-
-            color:
-                #55555b;
-
-            font-family:
-                "DM Mono",
-                monospace;
-
-            font-size:
-                10px;
-
-        }
-
-
-        .research-card h3 {
-
-            margin-top:
-                65px;
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                19px;
-
-            letter-spacing:
-                -0.04em;
-
-        }
-
-
-        .research-card p {
-
-            margin-top:
-                9px;
-
-            color:
-                var(--muted);
-
-            font-size:
-                12px;
-
-            line-height:
-                1.7;
-
-        }
-
-
-        /* =========================================================
-           STACK
-        ========================================================= */
-
-        .stack {
-
-            display:
-                flex;
-
-            flex-wrap:
-                wrap;
-
-            gap:
-                8px;
-
-        }
-
-
-        .stack-item {
-
-            padding:
-                10px
-                13px;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius:
-                6px;
-
-            color:
-                #8f8f96;
-
-            font-family:
-                "DM Mono",
-                monospace;
-
-            font-size:
-                10px;
-
-        }
-
-
-        /* =========================================================
-           ABOUT
-        ========================================================= */
-
-        .about {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                0.7fr
-                1.3fr;
-
-            gap:
-                90px;
-
-        }
-
-
-        .about-text {
-
-            color:
-                var(--muted);
-
-            font-size:
-                16px;
-
-            line-height:
-                1.9;
-
-        }
-
-
-        .about-text p + p {
-
-            margin-top:
-                20px;
-
-        }
-
-
-        .big-statement {
-
-            margin-top:
-                60px;
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                clamp(
-                    34px,
-                    5vw,
-                    60px
-                );
-
-            line-height:
-                0.98;
-
-            letter-spacing:
-                -0.065em;
-
-            color:
-                var(--text);
-
-        }
-
-
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
-        footer {
-
-            padding:
-                60px
-                0;
-
-            border-top:
-                1px solid
-                var(--border);
-
-        }
-
-
-        .footer-inner {
-
-            display:
-                flex;
-
-            justify-content:
-                space-between;
-
-            align-items:
-                center;
-
-        }
-
-
-        .footer-name {
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                18px;
-
-            font-weight:
-                700;
-
-        }
-
-
-        .footer-links {
-
-            display:
-                flex;
-
-            gap:
-                24px;
-
-        }
-
-
-        .footer-links a {
-
-            color:
-                var(--muted);
-
-            font-size:
-                11px;
-
-        }
-
-
-        .footer-links a:hover {
-
-            color:
-                var(--white);
-
-        }
-
-
-        /* =========================================================
-           RESPONSIVE
-        ========================================================= */
-
-        @media (max-width: 1000px) {
-
-            .projects-grid {
-
-                grid-template-columns:
-                    repeat(
-                        2,
-                        1fr
-                    );
-
-            }
-
-
-            .project-card-large,
-            .project-card-medium,
-            .project-card-half {
-
-                grid-column:
-                    span 1;
-
-            }
-
-
-            .project-card-large {
-
-                min-height:
-                    380px;
-
-            }
-
-
-            .research-grid {
-
-                grid-template-columns:
-                    repeat(
-                        2,
-                        1fr
-                    );
-
-            }
-
-        }
-
-
-        @media (max-width: 850px) {
-
-            .featured {
-
-                grid-template-columns:
-                    1fr;
-
-            }
-
-
-            .featured-side {
-
-                border-left:
-                    none;
-
-                border-top:
-                    1px solid
-                    var(--border);
-
-            }
-
-
-            .about {
-
-                grid-template-columns:
-                    1fr;
-
-                gap:
-                    50px;
-
-            }
-
-
-            .model-card {
-
-                grid-template-columns:
-                    1fr;
-
-            }
-
-        }
-
-
-        @media (max-width: 600px) {
-
-            .container {
-
-                width:
-                    calc(
-                        100% - 30px
-                    );
-
-            }
-
-
-            .nav-links {
-
-                display:
-                    none;
-
-            }
-
-
-            section {
-
-                padding:
-                    90px
-                    0;
-
-            }
-
-
-            .hero-focus {
-
-                width:
-                    100%;
-
-            }
-
-
-            .focus-item {
-
-                padding:
-                    12px
-                    0;
-
-                margin-right:
-                    12px;
-
-            }
-
-
-            .focus-item:not(:last-child)::after {
-
-                margin-left:
-                    12px;
-
-            }
-
-
-            .featured-main,
-            .featured-side {
-
-                padding:
-                    30px;
-
-            }
-
-
-            .model-card {
-
-                padding:
-                    28px;
-
-            }
-
-
-            .projects-grid {
-
-                grid-template-columns:
-                    1fr;
-
-            }
-
-
-            .project-card-large,
-            .project-card-medium,
-            .project-card-half {
-
-                grid-column:
-                    span 1;
-
-            }
-
-
-            .research-grid {
-
-                grid-template-columns:
-                    1fr;
-
-            }
-
-
-            .section-top {
-
-                flex-direction:
-                    column;
-
-                align-items:
-                    flex-start;
-
-            }
-
-
-            .footer-inner {
-
-                flex-direction:
-                    column;
-
-                align-items:
-                    flex-start;
-
-                gap:
-                    25px;
-
-            }
-
-        }
-
-
-        /* =========================================================
-           PROJECT README MODAL
-        ========================================================= */
-
-        .project-card {
-            cursor: pointer;
-        }
-
-        .project-card:focus-visible {
-            outline: 1px solid var(--white);
-            outline-offset: 4px;
-        }
-
-        .project-card .project-hint {
-            position: relative;
-            z-index: 2;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 18px;
-            color: #696970;
-            font-family: "DM Mono", monospace;
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .project-card:hover .project-hint {
-            color: #b9b9bf;
-        }
-
-
-        /* =========================================================
-           PROJECT SHOWCASE / CSS-ONLY BANNERS
-        ========================================================= */
-
-        .project-showcase {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        .showcase-banner {
-            position: relative;
-            min-height: 310px;
-            padding: 30px;
-            border: 1px solid var(--border);
-            border-radius: 17px;
-            background: var(--surface);
-            overflow: hidden;
-            cursor: pointer;
-            transition: 0.35s ease;
-        }
-
-        .showcase-banner:hover {
-            transform: translateY(-5px);
-            border-color: var(--border-strong);
-        }
-
-        .showcase-banner:focus-visible {
-            outline: 2px solid #fff;
-            outline-offset: 3px;
-        }
-
-        .showcase-banner-head,
-        .showcase-banner-copy {
-            position: relative;
-            z-index: 3;
-        }
-
-        .showcase-banner-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .showcase-banner-index,
-        .showcase-banner-type {
-            color: #66666d;
-            font-family: "DM Mono", monospace;
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .showcase-banner-copy {
-            position: absolute;
-            left: 30px;
-            right: 30px;
-            bottom: 28px;
-        }
-
-        .showcase-banner h3 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(30px, 3vw, 46px);
-            line-height: 0.95;
-            letter-spacing: -0.06em;
-        }
-
-        .showcase-banner p {
-            max-width: 600px;
-            margin-top: 12px;
-            color: var(--muted);
-            font-size: 12px;
-            line-height: 1.7;
-        }
-
-        .showcase-banner-link {
-            display: inline-flex;
-            margin-top: 18px;
-            color: #fff;
-            font-size: 10px;
-            font-weight: 600;
-        }
-
-        .banner-code-grid,
-        .banner-gemma-vision {
-            position: absolute;
-            inset: 0;
-            opacity: .58;
-            background:
-                radial-gradient(circle at 74% 42%, rgba(255,255,255,.10) 0 2px, transparent 3px),
-                radial-gradient(circle at 68% 56%, rgba(255,255,255,.08) 0 1px, transparent 2px),
-                linear-gradient(135deg, transparent 52%, rgba(255,255,255,.035) 52% 53%, transparent 53%);
-        }
-
-        .banner-gemma-vision::before {
-            content: "";
-            position: absolute;
-            width: 170px;
-            height: 112px;
-            right: 52px;
-            top: 72px;
-            border: 1px solid rgba(255,255,255,.16);
-            border-radius: 16px;
-            transform: rotate(-6deg);
-            box-shadow: -18px 18px 0 -1px #0d0d0e, -18px 18px 0 0 rgba(255,255,255,.08);
-        }
-
-        .banner-gemma-vision::after {
-            content: "</>  +  ◉";
-            position: absolute;
-            right: 78px;
-            top: 111px;
-            color: rgba(255,255,255,.34);
-            font-family: "DM Mono", monospace;
-            font-size: 15px;
-            letter-spacing: .22em;
-            transform: rotate(-6deg);
-        }
-
-        .banner-latent-space {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
-
-        .banner-code-grid {
-            background:
-                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-            background-size: 28px 28px;
-            mask-image: linear-gradient(to bottom, #000, transparent 72%);
-        }
-
-        .banner-code-grid::before,
-        .banner-code-grid::after {
-            content: "";
-            position: absolute;
-            border: 1px solid rgba(255,255,255,0.11);
-            background: rgba(255,255,255,0.025);
-        }
-
-        .banner-code-grid::before {
-            width: 180px;
-            height: 105px;
-            top: 55px;
-            right: 58px;
-            border-radius: 12px;
-            box-shadow:
-                -24px 24px 0 -1px #0d0d0e,
-                -24px 24px 0 0 rgba(255,255,255,0.08);
-            transform: rotate(-4deg);
-        }
-
-        .banner-code-grid::after {
-            width: 66px;
-            height: 5px;
-            top: 86px;
-            right: 107px;
-            border: none;
-            border-radius: 99px;
-            background: #8d8d94;
-            box-shadow:
-                0 15px 0 #44444a,
-                34px 30px 0 #68686f,
-                -18px 45px 0 #35353a;
-            transform: rotate(-4deg);
-        }
-
-        .banner-latent-space::before,
-        .banner-latent-space::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 44%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-        }
-
-        .banner-latent-space::before {
-            width: 190px;
-            height: 190px;
-            border: 1px solid rgba(255,255,255,0.11);
-            box-shadow:
-                inset 0 0 0 30px rgba(255,255,255,0.012),
-                inset 0 0 0 60px rgba(255,255,255,0.018);
-        }
-
-        .banner-latent-space::after {
-            width: 8px;
-            height: 8px;
-            background: #fff;
-            box-shadow:
-                63px -42px 0 #67676e,
-                -69px -22px 0 #44444a,
-                50px 58px 0 #8b8b91,
-                -48px 61px 0 #55555b;
-        }
-
-        .project-group-label {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 44px 0 18px;
-            color: #68686f;
-            font-family: "DM Mono", monospace;
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-        }
-
-        .project-group-label::after {
-            content: "";
-            height: 1px;
-            flex: 1;
-            background: var(--border);
-        }
-
-        @media (max-width: 850px) {
-            .project-showcase {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .showcase-banner {
-                min-height: 285px;
-                padding: 24px;
-            }
-
-            .showcase-banner-copy {
-                left: 24px;
-                right: 24px;
-                bottom: 24px;
-            }
-
-            .banner-code-grid::before {
-                right: 20px;
-                opacity: 0.7;
-            }
-        }
-
-        .project-modal {
-            position: fixed;
-            inset: 0;
-            z-index: 1000;
-            display: grid;
-            place-items: center;
-            padding: 24px;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.25s ease, visibility 0.25s ease;
-        }
-
-        .project-modal.is-open {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .project-modal-backdrop {
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.82);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .project-modal-panel {
-            position: relative;
-            width: min(920px, 100%);
-            max-height: min(86vh, 820px);
-            overflow-y: auto;
-            border: 1px solid var(--border-strong);
-            border-radius: 22px;
-            background: #090909;
-            box-shadow: 0 40px 120px rgba(0,0,0,0.7);
-            transform: translateY(18px) scale(0.985);
-            transition: transform 0.3s ease;
-        }
-
-        .project-modal.is-open .project-modal-panel {
-            transform: translateY(0) scale(1);
-        }
-
-        .project-modal-header {
-            position: sticky;
-            top: 0;
-            z-index: 3;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 30px;
-            padding: 30px 32px 24px;
-            border-bottom: 1px solid var(--border);
-            background: rgba(9,9,9,0.94);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-        }
-
-        .project-modal-label {
-            color: #66666d;
-            font-family: "DM Mono", monospace;
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-        }
-
-        .project-modal-title {
-            margin-top: 8px;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(34px, 5vw, 58px);
-            line-height: 0.95;
-            letter-spacing: -0.06em;
-        }
-
-        .project-modal-close {
-            width: 38px;
-            height: 38px;
-            flex: 0 0 auto;
-            display: grid;
-            place-items: center;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            color: #a1a1a7;
-            background: #0e0e0f;
-            cursor: pointer;
-            font-size: 18px;
-            transition: 0.2s ease;
-        }
-
-        .project-modal-close:hover {
-            color: #fff;
-            border-color: var(--border-strong);
-            background: #151516;
-        }
-
-        .project-modal-body {
-            display: grid;
-            grid-template-columns: 1.35fr 0.65fr;
-            gap: 0;
-        }
-
-        .project-readme-main {
-            padding: 34px 32px 40px;
-        }
-
-        .project-readme-side {
-            padding: 34px 32px 40px;
-            border-left: 1px solid var(--border);
-            background: rgba(255,255,255,0.018);
-        }
-
-        .readme-heading {
-            margin-top: 30px;
-            margin-bottom: 12px;
-            color: #d4d4d8;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 18px;
-            letter-spacing: -0.035em;
-        }
-
-        .readme-heading:first-child {
-            margin-top: 0;
-        }
-
-        .readme-text {
-            color: var(--muted);
-            font-size: 13px;
-            line-height: 1.85;
-        }
-
-        .readme-list {
-            display: grid;
-            gap: 10px;
-            list-style: none;
-        }
-
-        .readme-list li {
-            position: relative;
-            padding-left: 18px;
-            color: #9c9ca3;
-            font-size: 12px;
-            line-height: 1.65;
-        }
-
-        .readme-list li::before {
-            content: "—";
-            position: absolute;
-            left: 0;
-            color: #4f4f55;
-        }
-
-        .readme-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 7px;
-        }
-
-        .readme-stack span {
-            padding: 7px 9px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            color: #8f8f96;
-            font-family: "DM Mono", monospace;
-            font-size: 9px;
-        }
-
-        .readme-meta {
-            display: grid;
-            gap: 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .readme-meta-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 18px;
-            padding: 13px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .readme-meta-row span {
-            color: #5f5f66;
-            font-family: "DM Mono", monospace;
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .readme-meta-row strong {
-            color: #bcbcc2;
-            font-size: 11px;
-            font-weight: 500;
-            text-align: right;
-        }
-
-        .readme-button {
-            width: 100%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 26px;
-            padding: 13px 15px;
-            border: 1px solid var(--border-strong);
-            border-radius: 9px;
-            color: #050505;
-            background: #fff;
-            font-size: 11px;
-            font-weight: 700;
-            transition: 0.22s ease;
-        }
-
-        .readme-button:hover {
-            transform: translateY(-2px);
-            opacity: 0.88;
-        }
-
-        body.modal-open {
-            overflow: hidden;
-        }
-
-        @media (max-width: 760px) {
-            .project-modal {
-                padding: 10px;
-                align-items: end;
-            }
-
-            .project-modal-panel {
-                width: 100%;
-                max-height: 92vh;
-                border-radius: 18px 18px 0 0;
-            }
-
-            .project-modal-header {
-                padding: 24px 22px 20px;
-            }
-
-            .project-modal-body {
-                grid-template-columns: 1fr;
-            }
-
-            .project-readme-main,
-            .project-readme-side {
-                padding: 28px 22px;
-            }
-
-            .project-readme-side {
-                border-left: none;
-                border-top: 1px solid var(--border);
-            }
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Miguel Penha Reis — AI Engineer & Researcher building language models, latent reasoning architectures, local AI systems and experimental software.">
+<meta name="theme-color" content="#050505">
+<title>Miguel Penha Reis — AI Engineer & Researcher</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#050505;
+  --bg-soft:#080809;
+  --surface:#0b0b0c;
+  --surface-2:#0f0f10;
+  --surface-3:#131315;
+  --text:#f2f2f3;
+  --muted:#77777f;
+  --muted-2:#a2a2a9;
+  --line:rgba(255,255,255,.085);
+  --line-strong:rgba(255,255,255,.17);
+  --white:#fff;
+  --page-pad:clamp(28px,5vw,92px);
+  --max:1480px;
+  --radius:26px;
+  --ease:cubic-bezier(.18,.8,.22,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 72% 4%,rgba(255,255,255,.055),transparent 28%),
+    radial-gradient(circle at 17% 45%,rgba(255,255,255,.025),transparent 32%);
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  opacity:.018;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.72'/%3E%3C/svg%3E");
+}
+::selection{background:#fff;color:#000}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+img{max-width:100%}
+.shell{width:min(var(--max),calc(100% - (var(--page-pad) * 2)));margin-inline:auto}
+.mono{font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:.12em;font-size:9px}
+
+/* progress */
+.scroll-progress{position:fixed;left:0;top:0;height:2px;background:#f5f5f5;width:0;z-index:1000;opacity:.9}
+
+/* navigation */
+nav{
+  position:fixed;
+  top:0;left:0;width:100%;
+  z-index:100;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  background:rgba(5,5,5,.72);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+}
+.nav-inner{
+  width:min(var(--max),calc(100% - (var(--page-pad) * 2)));
+  height:72px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:34px;
+}
+.brand{display:flex;align-items:center;gap:13px;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:14px;letter-spacing:-.04em}
+.brand-mark{
+  width:31px;height:31px;
+  border:1px solid var(--line-strong);
+  border-radius:50%;
+  display:grid;place-items:center;
+  font-family:"DM Mono",monospace;font-size:8px;
+  transition:.3s var(--ease);
+}
+.brand:hover .brand-mark{background:#fff;color:#050505;transform:rotate(8deg)}
+.nav-right{display:flex;align-items:center;gap:32px}
+.nav-links{display:flex;gap:25px;list-style:none}
+.nav-links a{font-size:10px;color:#77777f;transition:.2s ease}
+.nav-links a:hover{color:#fff}
+.nav-status{display:flex;align-items:center;gap:9px;color:#6d6d74}
+.status-dot{width:5px;height:5px;border-radius:50%;background:#d8d8dc;box-shadow:0 0 0 5px rgba(255,255,255,.035)}
+
+/* hero */
+.hero{min-height:100svh;padding:132px 0 80px;display:flex;align-items:center}
+.hero-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr);
+  gap:clamp(54px,7vw,120px);
+  align-items:center;
+}
+.hero-copy-zone{padding:34px 0}
+.hero-kicker{display:flex;align-items:center;gap:14px;color:#66666d;margin-bottom:36px}
+.hero-kicker::before{content:"";width:38px;height:1px;background:#4f4f55}
+.hero-title{
+  max-width:970px;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(64px,7.1vw,118px);
+  line-height:.86;
+  letter-spacing:-.078em;
+  font-weight:600;
+}
+.hero-title span{display:block}
+.hero-title .ghost{color:#64646b}
+.hero-title .outline{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.42)}
+.hero-bottom{
+  max-width:900px;
+  margin-top:48px;
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:46px;
+}
+.hero-description{color:#98989f;font-size:14px;line-height:1.9}
+.hero-description strong{color:#e3e3e5;font-weight:500}
+.hero-fields{
+  border-top:1px solid var(--line);
+  padding-top:15px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px 18px;
+  align-content:start;
+}
+.hero-fields span{color:#626269;font-family:"DM Mono",monospace;font-size:8px;text-transform:uppercase;letter-spacing:.1em}
+.hero-actions{display:flex;gap:9px;margin-top:34px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:45px;padding:0 18px;
+  border:1px solid var(--line);border-radius:999px;
+  font-size:10px;font-weight:600;
+  transition:.28s var(--ease);
+}
+.btn-primary{background:#f2f2f3;color:#050505;border-color:#f2f2f3}
+.btn:hover{transform:translateY(-3px);border-color:var(--line-strong)}
+.btn-primary:hover{background:#fff}
+
+/* hero terminal */
+.hero-console{
+  min-height:600px;
+  position:relative;
+  border:1px solid var(--line);
+  border-radius:28px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 35%,rgba(255,255,255,.04),transparent 38%),
+    #080809;
+}
+.console-grid{
+  position:absolute;inset:0;
+  opacity:.42;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:38px 38px;
+  mask-image:linear-gradient(#000,transparent 92%);
+}
+.console-head{
+  position:absolute;left:26px;right:26px;top:24px;
+  display:flex;justify-content:space-between;gap:20px;
+  color:#5d5d64;
+}
+.console-orbit{
+  position:absolute;
+  left:50%;top:43%;
+  width:290px;height:290px;
+  transform:translate(-50%,-50%);
+}
+.orbit{
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(255,255,255,.085);
+  border-radius:50%;
+}
+.orbit.o2{inset:36px}.orbit.o3{inset:76px}.orbit.o4{inset:112px}
+.orbit::before{
+  content:"";
+  position:absolute;
+  width:6px;height:6px;border-radius:50%;
+  background:#d0d0d4;
+  top:-3px;left:50%;
+  transform-origin:0 145px;
+  animation:orbit 10s linear infinite;
+  box-shadow:0 0 16px rgba(255,255,255,.4);
+}
+.o2::before{transform-origin:0 109px;animation-duration:13s;opacity:.55}
+.o3::before{transform-origin:0 69px;animation-duration:8s;opacity:.35}
+.o4::before{display:none}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.console-core{
+  position:absolute;left:50%;top:43%;transform:translate(-50%,-50%);
+  width:62px;height:62px;border-radius:18px;
+  border:1px solid var(--line-strong);
+  display:grid;place-items:center;
+  background:#09090a;
+  font-family:"DM Mono",monospace;font-size:9px;
+  box-shadow:0 0 60px rgba(255,255,255,.045);
+}
+.console-list{
+  position:absolute;left:26px;right:26px;bottom:24px;
+  border-top:1px solid var(--line);
+}
+.console-item{
+  display:grid;grid-template-columns:34px 1fr auto;gap:12px;
+  padding:15px 0;border-bottom:1px solid var(--line);align-items:center;
+}
+.console-item .num{color:#48484e;font-family:"DM Mono",monospace;font-size:8px}
+.console-item strong{font-size:10px;font-weight:500}
+.console-item em{font-style:normal;color:#64646b;font-size:9px}
+
+/* ticker */
+.signal-band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.signal-track{display:flex;width:max-content;white-space:nowrap;animation:marquee 38s linear infinite}
+.signal-item{padding:15px 32px;color:#66666d;font-family:"DM Mono",monospace;font-size:8px;text-transform:uppercase;letter-spacing:.13em}
+.signal-item b{color:#bebec3;font-weight:500;margin-right:10px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* shared */
+.content-section{padding:150px 0}
+.section-head{
+  display:grid;
+  grid-template-columns:1fr minmax(280px,430px);
+  gap:60px;
+  align-items:end;
+  margin-bottom:60px;
+}
+.section-label{color:#606067;font-family:"DM Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.14em;margin-bottom:15px}
+.section-title{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(46px,5.4vw,78px);
+  line-height:.92;letter-spacing:-.068em;font-weight:600;
+}
+.section-note{color:#7e7e85;font-size:12px;line-height:1.85}
+
+/* flagship work */
+.flagship{
+  position:relative;
+  min-height:670px;
+  display:grid;
+  grid-template-columns:.92fr 1.08fr;
+  border:1px solid var(--line);
+  border-radius:30px;
+  overflow:hidden;
+  background:linear-gradient(145deg,#101011,#070708 56%);
+  cursor:pointer;
+  transition:.35s var(--ease);
+}
+.flagship:hover{border-color:var(--line-strong);transform:translateY(-4px)}
+.flagship-copy{
+  position:relative;z-index:2;
+  padding:clamp(36px,4.4vw,68px);
+  display:flex;flex-direction:column;justify-content:space-between;
+  border-right:1px solid var(--line);
+}
+.project-eyebrow{
+  display:flex;justify-content:space-between;gap:20px;
+  color:#606067;font-family:"DM Mono",monospace;
+  font-size:8px;text-transform:uppercase;letter-spacing:.13em;
+}
+.flagship h3{
+  margin-top:110px;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(54px,6.6vw,96px);
+  line-height:.84;letter-spacing:-.078em;
+}
+.flagship-copy p{max-width:540px;margin-top:25px;color:#929299;font-size:13px;line-height:1.9}
+.project-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:30px}
+.project-tags span{
+  padding:7px 10px;border:1px solid var(--line);border-radius:999px;
+  color:#7c7c83;font-family:"DM Mono",monospace;font-size:7.5px;
+  text-transform:uppercase;letter-spacing:.08em;
+}
+.inline-link{display:inline-flex;align-items:center;gap:9px;margin-top:26px;font-size:10px;font-weight:600}
+.inline-link span{transition:.2s ease}.inline-link:hover span{transform:translateX(4px)}
+
+/* Forge visual */
+.forge-visual{
+  position:relative;
+  min-height:670px;
+  overflow:hidden;
+  display:grid;place-items:center;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+.forge-visual::after{
+  content:"IMAGE → MESH → REFINE → UV/PBR → GLB";
+  position:absolute;left:30px;bottom:26px;
+  color:#5d5d64;font-family:"DM Mono",monospace;font-size:8px;letter-spacing:.12em;
+}
+.wire-cube{
+  position:relative;width:min(420px,58%);aspect-ratio:1;
+  transform-style:preserve-3d;
+  transform:rotateX(-17deg) rotateY(32deg);
+  animation:cubeFloat 8s ease-in-out infinite;
+}
+@keyframes cubeFloat{50%{transform:rotateX(-12deg) rotateY(41deg) translateY(-12px)}}
+.cube-face{position:absolute;inset:58px;border:1px solid rgba(255,255,255,.31)}
+.cube-face.f1{transform:translateZ(78px)}
+.cube-face.f2{transform:rotateY(90deg) translateZ(78px)}
+.cube-face.f3{transform:rotateX(90deg) translateZ(78px)}
+.cube-points{position:absolute;inset:0;filter:drop-shadow(0 0 7px rgba(255,255,255,.22))}
+.cube-points::before{
+  content:"";position:absolute;width:3px;height:3px;border-radius:50%;
+  left:50%;top:50%;background:#c8c8cc;
+  box-shadow:
+    -138px -70px #55555b,-120px 35px #8b8b91,-96px 112px #55555b,
+    -74px -125px #78787e,-45px -78px #4a4a50,-28px 102px #87878d,
+    8px -140px #67676d,18px -88px #8f8f94,34px 118px #55555b,
+    67px -110px #47474d,82px -38px #8a8a90,95px 92px #65656b,
+    121px -73px #84848a,132px 14px #56565c,145px 88px #45454a,
+    -151px 8px #727278,-111px 76px #45454b,-82px -22px #99999e,
+    -14px 54px #4a4a50,49px 49px #8d8d92,106px 43px #6b6b71;
+}
+
+/* spotlight cards */
+.spotlight-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:14px;
+  margin-top:14px;
+}
+.spotlight{
+  position:relative;
+  min-height:520px;
+  grid-column:span 6;
+  padding:36px;
+  border:1px solid var(--line);
+  border-radius:24px;
+  overflow:hidden;
+  background:#0a0a0b;
+  cursor:pointer;
+  transition:.34s var(--ease);
+  display:flex;flex-direction:column;
+}
+.spotlight:hover{transform:translateY(-5px);border-color:var(--line-strong)}
+.spotlight.third{grid-column:span 4;min-height:410px}
+.spotlight .visual{height:230px;margin:-36px -36px 30px;position:relative;border-bottom:1px solid var(--line);overflow:hidden}
+.spotlight.third .visual{height:170px}
+.spotlight h3{margin-top:auto;font-family:"Space Grotesk",sans-serif;font-size:clamp(30px,3.1vw,46px);line-height:.95;letter-spacing:-.06em}
+.spotlight.third h3{font-size:30px}
+.spotlight p{margin-top:13px;color:#818188;font-size:11px;line-height:1.8;max-width:560px}
+
+/* latent visual */
+.latent-visual{
+  background:
+    radial-gradient(circle at 50% 50%,rgba(255,255,255,.05),transparent 35%),
+    #09090a;
+}
+.latent-ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.1);border-radius:50%}
+.latent-ring.r1{width:190px;height:190px}.latent-ring.r2{width:132px;height:132px}.latent-ring.r3{width:72px;height:72px}
+.latent-node{position:absolute;width:6px;height:6px;border-radius:50%;background:#bcbcc1;box-shadow:0 0 14px rgba(255,255,255,.3)}
+.latent-node.n1{left:31%;top:40%;animation:nodePulse 3s ease-in-out infinite}
+.latent-node.n2{left:65%;top:31%;animation:nodePulse 3.6s ease-in-out infinite .5s}
+.latent-node.n3{left:68%;top:66%;animation:nodePulse 4s ease-in-out infinite .8s}
+.latent-node.n4{left:39%;top:70%;animation:nodePulse 3.2s ease-in-out infinite .2s}
+@keyframes nodePulse{50%{opacity:.25;transform:scale(.6)}}
+
+/* lunar visual */
+.lunar-visual{
+  background:
+    linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px),
+    radial-gradient(circle at 50% 42%,rgba(255,255,255,.045),transparent 34%),#09090a;
+  background-size:34px 34px,34px 34px,auto;
+}
+.lunar-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border:1px solid var(--line-strong);border-radius:22px;display:grid;place-items:center;font-family:"DM Mono",monospace;font-size:9px}
+.lunar-branch{position:absolute;height:1px;background:rgba(255,255,255,.14);transform-origin:left center}
+.lunar-branch.b1{width:130px;left:50%;top:50%;transform:rotate(-28deg)}
+.lunar-branch.b2{width:130px;left:50%;top:50%;transform:rotate(28deg)}
+.lunar-branch.b3{width:130px;left:50%;top:50%;transform:rotate(152deg)}
+.lunar-branch.b4{width:130px;left:50%;top:50%;transform:rotate(208deg)}
+.lunar-dot{position:absolute;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:#0c0c0d}
+.lunar-dot.d1{left:72%;top:24%}.lunar-dot.d2{left:72%;top:67%}.lunar-dot.d3{left:22%;top:25%}.lunar-dot.d4{left:20%;top:67%}
+
+/* waveform */
+.lyra-visual{background:#09090a;display:flex;align-items:center;justify-content:center;gap:6px;padding-inline:30px}
+.wavebar{width:3px;border-radius:99px;background:#a9a9ae;opacity:.25;animation:wave 1.6s ease-in-out infinite}
+.wavebar:nth-child(2n){animation-delay:.12s}.wavebar:nth-child(3n){animation-delay:.23s}.wavebar:nth-child(4n){animation-delay:.31s}
+@keyframes wave{0%,100%{height:20px;opacity:.2}50%{height:105px;opacity:.75}}
+
+/* browser */
+.browser-visual{background:#09090a;padding:30px}
+.browser-window{height:100%;border:1px solid rgba(255,255,255,.12);border-radius:14px;overflow:hidden;background:#0d0d0e}
+.browser-top{height:32px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;padding:0 12px}
+.browser-top i{display:block;width:6px;height:6px;border-radius:50%;background:#55555b}
+.browser-page{height:calc(100% - 32px);display:grid;grid-template-columns:55px 1fr}
+.browser-side{border-right:1px solid var(--line)}
+.browser-body{padding:20px}
+.browser-line{height:5px;border-radius:99px;background:#434349;margin-bottom:10px}.browser-line:nth-child(1){width:56%}.browser-line:nth-child(2){width:86%;opacity:.55}.browser-line:nth-child(3){width:70%;opacity:.3}
+
+/* rag */
+.rag-visual{background:#09090a}
+.rag-node{position:absolute;width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:#0c0c0d}
+.rag-node.a{left:18%;top:34%}.rag-node.b{left:43%;top:19%}.rag-node.c{left:70%;top:36%}.rag-node.d{left:44%;top:65%}
+.rag-line{position:absolute;height:1px;background:rgba(255,255,255,.12);transform-origin:left center}
+.rag-line.l1{width:150px;left:24%;top:42%;transform:rotate(-18deg)}.rag-line.l2{width:170px;left:48%;top:28%;transform:rotate(21deg)}.rag-line.l3{width:160px;left:48%;top:72%;transform:rotate(-20deg)}
+
+/* model lab */
+.model-lab{margin-top:80px}
+.lab-head{display:flex;align-items:center;gap:14px;color:#606067;margin-bottom:18px}
+.lab-head::after{content:"";height:1px;flex:1;background:var(--line)}
+.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.model-card{
+  min-height:280px;padding:34px;
+  border:1px solid var(--line);border-radius:20px;background:#09090a;
+  display:flex;flex-direction:column;cursor:pointer;transition:.3s var(--ease);
+}
+.model-card:hover{transform:translateY(-4px);border-color:var(--line-strong)}
+.model-card h3{margin-top:auto;font-family:"Space Grotesk",sans-serif;font-size:34px;letter-spacing:-.055em}
+.model-card p{margin-top:12px;color:#77777e;font-size:11px;line-height:1.8}
+
+/* archive */
+.archive{margin-top:80px}
+.archive-head{display:flex;align-items:center;gap:14px;color:#606067;margin-bottom:12px}
+.archive-head::after{content:"";height:1px;flex:1;background:var(--line)}
+.project-index{border-top:1px solid var(--line)}
+.project-row{
+  position:relative;
+  display:grid;grid-template-columns:62px 1.15fr .8fr 110px auto;
+  gap:24px;align-items:center;
+  padding:26px 14px;border-bottom:1px solid var(--line);
+  cursor:pointer;transition:.28s var(--ease);overflow:hidden;
+}
+.project-row::before{
+  content:"";position:absolute;inset:0;transform:translateX(-101%);
+  background:linear-gradient(90deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+  transition:.4s var(--ease);
+}
+.project-row:hover::before{transform:none}
+.project-row>*{position:relative;z-index:1}
+.project-row:hover{padding-left:24px}
+.project-row .idx{color:#46464c;font-family:"DM Mono",monospace;font-size:8px}
+.project-row h4{font-family:"Space Grotesk",sans-serif;font-size:21px;letter-spacing:-.04em}
+.project-row .cat{color:#707077;font-size:10px}
+.project-row .status{color:#55555b;font-family:"DM Mono",monospace;font-size:7.5px;text-transform:uppercase;letter-spacing:.08em}
+.project-row .arrow{color:#55555b;transition:.2s ease}.project-row:hover .arrow{color:#fff;transform:translateX(4px)}
+
+/* Areas */
+.area-list{border-top:1px solid var(--line)}
+.area-row{
+  display:grid;grid-template-columns:75px .8fr 1fr;gap:46px;align-items:center;
+  padding:34px 10px;border-bottom:1px solid var(--line);transition:.3s var(--ease);
+}
+.area-row:hover{padding-left:22px;background:rgba(255,255,255,.012)}
+.area-num{color:#48484e;font-family:"DM Mono",monospace;font-size:8px}
+.area-row h3{font-family:"Space Grotesk",sans-serif;font-size:clamp(28px,3.2vw,44px);letter-spacing:-.055em}
+.area-row p{max-width:580px;color:#7d7d84;font-size:11px;line-height:1.85}
+
+/* research */
+.research-feature{
+  display:grid;grid-template-columns:1.05fr .95fr;
+  border:1px solid var(--line);border-radius:26px;overflow:hidden;background:#09090a;
+}
+.research-copy{padding:clamp(36px,4vw,62px);border-right:1px solid var(--line)}
+.research-copy h3{margin-top:86px;font-family:"Space Grotesk",sans-serif;font-size:clamp(50px,5.5vw,78px);line-height:.87;letter-spacing:-.074em}
+.research-copy p{max-width:610px;margin-top:24px;color:#85858c;font-size:12px;line-height:1.9}
+.slot-list{display:grid;gap:7px;margin-top:30px}
+.slot-row{display:grid;grid-template-columns:28px 1fr auto;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.014);align-items:center}
+.slot-row b{font-size:10px}.slot-row span{color:#606067;font-family:"DM Mono",monospace;font-size:7.5px;text-transform:uppercase;letter-spacing:.08em}
+.research-architecture{padding:clamp(36px,4vw,62px);display:flex;flex-direction:column;justify-content:center;gap:9px;background:radial-gradient(circle at 50% 18%,rgba(255,255,255,.045),transparent 48%)}
+.arch-step{padding:15px;border:1px solid var(--line);border-radius:9px;text-align:center;color:#a0a0a6;font-size:10px;background:#0d0d0e}
+.arch-arrow{text-align:center;color:#44444a;font-family:"DM Mono",monospace;font-size:9px}
+
+/* stack */
+.stack-wall{display:grid;grid-template-columns:repeat(12,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.stack-word{
+  grid-column:span 3;min-height:110px;
+  display:flex;align-items:flex-end;padding:19px;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  font-family:"Space Grotesk",sans-serif;font-size:clamp(18px,2vw,28px);letter-spacing:-.045em;
+  color:#86868d;transition:.25s ease;
+}
+.stack-word:hover{background:#f2f2f3;color:#050505}
+.stack-word.wide{grid-column:span 6}
+.stack-word.small{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+
+/* About */
+.about-section{padding:155px 0 165px}
+.about{display:grid;grid-template-columns:.72fr 1.28fr;gap:clamp(60px,8vw,125px)}
+.about-text{color:#898990;font-size:15px;line-height:1.95}
+.about-text p+p{margin-top:20px}
+.about-text strong{color:#d4d4d8;font-weight:500}
+.big-statement{
+  margin-top:64px;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(42px,5.6vw,77px);
+  line-height:.94;letter-spacing:-.069em;color:#f2f2f3;
+}
+.about-links{display:flex;gap:9px;flex-wrap:wrap;margin-top:34px}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:45px 0 60px}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+.footer-title{font-family:"Space Grotesk",sans-serif;font-size:20px;letter-spacing:-.04em;font-weight:600}
+.footer-sub{margin-top:5px;color:#55555b;font-family:"DM Mono",monospace;font-size:7.5px;text-transform:uppercase;letter-spacing:.1em}
+.footer-links{display:flex;gap:22px;color:#77777e;font-size:9px}
+.footer-links a:hover{color:#fff}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:600;display:grid;place-items:center;padding:24px;visibility:hidden;opacity:0;transition:.24s ease}
+.modal.open{visibility:visible;opacity:1}
+.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.84);backdrop-filter:blur(14px)}
+.modal-panel{
+  position:relative;width:min(920px,100%);max-height:86vh;overflow:auto;
+  border:1px solid var(--line-strong);border-radius:24px;background:#09090a;
+  box-shadow:0 40px 120px rgba(0,0,0,.8);
+  transform:translateY(18px) scale(.985);transition:.3s var(--ease);
+}
+.modal.open .modal-panel{transform:none}
+.modal-head{
+  position:sticky;top:0;z-index:3;
+  display:flex;justify-content:space-between;gap:24px;
+  padding:30px 32px 24px;border-bottom:1px solid var(--line);
+  background:rgba(9,9,10,.95);backdrop-filter:blur(18px);
+}
+.modal-title{margin-top:7px;font-family:"Space Grotesk",sans-serif;font-size:clamp(36px,5vw,60px);line-height:.95;letter-spacing:-.062em}
+.modal-close{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#101011;color:#aaa;cursor:pointer;font-size:17px}
+.modal-close:hover{border-color:var(--line-strong);color:#fff}
+.modal-body{display:grid;grid-template-columns:1.25fr .75fr}
+.modal-main,.modal-side{padding:34px 32px 40px}
+.modal-side{border-left:1px solid var(--line);background:rgba(255,255,255,.015)}
+.modal h3{font-family:"Space Grotesk",sans-serif;font-size:17px;letter-spacing:-.03em;margin:28px 0 10px}
+.modal h3:first-child{margin-top:0}
+.modal p{color:#898990;font-size:12px;line-height:1.85}
+.modal ul{list-style:none;display:grid;gap:10px}
+.modal li{position:relative;padding-left:17px;color:#929299;font-size:11px;line-height:1.75}
+.modal li::before{content:"—";position:absolute;left:0;color:#505056}
+.modal-tags{display:flex;gap:7px;flex-wrap:wrap}
+.modal-tags span{padding:7px 9px;border:1px solid var(--line);border-radius:6px;color:#85858c;font-family:"DM Mono",monospace;font-size:7.5px}
+.meta-list{border-top:1px solid var(--line)}
+.meta-row{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+.meta-row span{color:#595960;font-family:"DM Mono",monospace;font-size:7.5px;text-transform:uppercase;letter-spacing:.08em}
+.meta-row strong{color:#b2b2b7;font-size:10px;font-weight:500;text-align:right}
+.modal-btn{width:100%;margin-top:26px;display:flex;justify-content:space-between;align-items:center;padding:13px 15px;border-radius:9px;background:#fff;color:#050505;font-size:10px;font-weight:700}
+.modal-open{overflow:hidden}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+
+/* responsive */
+@media(max-width:1120px){
+  .hero-layout{grid-template-columns:1fr;gap:60px}
+  .hero-console{min-height:520px}
+  .section-head{grid-template-columns:1fr;gap:25px}.section-note{max-width:620px}
+  .flagship{grid-template-columns:1fr}.flagship-copy{border-right:0;border-bottom:1px solid var(--line)}.forge-visual{min-height:540px}
+  .spotlight.third{grid-column:span 6}
+  .project-row{grid-template-columns:54px 1fr .7fr auto}.project-row .status{display:none}
+}
+@media(max-width:820px){
+  :root{--page-pad:24px}
+  .nav-links{display:none}.nav-status{display:none}
+  .hero{padding-top:112px}.hero-bottom{grid-template-columns:1fr}.hero-console{min-height:470px}
+  .content-section{padding:110px 0}
+  .spotlight,.spotlight.third{grid-column:span 12}
+  .model-grid{grid-template-columns:1fr}
+  .research-feature{grid-template-columns:1fr}.research-copy{border-right:0;border-bottom:1px solid var(--line)}
+  .about{grid-template-columns:1fr;gap:52px}
+  .stack-word{grid-column:span 6}.stack-word.wide{grid-column:span 12}
+  .modal-body{grid-template-columns:1fr}.modal-side{border-left:0;border-top:1px solid var(--line)}
+}
+@media(max-width:600px){
+  :root{--page-pad:18px}
+  .nav-inner{height:64px}
+  .brand{font-size:13px}
+  .hero{padding:96px 0 60px}
+  .hero-title{font-size:clamp(55px,18vw,82px)}
+  .hero-fields{grid-template-columns:1fr}
+  .hero-console{min-height:430px;border-radius:20px}
+  .console-orbit{width:230px;height:230px}.orbit.o2{inset:30px}.orbit.o3{inset:62px}.orbit.o4{inset:88px}
+  .orbit::before{transform-origin:0 115px}.o2::before{transform-origin:0 85px}.o3::before{transform-origin:0 53px}
+  .flagship{border-radius:22px}.flagship-copy{padding:30px}.flagship h3{margin-top:70px}.forge-visual{min-height:410px}
+  .spotlight{padding:28px;min-height:450px}.spotlight .visual{margin:-28px -28px 26px}.spotlight.third .visual{height:160px}
+  .project-row{grid-template-columns:42px 1fr auto;padding:23px 6px}.project-row .cat{display:none}
+  .area-row{grid-template-columns:42px 1fr;gap:20px}.area-row p{grid-column:2}
+  .stack-word{grid-column:span 12;min-height:88px}
+  .footer-inner{align-items:flex-start;flex-direction:column}
+  .modal{padding:9px;align-items:end}.modal-panel{max-height:92vh;border-radius:20px 20px 0 0}.modal-head,.modal-main,.modal-side{padding-left:22px;padding-right:22px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
+</style>
 </head>
 
-
 <body>
-
-
-<!-- =========================================================
-     NAVIGATION
-========================================================= -->
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <nav>
-
-    <div class="container nav-inner">
-
-        <a
-            href="#"
-            class="logo"
-        >
-            Miguel Penha Reis
-        </a>
-
-
-        <ul class="nav-links">
-
-            <li><a href="#models">Models</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#areas">Areas</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#stack">Stack</a></li>
-            <li><a href="#about">About</a></li>
-
-        </ul>
-
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="brand-mark">MPR</span><span>Miguel Penha Reis</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#areas">Areas</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <div class="nav-status mono"><span class="status-dot"></span> AI Engineer / Researcher</div>
     </div>
-
+  </div>
 </nav>
 
-
-<main>
-
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-
+<main id="top">
 <section class="hero">
+  <div class="shell hero-layout">
+    <div class="hero-copy-zone">
+      <div class="hero-kicker mono">01 / Intelligence × Software</div>
+      <h1 class="hero-title">
+        <span>I build <span class="outline">AI</span></span>
+        <span class="ghost">from weights</span>
+        <span>to systems.</span>
+      </h1>
 
-    <div class="container">
-
-        <div class="hero-content">
-
-
-            <div class="hero-kicker">
-
-                <span class="kicker-line"></span>
-
-                Building at the intersection of
-                intelligence and software
-
-            </div>
-
-
-            <h1>
-
-                I build AI systems
-
-                <span class="dim">
-                    from the model weights
-                    to the interface.
-                </span>
-
-            </h1>
-
-
-            <p class="hero-description">
-
-                I research and engineer language models,
-                latent reasoning architectures, retrieval
-                systems, developer tools and experimental
-                software.
-
-                My work moves between fundamental AI research
-                and the systems that turn those ideas into
-                something people can actually use.
-
-            </p>
-
-
-            <div class="hero-focus">
-
-                <div class="focus-item">
-                    AI Research
-                </div>
-
-                <div class="focus-item">
-                    LLMs
-                </div>
-
-                <div class="focus-item">
-                    Latent Reasoning
-                </div>
-
-                <div class="focus-item">
-                    Software
-                </div>
-
-            </div>
-
-
-            <div class="hero-actions">
-
-                <a
-                    href="#projects"
-                    class="button button-primary"
-                >
-
-                    Explore the work
-
-                    <span>
-                        ↓
-                    </span>
-
-                </a>
-
-
-                <a
-                    href="#projects"
-                    class="button button-secondary"
-                >
-
-                    View projects
-
-                    <span>
-                        →
-                    </span>
-
-                </a>
-
-            </div>
-
+      <div class="hero-bottom">
+        <p class="hero-description">
+          I research and engineer <strong>language models, latent reasoning architectures and local AI systems</strong>, then build the software that turns those ideas into usable products.
+        </p>
+        <div class="hero-fields">
+          <span>LLM engineering</span><span>latent reasoning</span>
+          <span>local AI</span><span>multimodal</span>
+          <span>retrieval</span><span>experimental software</span>
         </div>
+      </div>
 
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#work">Explore selected work <span>↓</span></a>
+        <a class="btn" href="https://github.com/guell11" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+        <a class="btn" href="https://huggingface.co/guell00" target="_blank" rel="noreferrer">Hugging Face <span>↗</span></a>
+      </div>
     </div>
 
+    <aside class="hero-console" aria-label="Current focus">
+      <div class="console-grid"></div>
+      <div class="console-head mono"><span>Current field</span><span>2026</span></div>
+      <div class="console-orbit" aria-hidden="true">
+        <div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="orbit o4"></div>
+      </div>
+      <div class="console-core">MPR</div>
+      <div class="console-list">
+        <a class="console-item" href="https://github.com/guell11/Lebron" target="_blank"><span class="num">01</span><strong>LeBRON</strong><em>Latent AI ↗</em></a>
+        <a class="console-item" href="https://github.com/guell11/Forge3D" target="_blank"><span class="num">02</span><strong>Forge3D</strong><em>Local 3D ↗</em></a>
+        <a class="console-item" href="https://huggingface.co/guell00" target="_blank"><span class="num">03</span><strong>Nexora models</strong><em>Model lab ↗</em></a>
+      </div>
+    </aside>
+  </div>
 </section>
 
-
-
-<!-- =========================================================
-     PROJECTS
-========================================================= -->
-
-<section id="projects">
-
-    <div class="container">
-
-        <div class="section-top">
-
-            <div>
-
-                <div class="section-label">
-                    01–02 / Models & Selected Work
-                </div>
-
-                <h2 class="section-title">
-                    Models, engines<br>
-                    and products.
-                </h2>
-
-            </div>
-
-            <p class="section-note">
-                A single curated archive of models, research and software. Open any item to read its compact README, architecture, stack and main features.
-            </p>
-
-        </div>
-
-        <div class="project-showcase">
-
-            <article class="showcase-banner" tabindex="0" role="button" data-featured-project="Nexora-Qwen-Coder-4B" aria-label="Open README for Nexora-Qwen-Coder-4B">
-                <div class="banner-code-grid"></div>
-                <div class="showcase-banner-head">
-                    <span class="showcase-banner-type">Language Model</span>
-                    <span class="showcase-banner-index">MODEL / 001</span>
-                </div>
-                <div class="showcase-banner-copy">
-                    <h3>Nexora-Qwen-Coder-4B</h3>
-                    <p>Compact coding model fine-tuned for debugging, structured reasoning, tool use and local agentic workflows.</p>
-                    <span class="showcase-banner-link">Open mini README ↗</span>
-                </div>
-            </article>
-
-            <article class="showcase-banner" tabindex="0" role="button" data-featured-project="J-Space Deliberation" aria-label="Open README for J-Space Deliberation">
-                <div class="banner-latent-space"></div>
-                <div class="showcase-banner-head">
-                    <span class="showcase-banner-type">AI Research</span>
-                    <span class="showcase-banner-index">RESEARCH / 002</span>
-                </div>
-                <div class="showcase-banner-copy">
-                    <h3>J-Space Deliberation</h3>
-                    <p>Structured latent deliberation for Gemma 4 E4B using a five-slot workspace and Jacobian Lens projections.</p>
-                    <span class="showcase-banner-link">Open mini README ↗</span>
-                </div>
-            </article>
-
-            <article class="showcase-banner" tabindex="0" role="button" data-featured-project="Nexora-Gemma-4-E4B-Coder" aria-label="Open README for Nexora-Gemma-4-E4B-Coder">
-                <div class="banner-gemma-vision"></div>
-                <div class="showcase-banner-head">
-                    <span class="showcase-banner-type">Multimodal Coding Model</span>
-                    <span class="showcase-banner-index">MODEL / 003</span>
-                </div>
-                <div class="showcase-banner-copy">
-                    <h3>Nexora-Gemma-4-E4B-Coder</h3>
-                    <p>Gemma 4 E4B coding model with vision support, GGUF quantizations and efficient local inference through llama.cpp.</p>
-                    <span class="showcase-banner-link">Open mini README ↗</span>
-                </div>
-            </article>
-
-        </div>
-
-        <div class="project-group-label">Engines, applications and experiments</div>
-        <div class="projects-grid" id="projectsGrid"></div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     RESEARCH AREAS
-========================================================= -->
-
-<section id="areas">
-
-    <div class="container">
-
-
-        <div class="section-top">
-
-            <div>
-
-                <div class="section-label">
-                    03 / Areas
-                </div>
-
-                <h2 class="section-title">
-                    What I work on.
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="research-grid">
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    01
-                </span>
-
-                <h3>
-                    Latent Reasoning
-                </h3>
-
-                <p>
-                    Structured internal representations
-                    and experimental reasoning architectures.
-                </p>
-
-            </div>
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    02
-                </span>
-
-                <h3>
-                    Large Language Models
-                </h3>
-
-                <p>
-                    Fine-tuning, model behavior,
-                    coding models and technical reasoning.
-                </p>
-
-            </div>
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    03
-                </span>
-
-                <h3>
-                    RAG Systems
-                </h3>
-
-                <p>
-                    Connecting language models with
-                    external knowledge and retrieval systems.
-                </p>
-
-            </div>
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    04
-                </span>
-
-                <h3>
-                    Multimodal AI
-                </h3>
-
-                <p>
-                    Models that combine language with
-                    visual and technical information.
-                </p>
-
-            </div>
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    05
-                </span>
-
-                <h3>
-                    Local AI
-                </h3>
-
-                <p>
-                    Quantization and inference systems
-                    for practical local deployment.
-                </p>
-
-            </div>
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    06
-                </span>
-
-                <h3>
-                    AI Infrastructure
-                </h3>
-
-                <p>
-                    The tools and systems required
-                    to build and run modern AI.
-                </p>
-
-            </div>
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    07
-                </span>
-
-                <h3>
-                    Software Engineering
-                </h3>
-
-                <p>
-                    Building complete applications,
-                    tools and experimental platforms.
-                </p>
-
-            </div>
-
-
-            <div class="research-card">
-
-                <span class="research-card-number">
-                    08
-                </span>
-
-                <h3>
-                    Experimental Systems
-                </h3>
-
-                <p>
-                    Projects that explore ideas
-                    outside conventional categories.
-                </p>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     RESEARCH
-========================================================= -->
-
-<section id="research">
-
-    <div class="container">
-
-
-        <div class="section-top">
-
-            <div>
-
-                <div class="section-label">
-                    04 / Research
-                </div>
-
-                <h2 class="section-title">
-                    Exploring what happens
-                    inside the model.
-                </h2>
-
-            </div>
-
-
-            <p class="section-note">
-
-                Experimental work on latent representations,
-                structured deliberation and the relationship
-                between internal reasoning and generation.
-
-            </p>
-
-        </div>
-
-
-        <div class="featured">
-
-
-            <div class="featured-main">
-
-
-                <div class="research-index">
-                    RESEARCH / 001
-                </div>
-
-
-                <h3>
-                    J-Space
-                    Deliberation Engine
-                </h3>
-
-
-                <p class="featured-subtitle">
-
-                    Structured Latent Deliberation
-                    for Gemma 4 E4B using Jacobian Lens.
-
-                </p>
-
-
-                <p class="featured-description">
-
-                    J-Space is an experimental latent reasoning
-                    architecture that introduces a structured
-                    five-slot workspace into the residual stream.
-
-                    The system organizes internal deliberation
-                    into Objective, Hypothesis, Evidence,
-                    Critic and Commit before final text generation.
-
-                </p>
-
-
-                <div class="slots">
-
-
-                    <div class="slot">
-
-                        <strong>
-                            Objective
-                        </strong>
-
-                        <span>
-                            Defines the goal
-                        </span>
-
-                    </div>
-
-
-                    <div class="slot">
-
-                        <strong>
-                            Hypothesis
-                        </strong>
-
-                        <span>
-                            Candidate solutions
-                        </span>
-
-                    </div>
-
-
-                    <div class="slot">
-
-                        <strong>
-                            Evidence
-                        </strong>
-
-                        <span>
-                            Relevant signals
-                        </span>
-
-                    </div>
-
-
-                    <div class="slot">
-
-                        <strong>
-                            Critic
-                        </strong>
-
-                        <span>
-                            Consistency check
-                        </span>
-
-                    </div>
-
-
-                    <div class="slot">
-
-                        <strong>
-                            Commit
-                        </strong>
-
-                        <span>
-                            Final consolidation
-                        </span>
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
-
-
-            <div class="featured-side">
-
-
-                <div class="section-label">
-                    System Architecture
-                </div>
-
-
-                <div class="architecture">
-
-
-                    <div class="architecture-box">
-                        User Prompt
-                    </div>
-
-
-                    <div class="arrow">
-                        ↓
-                    </div>
-
-
-                    <div class="architecture-box">
-                        Gemma 4 E4B-it
-                    </div>
-
-
-                    <div class="arrow">
-                        ↓
-                    </div>
-
-
-                    <div class="architecture-box">
-                        J-Space Workspace
-                    </div>
-
-
-                    <div class="arrow">
-                        ↓
-                    </div>
-
-
-                    <div class="architecture-box">
-                        Jacobian Lens
-                    </div>
-
-
-                    <div class="arrow">
-                        ↓
-                    </div>
-
-
-                    <div class="architecture-box">
-                        Final Generation
-                    </div>
-
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-
-<!-- =========================================================
-     TECHNOLOGY
-========================================================= -->
-
-<section id="stack">
-
-    <div class="container">
-
-
-        <div class="section-top">
-
-            <div>
-
-                <div class="section-label">
-                    05 / Stack
-                </div>
-
-                <h2 class="section-title">
-                    Tools of the trade.
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="stack">
-
-
-            <span class="stack-item">
-                Python
-            </span>
-
-
-            <span class="stack-item">
-                PyTorch
-            </span>
-
-
-            <span class="stack-item">
-                Transformers
-            </span>
-
-
-            <span class="stack-item">
-                Hugging Face
-            </span>
-
-
-            <span class="stack-item">
-                Unsloth
-            </span>
-
-
-            <span class="stack-item">
-                llama.cpp
-            </span>
-
-
-            <span class="stack-item">
-                GGUF
-            </span>
-
-
-            <span class="stack-item">
-                BitsAndBytes
-            </span>
-
-
-            <span class="stack-item">
-                Accelerate
-            </span>
-
-
-            <span class="stack-item">
-                CUDA
-            </span>
-
-
-            <span class="stack-item">
-                RAG
-            </span>
-
-
-            <span class="stack-item">
-                LLMs
-            </span>
-
-
-            <span class="stack-item">
-                Multimodal AI
-            </span>
-
-
-            <span class="stack-item">
-                Software Engineering
-            </span>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     ABOUT
-========================================================= -->
-
-<section id="about">
-
-    <div class="container">
-
-
-        <div class="about">
-
-
-            <div>
-
-                <div class="section-label">
-                    06 / About
-                </div>
-
-
-                <h2 class="section-title">
-                    Miguel
-                    Penha Reis
-                </h2>
-
-            </div>
-
-
-            <div class="about-text">
-
-
-                <p>
-
-                    I'm an AI Engineer and researcher
-                    working across large language models,
-                    latent reasoning, model fine-tuning,
-                    multimodal AI and software systems.
-
-                </p>
-
-
-                <p>
-
-                    I build both the models and the systems
-                    around them, moving between research
-                    experiments and practical engineering.
-
-                </p>
-
-
-                <p>
-
-                    My work explores what happens inside
-                    intelligent systems, how their internal
-                    representations can be structured,
-                    and how those ideas can become useful
-                    tools in the real world.
-
-                </p>
-
-
-                <div class="big-statement">
-
-                    Build the model.
-                    Build the system.
-                    Understand both.
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-</main>
-
-<div class="project-modal" id="projectModal" aria-hidden="true">
-    <div class="project-modal-backdrop" data-close-modal></div>
-
-    <article class="project-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
-
-        <header class="project-modal-header">
-            <div>
-                <div class="project-modal-label" id="modalProjectCategory">Project README</div>
-                <h2 class="project-modal-title" id="modalProjectTitle"></h2>
-            </div>
-
-            <button class="project-modal-close" type="button" aria-label="Close project README" data-close-modal>
-                ×
-            </button>
-        </header>
-
-        <div class="project-modal-body">
-
-            <div class="project-readme-main">
-                <h3 class="readme-heading">Overview</h3>
-                <p class="readme-text" id="modalProjectOverview"></p>
-
-                <h3 class="readme-heading">What it does</h3>
-                <ul class="readme-list" id="modalProjectFeatures"></ul>
-
-                <h3 class="readme-heading">Technology</h3>
-                <div class="readme-stack" id="modalProjectStack"></div>
-            </div>
-
-            <aside class="project-readme-side">
-                <h3 class="readme-heading">Project information</h3>
-
-                <div class="readme-meta">
-                    <div class="readme-meta-row">
-                        <span>Type</span>
-                        <strong id="modalProjectType"></strong>
-                    </div>
-
-                    <div class="readme-meta-row">
-                        <span>Focus</span>
-                        <strong id="modalProjectFocus"></strong>
-                    </div>
-
-                    <div class="readme-meta-row">
-                        <span>Runtime</span>
-                        <strong id="modalProjectRuntime"></strong>
-                    </div>
-                </div>
-
-                <a class="readme-button" id="modalProjectLink" href="#" target="_blank" rel="noreferrer">
-                    Open repository
-                    <span>↗</span>
-                </a>
-            </aside>
-
-        </div>
-
-    </article>
+<div class="signal-band" aria-hidden="true">
+  <div class="signal-track">
+    <span class="signal-item"><b>RESEARCH</b> latent reasoning</span>
+    <span class="signal-item"><b>MODELS</b> fine-tuning + inference</span>
+    <span class="signal-item"><b>LOCAL AI</b> GPU-aware systems</span>
+    <span class="signal-item"><b>SOFTWARE</b> complete products</span>
+    <span class="signal-item"><b>3D</b> generative pipelines</span>
+    <span class="signal-item"><b>RETRIEVAL</b> RAG systems</span>
+    <span class="signal-item"><b>RESEARCH</b> latent reasoning</span>
+    <span class="signal-item"><b>MODELS</b> fine-tuning + inference</span>
+    <span class="signal-item"><b>LOCAL AI</b> GPU-aware systems</span>
+    <span class="signal-item"><b>SOFTWARE</b> complete products</span>
+    <span class="signal-item"><b>3D</b> generative pipelines</span>
+    <span class="signal-item"><b>RETRIEVAL</b> RAG systems</span>
+  </div>
 </div>
 
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer>
-
-    <div class="container">
-
-
-        <div class="footer-inner">
-
-
-            <div class="footer-name">
-
-                Miguel Penha Reis
-
-            </div>
-
-
-            <div class="footer-links">
-
-
-                <a
-                    href="https://huggingface.co/guell00"
-                    target="_blank"
-                >
-                    Hugging Face
-                </a>
-
-
-                <a
-                    href="https://github.com/guell11"
-                    target="_blank"
-                >
-                    GitHub
-                </a>
-
-
-            </div>
-
-
-        </div>
-
-
+<section class="content-section" id="work">
+  <div class="shell">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-label">02 / Selected Work</div>
+        <h2 class="section-title">Not a project list.<br>A body of work.</h2>
+      </div>
+      <p class="section-note">The projects below get different visual weight on purpose. Research runtimes, local AI engines and complete products deserve more than being buried inside identical cards.</p>
     </div>
 
+    <article class="flagship reveal" data-project="Forge3D" tabindex="0" role="button" aria-label="Open Forge3D details">
+      <div class="flagship-copy">
+        <div class="project-eyebrow"><span>Flagship / Local Generative AI</span><span>001</span></div>
+        <div>
+          <h3>Forge3D</h3>
+          <p>A fully local image-to-3D generation engine built around a GPU-aware pipeline. TRELLIS generates geometry, UltraShape refines it, and the system produces UVs, PBR textures and validated GLB assets.</p>
+          <div class="project-tags"><span>TRELLIS</span><span>UltraShape</span><span>FastAPI</span><span>React</span><span>Three.js</span><span>Local GPU</span></div>
+          <a class="inline-link" href="https://github.com/guell11/Forge3D" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">Open repository <span>↗</span></a>
+        </div>
+      </div>
+      <div class="forge-visual">
+        <div class="wire-cube" aria-hidden="true">
+          <div class="cube-points"></div><div class="cube-face f1"></div><div class="cube-face f2"></div><div class="cube-face f3"></div>
+        </div>
+      </div>
+    </article>
+
+    <div class="spotlight-grid">
+      <article class="spotlight reveal" data-project="LeBRON" tabindex="0" role="button">
+        <div class="visual latent-visual" aria-hidden="true">
+          <div class="latent-ring r1"></div><div class="latent-ring r2"></div><div class="latent-ring r3"></div>
+          <i class="latent-node n1"></i><i class="latent-node n2"></i><i class="latent-node n3"></i><i class="latent-node n4"></i>
+        </div>
+        <div class="project-eyebrow"><span>AI Research Runtime</span><span>002</span></div>
+        <h3>LeBRON</h3>
+        <p>Recurrent latent computation for frozen decoder models through a structured J-Space adapter, competing branches, verification and adaptive halting.</p>
+      </article>
+
+      <article class="spotlight reveal" data-project="Projeto Lunar" tabindex="0" role="button">
+        <div class="visual lunar-visual" aria-hidden="true">
+          <div class="lunar-core">LUNAR</div>
+          <i class="lunar-branch b1"></i><i class="lunar-branch b2"></i><i class="lunar-branch b3"></i><i class="lunar-branch b4"></i>
+          <i class="lunar-dot d1"></i><i class="lunar-dot d2"></i><i class="lunar-dot d3"></i><i class="lunar-dot d4"></i>
+        </div>
+        <div class="project-eyebrow"><span>AI Education Ecosystem</span><span>003</span></div>
+        <h3>Projeto Lunar</h3>
+        <p>An AI-powered educational ecosystem connecting students, teachers and families through intelligent tools, dashboards, media, gamification and school workflows.</p>
+      </article>
+
+      <article class="spotlight third reveal" data-project="Lyra Engine" tabindex="0" role="button">
+        <div class="visual lyra-visual" aria-hidden="true">
+          <i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i>
+        </div>
+        <div class="project-eyebrow"><span>Creative AI</span><span>004</span></div>
+        <h3>Lyra Engine</h3>
+        <p>Local AI music generation, songwriting assistance and GPU-aware model orchestration in one workstation-first environment.</p>
+      </article>
+
+      <article class="spotlight third reveal" data-project="AGNER Browser" tabindex="0" role="button">
+        <div class="visual browser-visual" aria-hidden="true">
+          <div class="browser-window">
+            <div class="browser-top"><i></i><i></i><i></i></div>
+            <div class="browser-page"><div class="browser-side"></div><div class="browser-body"><div class="browser-line"></div><div class="browser-line"></div><div class="browser-line"></div></div></div>
+          </div>
+        </div>
+        <div class="project-eyebrow"><span>Desktop Software</span><span>005</span></div>
+        <h3>AGNER Browser</h3>
+        <p>A modular desktop browser around QtWebEngine with isolated profiles, persistent sessions, local data and custom browser UX.</p>
+      </article>
+
+      <article class="spotlight third reveal" data-project="IA RAG Nexa" tabindex="0" role="button">
+        <div class="visual rag-visual" aria-hidden="true">
+          <i class="rag-node a"></i><i class="rag-node b"></i><i class="rag-node c"></i><i class="rag-node d"></i>
+          <i class="rag-line l1"></i><i class="rag-line l2"></i><i class="rag-line l3"></i>
+        </div>
+        <div class="project-eyebrow"><span>Retrieval-Augmented AI</span><span>006</span></div>
+        <h3>IA RAG Nexa</h3>
+        <p>A local knowledge assistant combining semantic retrieval, BM25/FTS, rank fusion and traceable source references.</p>
+      </article>
+    </div>
+
+    <div class="model-lab">
+      <div class="lab-head mono">Model lab / fine-tuning & local inference</div>
+      <div class="model-grid">
+        <article class="model-card reveal" data-project="Nexora-Qwen-Coder-4B" tabindex="0" role="button">
+          <div class="project-eyebrow"><span>Coding language model</span><span>MODEL / 01</span></div>
+          <h3>Nexora-Qwen-Coder-4B</h3>
+          <p>Compact coding model fine-tuned for debugging, structured reasoning, tool use and local agentic workflows.</p>
+        </article>
+        <article class="model-card reveal" data-project="Nexora-Gemma-4-E4B-Coder" tabindex="0" role="button">
+          <div class="project-eyebrow"><span>Multimodal coding model</span><span>MODEL / 02</span></div>
+          <h3>Nexora-Gemma-4-E4B-Coder</h3>
+          <p>Gemma-based coding model with visual debugging support and GGUF-oriented local inference workflows.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="archive">
+      <div class="archive-head mono">Project archive / click any row for a compact README</div>
+      <div class="project-index" id="projectIndex"></div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="areas">
+  <div class="shell">
+    <div class="section-head reveal">
+      <div><div class="section-label">03 / Areas</div><h2 class="section-title">Where I spend<br>my compute.</h2></div>
+      <p class="section-note">The portfolio intentionally crosses research and product engineering. Understanding the model matters. Understanding the runtime, interface and constraints around it matters too.</p>
+    </div>
+    <div class="area-list">
+      <div class="area-row reveal"><span class="area-num">01</span><h3>Latent Reasoning</h3><p>Structured internal representations, recurrent depth, adaptive compute and experiments that modify how models deliberate before decoding.</p></div>
+      <div class="area-row reveal"><span class="area-num">02</span><h3>Language Models</h3><p>Fine-tuning, coding models, evaluation, quantization, multimodal behavior and practical inference workflows.</p></div>
+      <div class="area-row reveal"><span class="area-num">03</span><h3>Local AI Systems</h3><p>GPU-aware applications that keep inference and user data on the workstation, with explicit memory and runtime management.</p></div>
+      <div class="area-row reveal"><span class="area-num">04</span><h3>Retrieval & Knowledge</h3><p>RAG systems combining semantic search, lexical retrieval, reranking and traceable sources around local or hosted models.</p></div>
+      <div class="area-row reveal"><span class="area-num">05</span><h3>Multimodal & Generative</h3><p>Systems connecting language, vision, audio and 3D generation instead of treating each model as an isolated demo.</p></div>
+      <div class="area-row reveal"><span class="area-num">06</span><h3>Software Engineering</h3><p>Desktop tools, browsers, dashboards and end-to-end products built around real constraints rather than screenshots alone.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="research">
+  <div class="shell">
+    <div class="section-head reveal">
+      <div><div class="section-label">04 / Research</div><h2 class="section-title">Inside the<br>residual stream.</h2></div>
+      <p class="section-note">My current research direction explores whether structured recurrent computation inside a constrained latent subspace can improve a frozen decoder under controlled paired evaluation.</p>
+    </div>
+
+    <div class="research-feature reveal">
+      <div class="research-copy">
+        <div class="project-eyebrow"><span>LeBRON / J-Space</span><span>Experimental</span></div>
+        <h3>Deliberate<br>before decode.</h3>
+        <p>LeBRON adds a lightweight recurrent reasoner around a frozen decoder. A sparse J-Space projection exposes a structured workspace, competing branches evolve internally, and adaptive halting decides when additional compute stops being useful.</p>
+        <div class="slot-list">
+          <div class="slot-row"><span>01</span><b>Goal</b><span>objective</span></div>
+          <div class="slot-row"><span>02</span><b>Hypothesis</b><span>proposal</span></div>
+          <div class="slot-row"><span>03</span><b>Evidence</b><span>support</span></div>
+          <div class="slot-row"><span>04</span><b>Critique</b><span>challenge</span></div>
+          <div class="slot-row"><span>05</span><b>Commit</b><span>consolidate</span></div>
+        </div>
+      </div>
+      <div class="research-architecture">
+        <div class="section-label">Architecture / Simplified</div>
+        <div class="arch-step">Frozen decoder residual</div><div class="arch-arrow">↓</div>
+        <div class="arch-step">Sparse Jacobian projection</div><div class="arch-arrow">↓</div>
+        <div class="arch-step">5-slot latent workspace × 2 branches</div><div class="arch-arrow">↓</div>
+        <div class="arch-step">Recurrent updates + verifier</div><div class="arch-arrow">↓</div>
+        <div class="arch-step">Adaptive halting</div><div class="arch-arrow">↓</div>
+        <div class="arch-step">Gated residual Δ</div>
+        <a class="inline-link" href="https://github.com/guell11/Lebron" target="_blank" rel="noreferrer">Explore LeBRON <span>↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="stack">
+  <div class="shell">
+    <div class="section-head reveal">
+      <div><div class="section-label">05 / Stack</div><h2 class="section-title">Tools are<br>the easy part.</h2></div>
+      <p class="section-note">I care more about choosing the right abstraction than collecting logos, but these are the tools that repeatedly survive contact with my projects.</p>
+    </div>
+    <div class="stack-wall reveal">
+      <div class="stack-word wide">Python</div>
+      <div class="stack-word">PyTorch</div>
+      <div class="stack-word">Transformers</div>
+      <div class="stack-word">CUDA</div>
+      <div class="stack-word">GGUF</div>
+      <div class="stack-word wide">Hugging Face</div>
+      <div class="stack-word">FastAPI</div>
+      <div class="stack-word">Flask</div>
+      <div class="stack-word">React</div>
+      <div class="stack-word">Three.js</div>
+      <div class="stack-word">SQLite</div>
+      <div class="stack-word">Qt / PyQt6</div>
+      <div class="stack-word wide">Local inference</div>
+      <div class="stack-word small">RAG · BM25 · Vector Search</div>
+      <div class="stack-word small">Quantization · NF4 · llama.cpp</div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <div class="shell">
+    <div class="about reveal">
+      <div>
+        <div class="section-label">06 / About</div>
+        <h2 class="section-title">Miguel Penha<br>Reis</h2>
+      </div>
+      <div class="about-text">
+        <p>I'm an <strong>AI Engineer and researcher</strong> working across large language models, latent reasoning, model fine-tuning, multimodal AI and software systems.</p>
+        <p>I build both the models and the systems around them, moving between research experiments and practical engineering.</p>
+        <p>My work explores what happens inside intelligent systems, how their internal representations can be structured, and how those ideas can become useful tools in the real world.</p>
+
+        <div class="big-statement">Build the model. Build the system. Understand both.</div>
+
+        <div class="about-links">
+          <a class="btn btn-primary" href="https://github.com/guell11" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a class="btn" href="https://huggingface.co/guell00" target="_blank" rel="noreferrer">Hugging Face ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="shell footer-inner">
+    <div>
+      <div class="footer-title">Miguel Penha Reis</div>
+      <div class="footer-sub">AI Engineer · Researcher · Builder</div>
+    </div>
+    <div class="footer-links"><a href="#top">Top ↑</a><a href="https://github.com/guell11" target="_blank">GitHub</a><a href="https://huggingface.co/guell00" target="_blank">Hugging Face</a></div>
+  </div>
 </footer>
 
-
+<div class="modal" id="projectModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <article class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <header class="modal-head">
+      <div><div class="section-label" id="modalCategory"></div><h2 class="modal-title" id="modalTitle"></h2></div>
+      <button class="modal-close" data-close aria-label="Close project details">×</button>
+    </header>
+    <div class="modal-body">
+      <div class="modal-main">
+        <h3>Overview</h3><p id="modalOverview"></p>
+        <h3>What it does</h3><ul id="modalFeatures"></ul>
+        <h3>Stack</h3><div class="modal-tags" id="modalStack"></div>
+      </div>
+      <aside class="modal-side">
+        <div class="meta-list">
+          <div class="meta-row"><span>Type</span><strong id="modalType"></strong></div>
+          <div class="meta-row"><span>Focus</span><strong id="modalFocus"></strong></div>
+          <div class="meta-row"><span>Runtime</span><strong id="modalRuntime"></strong></div>
+        </div>
+        <a class="modal-btn" id="modalLink" href="#" target="_blank" rel="noreferrer">Open repository <span>↗</span></a>
+      </aside>
+    </div>
+  </article>
+</div>
 
 <script>
-    const projects = [{"name":"Nexora-Qwen-Coder-4B","category":"Language Model","size":"large","overview":"A compact coding-focused model fine-tuned from the Qwen 3.5 4B family for code generation, debugging, structured reasoning, tool use and local agentic workflows.","features":["Targets bug localization, code repair and technical instruction following.","Learns tool-oriented behavior from agent trajectories and feedback loops.","Distributed for efficient local inference through GGUF and llama.cpp workflows."],"stack":["Qwen 3.5 4B","Unsloth","GGUF","llama.cpp","SFT"],"type":"Coding language model","focus":"Agentic coding","runtime":"Local inference","url":"https://huggingface.co/guell00/Nexora-Qwen-Coder-4B","icon":"code"},{"name":"J-Space Deliberation","category":"AI Research","size":"medium","overview":"An experimental latent reasoning architecture that introduces a structured five-slot workspace into the residual stream before final text generation.","features":["Organizes deliberation into Objective, Hypothesis, Evidence, Critic and Commit slots.","Uses recurrent memory and Jacobian Lens projections to inspect internal representations.","Explores structured continuous reasoning on top of Gemma 4 E4B-it."],"stack":["Gemma 4 E4B","PyTorch","Jacobian Lens","NF4","Latent Reasoning"],"type":"Research architecture","focus":"Latent deliberation","runtime":"GPU / Notebook","url":"https://huggingface.co/guell00/J-Space-Deliberation","icon":"latent"},{"name":"Nexora-Gemma-4-E4B-Coder","category":"Multimodal Language Model","size":"large","overview":"A code-focused multimodal language model fine-tuned from Gemma 4 E4B and converted to GGUF for efficient local inference, programming and visual debugging.","features":["Supports code generation, explanation, debugging, refactoring and technical reasoning.","Uses a separate BF16 multimodal projector for screenshots, interfaces, diagrams and code shown in images.","Ships Q8_0 and Q4_K_M GGUF quantizations for llama.cpp-compatible local inference."],"stack":["Gemma 4 E4B","Unsloth","GGUF","llama.cpp","Multimodal"],"type":"Multimodal coding LLM","focus":"Code and visual debugging","runtime":"Local inference","url":"https://huggingface.co/guell00/Nexora-Gemma-4-Coder","icon":"vision"},{"name":"Forge3D","category":"Local Generative AI","size":"half","overview":"A browser-based local engine that turns reference images into production-ready 3D assets without sending the workflow to a hosted service.","features":["Runs an image-to-mesh pipeline with TRELLIS.","Refines geometry using UltraShape-oriented workflows.","Generates UVs, PBR textures and validated GLB exports."],"stack":["TRELLIS","UltraShape","FastAPI","React","Three.js"],"type":"AI 3D engine","focus":"Image to 3D","runtime":"Local GPU","url":"https://github.com/guell11/Forge3D","icon":"cube"},{"name":"IA RAG Nexa","category":"Retrieval-Augmented AI","size":"half","overview":"A local RAG assistant designed to connect language models with private documents through hybrid retrieval and traceable citations.","features":["Combines semantic retrieval with SQLite FTS5/BM25.","Uses reciprocal-rank fusion and optional reranking.","Supports document ingestion, local chat and clickable source references."],"stack":["Flask","Ollama","Chroma","BM25","SQLite"],"type":"RAG application","focus":"Private knowledge","runtime":"Local-first","url":"https://github.com/guell11/Ia-RAG-Nexa","icon":"rag"},{"name":"LeBron Local UI","category":"AI Interface","size":"large","overview":"A local interface for configuring and running the J-Space deliberation architecture through a practical browser-based workflow.","features":["Exposes inference and model configuration controls.","Packages research functionality into a usable local UI.","Includes deployment-oriented workflows for notebook and GPU environments."],"stack":["Python","Flask","J-Space","Gemma 4","Kaggle"],"type":"Research interface","focus":"Latent AI runtime","runtime":"Local / Notebook","url":"https://github.com/guell11/Lebron-Local-UI","icon":"ui"},{"name":"LeBron","category":"AI Research Runtime","size":"medium","overview":"The research runtime and experimentation package surrounding the J-Space architecture and its latent-deliberation workflow.","features":["Provides notebooks and execution flows for J-Space experiments.","Connects Gemma 4 inference with recurrent latent memory.","Supports reproducible experimentation outside the visual interface."],"stack":["PyTorch","Transformers","Gemma 4","Notebooks"],"type":"Research runtime","focus":"Deliberation experiments","runtime":"GPU / Notebook","url":"https://github.com/guell11/Lebron","icon":"brain"},{"name":"Projeto Lunar","category":"AI Education Platform","size":"large","overview":"An AI-powered educational ecosystem combining learning dashboards, streaming, pedagogical tools and intelligent assistance in a unified platform.","features":["Brings educational content, streaming and learning tools into one environment.","Uses AI-assisted experiences to support students and pedagogical workflows.","Organizes activity through dashboards designed for education and institutional use."],"stack":["Python","Flask","JavaScript","AI Assistants","Dashboards","Streaming"],"type":"Educational AI ecosystem","focus":"Learning and pedagogy","runtime":"Web application","url":"https://github.com/guell11/projeto-lunar-public","icon":"lunar"},{"name":"MergeCraft","category":"Model Engineering","size":"large","overview":"A graph-first local workbench for composing, validating, merging and benchmarking language models without manually maintaining large MergeKit configuration files.","features":["Visual node editor for model-merging recipes.","Compatibility validation and memory planning before execution.","Integrated runtime monitoring, chat and benchmark workflows."],"stack":["MergeKit","Flask","Python","LLM Benchmarks","Graph UI"],"type":"LLM workbench","focus":"Model merging","runtime":"Local GPU","url":"https://github.com/guell11/MergeCraft","icon":"merge"},{"name":"Lyra Engine","category":"Creative AI","size":"medium","overview":"An offline AI music-production suite built around local generation, lyric assistance, vocal references and track management.","features":["Generates music from natural-language prompts.","Supports lyrics, vocal references and model switching.","Manages GPU and RAM retention policies for consumer hardware."],"stack":["ACE-Step 1.5","Ollama","Flask","Python","Audio AI"],"type":"AI music suite","focus":"Music generation","runtime":"Local GPU","url":"https://github.com/guell11/Lyra-Engine-Local-AI-Music-Production-Suite","icon":"audio"},{"name":"OBSIDIAN WIRE","category":"Cybersecurity","size":"half","overview":"A zero-trust encrypted vault combining modern authenticated encryption with post-quantum key encapsulation.","features":["Encrypts data with AES-256-GCM.","Uses CRYSTALS-Kyber512 for key encapsulation.","Keeps readable secrets away from the server-side storage layer."],"stack":["AES-256-GCM","Kyber512","Zero Trust","Cryptography"],"type":"Encrypted vault","focus":"Post-quantum security","runtime":"Secure local/web","url":"https://github.com/guell11/OBSIDIAN-WIRE","icon":"lock"},{"name":"BitLoja","category":"Bitcoin Commerce","size":"half","overview":"A marketplace experiment built around native Bitcoin payments and escrow rather than conventional payment processors.","features":["Supports 2-of-3 multisignature escrow.","Includes Lightning Network and PSBT-oriented flows.","Provides storefronts, disputes and administrative controls."],"stack":["Flask","Bitcoin","Lightning","PSBT","Multisig"],"type":"Marketplace","focus":"Bitcoin payments","runtime":"Web application","url":"https://github.com/guell11/BitLoja","icon":"bitcoin"},{"name":"Agner Browser Project","category":"Desktop Software","size":"large","overview":"An independent browser project exploring application-level browser construction with a custom desktop interface.","features":["Desktop browsing powered by Qt WebEngine.","Custom navigation and interface components.","Explores browser software beyond a simple embedded webpage."],"stack":["Python","PyQt6","QtWebEngine","Desktop UI"],"type":"Desktop browser","focus":"Browser engineering","runtime":"Desktop","url":"https://github.com/guell11/Agner-Browser-Project","icon":"browser"},{"name":"Lumi Motion","category":"Creative Technology","size":"medium","overview":"An open-source video-editing experiment focused on a modern timeline workflow and accessible creative tooling.","features":["Timeline-oriented media editing.","Modern interface for creative workflows.","Designed as an independent, extensible editing project."],"stack":["Video Editing","Open Source","Media UI"],"type":"Creative application","focus":"Video editing","runtime":"Desktop / Web","url":"https://github.com/guell11/Lumi-motion","icon":"video"},{"name":"HabitFlow","category":"Personal Analytics","size":"half","overview":"A local-first habit tracker that combines daily logging with long-term visual feedback and performance-oriented routines.","features":["GitHub-style annual heatmaps and progress history.","Milestones, bilingual interface and JSON backups.","No external database or behavioral tracking requirement."],"stack":["React 19","Vite","D3.js","LocalStorage"],"type":"Productivity app","focus":"Habit tracking","runtime":"Browser / Local","url":"https://github.com/guell11/HabitFlow","icon":"habit"},{"name":"FinPro SaaS","category":"Financial Product","size":"half","overview":"A financial-control SaaS experiment centered on organizing financial information through a modern dashboard-driven experience.","features":["Consolidates financial records and indicators.","Uses dashboard-based product navigation.","Explores a clean SaaS interface for financial workflows."],"stack":["SaaS","Finance","Dashboard","Web App"],"type":"Financial SaaS","focus":"Financial control","runtime":"Web application","url":"https://github.com/guell11/FinProSaas","icon":"chart"},{"name":"UPAÉFLIX","category":"Streaming Platform","size":"large","overview":"An open-source on-demand streaming platform focused on organized media access, personalized viewing and content administration.","features":["Catalog and on-demand playback experience.","Personalized viewing and organized content discovery.","Administration features for platform content."],"stack":["Streaming","Media","Administration","Web UX"],"type":"Streaming platform","focus":"On-demand media","runtime":"Web application","url":"https://github.com/guell11/UPAEFLIX","icon":"stream"}];
+const projects = [
+  {
+    name:"Forge3D", category:"Local Generative AI",
+    overview:"A fully local browser-based 3D generation engine that turns a reference image into a refined, textured GLB asset while keeping the full generation workflow on the user's machine.",
+    features:["Runs an image-to-mesh workflow around TRELLIS.","Uses UltraShape for geometry refinement, cleanup and remeshing.","Generates UVs, PBR textures and validated GLB exports through a serialized GPU job pipeline."],
+    stack:["TRELLIS","UltraShape","FastAPI","React","Three.js","WebGL"],type:"AI 3D generation engine",focus:"Image to production-ready 3D",runtime:"Local consumer GPU",url:"https://github.com/guell11/Forge3D"
+  },
+  {
+    name:"LeBRON", category:"AI Research Runtime",
+    overview:"An experimental runtime that adds recurrent latent computation to frozen decoder models through a structured J-Space adapter.",
+    features:["Sparse J-Space projection with gated residual updates.","Competing latent branches, verifier and adaptive halting.","Paired base vs recurrent-compute evaluation workflows."],
+    stack:["PyTorch","Transformers","Gemma","J-Space","Latent Reasoning"],type:"Research runtime",focus:"Adaptive latent compute",runtime:"Local GPU / research",url:"https://github.com/guell11/Lebron"
+  },
+  {
+    name:"Projeto Lunar", category:"AI Education Platform",
+    overview:"An AI-powered educational ecosystem combining learning dashboards, pedagogical tools, multimodal content and intelligent assistance in a unified platform.",
+    features:["Connects student, teacher and guardian workflows.","Uses AI-assisted tools for study and teacher productivity.","Combines dashboards, documents, speech, media and real-time features."],
+    stack:["Python","Flask","Gemini","SQLAlchemy","Socket.IO","Edge-TTS"],type:"Educational AI ecosystem",focus:"Learning and pedagogy",runtime:"Web application",url:"https://github.com/guell11/projeto-lunar-public"
+  },
+  {
+    name:"Lyra Engine", category:"Creative AI",
+    overview:"A local AI music-production environment built around music generation, language models and GPU-aware model orchestration.",
+    features:["Generates music from natural-language prompts.","Supports lyric assistance, vocal references and local LLM workflows.","Manages GPU/RAM retention policies for consumer hardware."],
+    stack:["ACE-Step 1.5","Ollama","Flask","Python","Audio AI"],type:"AI music suite",focus:"Music generation",runtime:"Local GPU",url:"https://github.com/guell11/Lyra-Engine-Local-AI-Music-Production-Suite"
+  },
+  {
+    name:"AGNER Browser", category:"Desktop Software",
+    overview:"An experimental desktop browser built with Python, PyQt6 and QtWebEngine around local profiles, persistent state and a modular application architecture.",
+    features:["Multi-tab desktop browsing powered by QtWebEngine.","Local profiles, sessions, history, favorites and downloads.","Custom browser UI, local extensions and privacy-oriented controls."],
+    stack:["Python","PyQt6","QtWebEngine","SQLite"],type:"Desktop browser",focus:"Browser engineering",runtime:"Desktop",url:"https://github.com/guell11/Agner-Browser-Project"
+  },
+  {
+    name:"IA RAG Nexa", category:"Retrieval-Augmented AI",
+    overview:"A local RAG assistant designed to connect language models with private documents through hybrid retrieval and traceable citations.",
+    features:["Combines semantic retrieval with SQLite FTS5/BM25.","Uses reciprocal-rank fusion and optional reranking.","Supports document ingestion, local chat and clickable source references."],
+    stack:["Flask","Ollama","Chroma","BM25","SQLite"],type:"RAG application",focus:"Private knowledge",runtime:"Local-first",url:"https://github.com/guell11/Ia-RAG-Nexa"
+  },
+  {
+    name:"Nexora-Qwen-Coder-4B", category:"Language Model",
+    overview:"A compact coding-focused model fine-tuned from the Qwen family for code generation, debugging, structured reasoning, tool use and local agentic workflows.",
+    features:["Targets bug localization, code repair and technical instruction following.","Learns tool-oriented behavior from agent trajectories and feedback loops.","Distributed for efficient local inference through GGUF and llama.cpp workflows."],
+    stack:["Qwen","Unsloth","GGUF","llama.cpp","SFT"],type:"Coding language model",focus:"Agentic coding",runtime:"Local inference",url:"https://huggingface.co/guell00/Nexora-Qwen-Coder-4B"
+  },
+  {
+    name:"Nexora-Gemma-4-E4B-Coder", category:"Multimodal Language Model",
+    overview:"A code-focused multimodal model fine-tuned from Gemma and prepared for efficient local inference, programming and visual debugging.",
+    features:["Supports code generation, explanation, debugging and refactoring.","Uses multimodal capabilities for screenshots, interfaces and technical images.","Prepared for GGUF-oriented local inference workflows."],
+    stack:["Gemma","Multimodal","GGUF","llama.cpp","SFT"],type:"Multimodal coding model",focus:"Visual coding assistance",runtime:"Local inference",url:"https://huggingface.co/guell00"
+  },
+  {
+    name:"MergeCraft", category:"Model Engineering",
+    overview:"A graph-first local workbench for composing, validating, merging and benchmarking language models without manually maintaining large MergeKit configuration files.",
+    features:["Visual node editor for model-merging recipes.","Compatibility validation and memory planning before execution.","Integrated runtime monitoring, chat and benchmark workflows."],
+    stack:["MergeKit","Flask","Python","LLM Benchmarks","Graph UI"],type:"LLM workbench",focus:"Model merging",runtime:"Local GPU",url:"https://github.com/guell11/MergeCraft"
+  },
+  {
+    name:"OBSIDIAN WIRE", category:"Cybersecurity",
+    overview:"A zero-trust encrypted vault combining modern authenticated encryption with post-quantum key encapsulation.",
+    features:["Encrypts data with AES-256-GCM.","Uses CRYSTALS-Kyber512 for key encapsulation.","Keeps readable secrets away from the server-side storage layer."],
+    stack:["AES-256-GCM","Kyber512","Zero Trust","Cryptography"],type:"Encrypted vault",focus:"Post-quantum security",runtime:"Secure local/web",url:"https://github.com/guell11/OBSIDIAN-WIRE"
+  },
+  {
+    name:"BitLoja", category:"Bitcoin Commerce",
+    overview:"A marketplace experiment built around native Bitcoin payments and escrow rather than conventional payment processors.",
+    features:["Supports 2-of-3 multisignature escrow.","Includes Lightning Network and PSBT-oriented flows.","Provides storefronts, disputes and administrative controls."],
+    stack:["Flask","Bitcoin","Lightning","PSBT","Multisig"],type:"Marketplace",focus:"Bitcoin payments",runtime:"Web application",url:"https://github.com/guell11/BitLoja"
+  },
+  {
+    name:"Lumi Motion", category:"Creative Technology",
+    overview:"An open-source video-editing experiment focused on a modern timeline workflow and accessible creative tooling.",
+    features:["Timeline-oriented media editing.","Modern interface for creative workflows.","Designed as an independent, extensible editing project."],
+    stack:["Video Editing","Open Source","Media UI"],type:"Creative application",focus:"Video editing",runtime:"Desktop / Web",url:"https://github.com/guell11/Lumi-motion"
+  },
+  {
+    name:"HabitFlow", category:"Personal Analytics",
+    overview:"A local-first habit tracker that combines daily logging with long-term visual feedback and performance-oriented routines.",
+    features:["GitHub-style annual heatmaps and progress history.","Milestones, bilingual interface and JSON backups.","No external database or behavioral tracking requirement."],
+    stack:["React","Vite","D3.js","LocalStorage"],type:"Productivity app",focus:"Habit tracking",runtime:"Browser / Local",url:"https://github.com/guell11/HabitFlow"
+  },
+  {
+    name:"FinPro SaaS", category:"Financial Product",
+    overview:"A financial-control SaaS experiment centered on organizing financial information through a modern dashboard-driven experience.",
+    features:["Consolidates financial records and indicators.","Uses dashboard-based product navigation.","Explores a clean SaaS interface for financial workflows."],
+    stack:["SaaS","Finance","Dashboard","Web App"],type:"Financial SaaS",focus:"Financial control",runtime:"Web application",url:"https://github.com/guell11/FinProSaas"
+  },
+  {
+    name:"UPAÉFLIX", category:"Streaming Platform",
+    overview:"An open-source on-demand streaming platform focused on organized media access, personalized viewing and content administration.",
+    features:["Catalog and on-demand playback experience.","Personalized viewing and organized content discovery.","Administration features for platform content."],
+    stack:["Streaming","Media","Administration","Web UX"],type:"Streaming platform",focus:"On-demand media",runtime:"Web application",url:"https://github.com/guell11/UPAEFLIX"
+  }
+];
 
-    const projectsGrid = document.getElementById("projectsGrid");
-    const modal = document.getElementById("projectModal");
-    const modalPanel = modal.querySelector(".project-modal-panel");
-    let lastFocusedElement = null;
+const highlighted = new Set(["Forge3D","LeBRON","Projeto Lunar","Lyra Engine","AGNER Browser","IA RAG Nexa","Nexora-Qwen-Coder-4B","Nexora-Gemma-4-E4B-Coder"]);
+const archiveProjects = projects.filter(p => !highlighted.has(p.name));
 
-    function projectSvg(project, index) {
-        const id = `p${index}`;
-        const title = project.name.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        const base = `
-            <defs>
-                <linearGradient id="${id}-stroke" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#ffffff" stop-opacity=".62"/>
-                    <stop offset="1" stop-color="#ffffff" stop-opacity=".14"/>
-                </linearGradient>
-                <linearGradient id="${id}-panel" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#ffffff" stop-opacity=".065"/>
-                    <stop offset="1" stop-color="#ffffff" stop-opacity=".012"/>
-                </linearGradient>
-                <filter id="${id}-glow" x="-60%" y="-60%" width="220%" height="220%">
-                    <feGaussianBlur stdDeviation="5" result="blur"/>
-                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-            </defs>
-            <rect width="360" height="170" fill="#080809"/>
-            <rect x="15" y="15" width="330" height="140" rx="14" fill="url(#${id}-panel)" stroke="#fff" stroke-opacity=".075"/>
-            <text x="31" y="39" fill="#fff" fill-opacity=".30" font-family="DM Mono, monospace" font-size="8" letter-spacing="1.4">${String(index + 1).padStart(3, "0")} / ${project.category.toUpperCase()}</text>
-            <text x="31" y="145" fill="#fff" fill-opacity=".22" font-family="DM Mono, monospace" font-size="7.5" letter-spacing="1">${title.toUpperCase()}</text>
-        `;
+const projectIndex = document.getElementById("projectIndex");
+archiveProjects.forEach((p,i)=>{
+  const row=document.createElement("article");
+  row.className="project-row reveal";
+  row.tabIndex=0;
+  row.dataset.project=p.name;
+  row.innerHTML=`
+    <span class="idx">${String(i+9).padStart(2,"0")}</span>
+    <h4>${escapeHTML(p.name)}</h4>
+    <span class="cat">${escapeHTML(p.category)}</span>
+    <span class="status">Explore</span>
+    <span class="arrow">↗</span>`;
+  projectIndex.appendChild(row);
+});
 
-        const s = `url(#${id}-stroke)`;
-        const diagrams = {
-            cube: `<g transform="translate(208 37)" fill="none" stroke="${s}" stroke-width="1.8" stroke-linejoin="round"><path d="m50 0 46 24v48L50 98 4 72V24Z"/><path d="M4 24 50 49 96 24M50 49v49"/><path d="m26 12 46 24v48"/></g><g fill="#fff"><circle cx="188" cy="61" r="3" opacity=".35"/><circle cx="305" cy="115" r="3" opacity=".18"/></g>`,
-            rag: `<g transform="translate(190 42)" fill="none" stroke="${s}" stroke-width="1.7"><rect x="0" y="0" width="54" height="70" rx="8"/><rect x="96" y="0" width="54" height="70" rx="8"/><circle cx="75" cy="35" r="19"/><path d="M54 35h2M94 35h2M68 35h14"/><path d="M12 17h30M12 28h24M108 17h30M108 28h22" opacity=".55"/></g>`,
-            ui: `<g transform="translate(180 38)" fill="none" stroke="${s}" stroke-width="1.6"><rect x="0" y="0" width="150" height="84" rx="9"/><path d="M0 21h150M42 21v63"/><rect x="54" y="34" width="40" height="28" rx="5"/><path d="M104 36h30M104 46h23M104 56h27M55 72h78" opacity=".55"/></g>`,
-            brain: `<g transform="translate(221 82)" fill="none" stroke="${s}" stroke-width="1.7"><path d="M-4-43c-22-8-39 8-34 25-15 7-12 27 4 31 2 17 25 23 36 10 8 12 28 10 33-5 16 5 29-12 20-25 12-14-2-32-18-28-5-15-27-18-41-8Z"/><path d="M0-41v63M-20-27c12 2 18 9 20 20M-20 8c12-1 18-7 20-17M30-27c-11 2-17 9-19 19M30 9c-11-2-17-8-19-18" opacity=".55"/></g>`,
-            lunar: `<g transform="translate(178 35)" fill="none" stroke="${s}" stroke-width="1.65"><path d="M92 6c-31 5-51 31-46 60 5 30 32 49 61 43-18-8-29-26-26-45 3-20 18-35 38-39-8-12-17-18-27-19Z"/><circle cx="117" cy="24" r="3" fill="#fff" opacity=".5" stroke="none"/><circle cx="137" cy="51" r="2" fill="#fff" opacity=".28" stroke="none"/><path d="M0 92h53l16-18 19 11 18-25 22 15 24-31" opacity=".52"/><rect x="0" y="8" width="46" height="49" rx="7"/><path d="M11 20h24M11 30h18M11 40h27" opacity=".55"/></g>`,
-            merge: `<g transform="translate(190 47)" fill="none" stroke="${s}" stroke-width="1.8"><circle cx="18" cy="16" r="15"/><circle cx="18" cy="64" r="15"/><rect x="72" y="24" width="43" height="32" rx="7"/><circle cx="145" cy="40" r="17"/><path d="M33 16h19c13 0 20 9 20 18M33 64h19c13 0 20-9 20-18M115 40h13"/></g>`,
-            audio: `<g transform="translate(181 48)" fill="none" stroke="${s}" stroke-width="1.9" stroke-linecap="round"><path d="M0 38h12l8-27 12 56 13-41 12 24 14-12h12l11-34 13 68 12-44 12 22 12-12h18"/><path d="M0 82h168" opacity=".25"/></g>`,
-            lock: `<g transform="translate(218 40)" fill="none" stroke="${s}" stroke-width="1.8"><rect x="0" y="38" width="94" height="62" rx="11"/><path d="M20 38V24c0-34 54-34 54 0v14"/><circle cx="47" cy="66" r="7"/><path d="M47 73v13"/></g>`,
-            bitcoin: `<g transform="translate(252 83)" fill="none" stroke="${s}" stroke-width="1.8"><circle r="47"/><path d="M-10-29v58M10-29v58M-22-23H8c19 0 19 19 1 19h-31 33c20 0 20 22-2 22h-31" stroke-width="2.5"/></g>`,
-            browser: `<g transform="translate(178 38)" fill="none" stroke="${s}" stroke-width="1.6"><rect width="154" height="88" rx="9"/><path d="M0 22h154"/><circle cx="14" cy="11" r="2" fill="#fff" opacity=".4"/><circle cx="24" cy="11" r="2" fill="#fff" opacity=".25"/><circle cx="34" cy="11" r="2" fill="#fff" opacity=".15"/><path d="M19 43h53M19 56h89M19 69h70" opacity=".5"/></g>`,
-            video: `<g transform="translate(178 38)" fill="none" stroke="${s}" stroke-width="1.6"><rect width="154" height="88" rx="9"/><path d="M0 59h154M38 59v29M78 59v29M121 59v29"/><path d="m66 19 35 20-35 20Z"/></g>`,
-            habit: `<g transform="translate(188 43)"><g fill="#fff"><rect x="0" y="0" width="13" height="13" opacity=".08"/><rect x="19" y="0" width="13" height="13" opacity=".19"/><rect x="38" y="0" width="13" height="13" opacity=".32"/><rect x="57" y="0" width="13" height="13" opacity=".12"/><rect x="76" y="0" width="13" height="13" opacity=".26"/><rect x="95" y="0" width="13" height="13" opacity=".43"/><rect x="114" y="0" width="13" height="13" opacity=".17"/><rect x="133" y="0" width="13" height="13" opacity=".30"/></g><path d="m3 62 20 15 31-38 26 21 30-34 38 40" fill="none" stroke="${s}" stroke-width="2.4"/></g>`,
-            chart: `<g transform="translate(184 39)" fill="none" stroke="${s}" stroke-width="1.6"><path d="M0 85V0M0 85h146"/><path d="m10 72 31-22 28 9 32-35 23 16 20-20" stroke-width="2.4"/><g fill="#fff" stroke="none"><rect x="20" y="59" width="13" height="26" opacity=".10"/><rect x="53" y="45" width="13" height="40" opacity=".18"/><rect x="86" y="52" width="13" height="33" opacity=".12"/><rect x="119" y="29" width="13" height="56" opacity=".24"/></g></g>`,
-            stream: `<g transform="translate(178 38)" fill="none" stroke="${s}" stroke-width="1.6"><rect width="154" height="88" rx="9"/><path d="m65 20 38 24-38 24Z"/><path d="M15 12h34M105 12h34M15 77h53M91 77h48" opacity=".45"/></g>`
-        };
+function escapeHTML(v){
+  return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+}
 
-        return `<svg viewBox="0 0 360 170" aria-hidden="true">${base}${diagrams[project.icon] || diagrams.ui}</svg>`;
+const modal=document.getElementById("projectModal");
+let lastFocus=null;
+
+function openProject(name){
+  const p=projects.find(x=>x.name===name);
+  if(!p)return;
+  lastFocus=document.activeElement;
+  document.getElementById("modalCategory").textContent=p.category;
+  document.getElementById("modalTitle").textContent=p.name;
+  document.getElementById("modalOverview").textContent=p.overview;
+  document.getElementById("modalFeatures").innerHTML=p.features.map(x=>`<li>${escapeHTML(x)}</li>`).join("");
+  document.getElementById("modalStack").innerHTML=p.stack.map(x=>`<span>${escapeHTML(x)}</span>`).join("");
+  document.getElementById("modalType").textContent=p.type;
+  document.getElementById("modalFocus").textContent=p.focus;
+  document.getElementById("modalRuntime").textContent=p.runtime;
+  document.getElementById("modalLink").href=p.url;
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden","false");
+  document.body.classList.add("modal-open");
+  modal.querySelector(".modal-close").focus();
+}
+
+function closeModal(){
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+  document.body.classList.remove("modal-open");
+  if(lastFocus)lastFocus.focus();
+}
+
+document.addEventListener("click",e=>{
+  const project=e.target.closest("[data-project]");
+  if(project)openProject(project.dataset.project);
+  if(e.target.closest("[data-close]"))closeModal();
+});
+
+document.addEventListener("keydown",e=>{
+  if((e.key==="Enter"||e.key===" ") && document.activeElement?.dataset?.project){
+    e.preventDefault();openProject(document.activeElement.dataset.project);
+  }
+  if(e.key==="Escape"&&modal.classList.contains("open"))closeModal();
+});
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
     }
+  });
+},{threshold:.08,rootMargin:"0px 0px -35px"});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
-    function projectCard(project, index) {
-        const sizeClass = project.size === "large"
-            ? "project-card-large"
-            : project.size === "medium"
-                ? "project-card-medium"
-                : "project-card-half";
-
-        return `
-            <article
-                class="project-card ${sizeClass}"
-                tabindex="0"
-                role="button"
-                aria-label="Open README for ${project.name}"
-                data-project-index="${index}"
-            >
-                <span class="project-number">${String(index + 1).padStart(3, "0")}</span>
-                <span class="project-category">${project.category}</span>
-
-                <div class="project-visual">${projectSvg(project, index)}</div>
-
-                <div class="project-content">
-                    <h3>${project.name}</h3>
-                    <p>${project.overview}</p>
-                    <span class="project-hint">Open mini README <span>↗</span></span>
-                </div>
-            </article>
-        `;
-    }
-
-    projectsGrid.innerHTML = projects.slice(3).map((project, index) => projectCard(project, index + 3)).join("");
-
-    document.querySelectorAll("[data-featured-project]").forEach(banner => {
-        const openFeatured = () => {
-            const index = projects.findIndex(project => project.name === banner.dataset.featuredProject);
-            if (index >= 0) openProjectModal(index);
-        };
-
-        banner.addEventListener("click", openFeatured);
-        banner.addEventListener("keydown", event => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                openFeatured();
-            }
-        });
-    });
-
-    function openProjectModal(index) {
-        const project = projects[index];
-        if (!project) return;
-
-        lastFocusedElement = document.activeElement;
-
-        document.getElementById("modalProjectCategory").textContent = project.category;
-        document.getElementById("modalProjectTitle").textContent = project.name;
-        document.getElementById("modalProjectOverview").textContent = project.overview;
-        document.getElementById("modalProjectType").textContent = project.type;
-        document.getElementById("modalProjectFocus").textContent = project.focus;
-        document.getElementById("modalProjectRuntime").textContent = project.runtime;
-
-        document.getElementById("modalProjectFeatures").innerHTML = project.features
-            .map(feature => `<li>${feature}</li>`)
-            .join("");
-
-        document.getElementById("modalProjectStack").innerHTML = project.stack
-            .map(item => `<span>${item}</span>`)
-            .join("");
-
-        const link = document.getElementById("modalProjectLink");
-        link.href = project.url;
-        link.textContent = project.name === "Projeto Lunar"
-            ? "Open original repository ↗"
-            : project.url.includes("huggingface.co")
-                ? "Open on Hugging Face ↗"
-                : "Open repository ↗";
-
-        modal.classList.add("is-open");
-        modal.setAttribute("aria-hidden", "false");
-        document.body.classList.add("modal-open");
-
-        window.setTimeout(() => {
-            modal.querySelector(".project-modal-close").focus();
-        }, 50);
-    }
-
-    function closeProjectModal() {
-        modal.classList.remove("is-open");
-        modal.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("modal-open");
-
-        if (lastFocusedElement) {
-            lastFocusedElement.focus();
-        }
-    }
-
-    projectsGrid.addEventListener("click", event => {
-        const card = event.target.closest(".project-card");
-        if (!card) return;
-        openProjectModal(Number(card.dataset.projectIndex));
-    });
-
-    projectsGrid.addEventListener("keydown", event => {
-        const card = event.target.closest(".project-card");
-        if (!card) return;
-
-        if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            openProjectModal(Number(card.dataset.projectIndex));
-        }
-    });
-
-    modal.addEventListener("click", event => {
-        if (event.target.closest("[data-close-modal]")) {
-            closeProjectModal();
-        }
-    });
-
-    document.addEventListener("keydown", event => {
-        if (event.key === "Escape" && modal.classList.contains("is-open")) {
-            closeProjectModal();
-        }
-
-        if (event.key === "Tab" && modal.classList.contains("is-open")) {
-            const focusable = [...modalPanel.querySelectorAll(
-                'button, a[href], [tabindex]:not([tabindex="-1"])'
-            )].filter(element => !element.hasAttribute("disabled"));
-
-            if (!focusable.length) return;
-
-            const first = focusable[0];
-            const last = focusable[focusable.length - 1];
-
-            if (event.shiftKey && document.activeElement === first) {
-                event.preventDefault();
-                last.focus();
-            } else if (!event.shiftKey && document.activeElement === last) {
-                event.preventDefault();
-                first.focus();
-            }
-        }
-    });
+const progress=document.getElementById("scrollProgress");
+function updateProgress(){
+  const max=document.documentElement.scrollHeight-innerHeight;
+  progress.style.width=(max>0?(scrollY/max)*100:0)+"%";
+}
+addEventListener("scroll",updateProgress,{passive:true});
+updateProgress();
 </script>
-
 </body>
-
 </html>
