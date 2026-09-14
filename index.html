@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Miguel Penha Reis — AI Engineer & Researcher building language models, latent reasoning architectures, local AI systems and experimental software.">
+<meta name="description" content="Miguel Penha Reis — AI Engineer & Researcher building coding models, local AI systems, agent runtimes, latent reasoning architectures and experimental software.">
 <meta name="theme-color" content="#050505">
 <title>Miguel Penha Reis — AI Engineer & Researcher</title>
 
@@ -71,38 +71,46 @@ img{max-width:100%}
 /* navigation */
 nav{
   position:fixed;
-  top:0;left:0;width:100%;
+  top:14px;left:0;width:100%;
   z-index:100;
-  border-bottom:1px solid rgba(255,255,255,.05);
-  background:rgba(5,5,5,.72);
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
+  pointer-events:none;
 }
 .nav-inner{
   width:min(var(--max),calc(100% - (var(--page-pad) * 2)));
-  height:72px;
+  min-height:62px;
   margin:auto;
+  padding:8px 10px 8px 12px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:34px;
+  gap:28px;
+  border:1px solid rgba(255,255,255,.085);
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(14,14,15,.84),rgba(7,7,8,.76));
+  box-shadow:0 12px 40px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.025);
+  backdrop-filter:blur(24px) saturate(120%);
+  -webkit-backdrop-filter:blur(24px) saturate(120%);
+  pointer-events:auto;
 }
-.brand{display:flex;align-items:center;gap:13px;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:14px;letter-spacing:-.04em}
+.brand{display:flex;align-items:center;gap:12px;font-family:"Space Grotesk",sans-serif;font-weight:650;font-size:14px;letter-spacing:-.035em}
 .brand-mark{
-  width:31px;height:31px;
-  border:1px solid var(--line-strong);
-  border-radius:50%;
+  width:36px;height:36px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;
   display:grid;place-items:center;
+  position:relative;overflow:hidden;
   font-family:"DM Mono",monospace;font-size:8px;
+  background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.09),transparent 48%),#0b0b0c;
   transition:.3s var(--ease);
 }
-.brand:hover .brand-mark{background:#fff;color:#050505;transform:rotate(8deg)}
-.nav-right{display:flex;align-items:center;gap:32px}
-.nav-links{display:flex;gap:25px;list-style:none}
-.nav-links a{font-size:10px;color:#77777f;transition:.2s ease}
-.nav-links a:hover{color:#fff}
-.nav-status{display:flex;align-items:center;gap:9px;color:#6d6d74}
-.status-dot{width:5px;height:5px;border-radius:50%;background:#d8d8dc;box-shadow:0 0 0 5px rgba(255,255,255,.035)}
+.brand-mark::after{content:"";position:absolute;inset:5px;border:1px solid rgba(255,255,255,.055);border-radius:8px}
+.brand:hover .brand-mark{background:#f2f2f3;color:#050505;transform:translateY(-1px) rotate(4deg);box-shadow:0 8px 24px rgba(255,255,255,.08)}
+.nav-right{display:flex;align-items:center;gap:22px}
+.nav-links{display:flex;gap:5px;list-style:none;padding:4px;border:1px solid rgba(255,255,255,.05);border-radius:12px;background:rgba(255,255,255,.018)}
+.nav-links a{display:block;padding:8px 11px;border-radius:8px;font-size:9px;color:#727279;transition:.2s ease}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.055)}
+.nav-status{display:flex;align-items:center;gap:9px;color:#73737a;padding-right:8px}
+.status-dot{width:5px;height:5px;border-radius:50%;background:#d8d8dc;box-shadow:0 0 0 5px rgba(255,255,255,.035),0 0 18px rgba(255,255,255,.12)}
 
 /* hero */
 .hero{min-height:100svh;padding:132px 0 80px;display:flex;align-items:center}
@@ -335,6 +343,46 @@ nav{
     -14px 54px #4a4a50,49px 49px #8d8d92,106px 43px #6b6b71;
 }
 
+/* new project visuals */
+.velum-visual{
+  position:relative;min-height:670px;overflow:hidden;
+  display:grid;place-items:center;
+  background:
+    radial-gradient(circle at 50% 42%,rgba(255,255,255,.07),transparent 30%),
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),#080809;
+  background-size:auto,36px 36px,36px 36px,auto;
+}
+.velum-terminal{width:min(520px,78%);border:1px solid var(--line-strong);border-radius:18px;background:#09090a;box-shadow:0 28px 80px rgba(0,0,0,.55);overflow:hidden}
+.velum-terminal-head{height:42px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 15px;color:#65656c;font-family:"DM Mono",monospace;font-size:7.5px;letter-spacing:.1em;text-transform:uppercase}
+.velum-terminal-body{padding:26px;display:grid;gap:13px;font-family:"DM Mono",monospace;font-size:9px;color:#8e8e95}
+.velum-terminal-body b{font-family:"Space Grotesk",sans-serif;font-size:clamp(54px,6vw,84px);letter-spacing:-.07em;line-height:.8;color:#ededf0}
+.velum-terminal-body span{display:block;border-left:1px solid var(--line-strong);padding-left:12px}
+.velum-visual::after{content:"GGUF · LOCAL INFERENCE · CODE · IMATRIX";position:absolute;left:30px;bottom:26px;color:#5d5d64;font-family:"DM Mono",monospace;font-size:8px;letter-spacing:.12em}
+
+.system-visual{background:#09090a;display:grid;place-items:center}
+.system-diagram{width:min(86%,460px);display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:center}
+.system-node{border:1px solid var(--line);border-radius:10px;min-height:52px;display:grid;place-items:center;text-align:center;padding:8px;color:#77777f;font-family:"DM Mono",monospace;font-size:7.5px;letter-spacing:.06em;text-transform:uppercase}
+.system-node.strong{border-color:var(--line-strong);color:#d0d0d4;background:#0d0d0e}
+.system-line{grid-column:1/-1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent)}
+
+.code-proxy-visual{background:#09090a;padding:28px;display:grid;place-items:center}
+.proxy-stack{width:min(88%,470px);display:grid;gap:9px}
+.proxy-row{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;color:#717178;font-family:"DM Mono",monospace;font-size:7.5px;text-transform:uppercase;letter-spacing:.06em}
+.proxy-row span{border:1px solid var(--line);border-radius:9px;padding:11px;text-align:center}.proxy-row b{color:#bdbdc2;font-weight:500}
+
+.pkg-visual{background:#09090a;display:grid;place-items:center}
+.pkg-shell{width:min(86%,460px);display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pkg-shell div{min-height:74px;border:1px solid var(--line);border-radius:13px;display:grid;place-items:center;font-family:"DM Mono",monospace;font-size:8px;color:#727279;text-transform:uppercase;letter-spacing:.08em}
+.pkg-shell .pkg-center{grid-column:1/-1;border-color:var(--line-strong);color:#d0d0d4}
+
+.dc-visual{background:#09090a;padding:24px}
+.dc-shell{height:100%;border:1px solid var(--line);border-radius:15px;display:grid;grid-template-columns:54px 120px 1fr;overflow:hidden;background:#0c0c0d}
+.dc-shell div{border-right:1px solid var(--line)}.dc-shell div:last-child{border-right:0}
+.dc-rail{background:repeating-linear-gradient(to bottom,transparent 0 16px,#2a2a2f 16px 26px,transparent 26px 38px)}
+.dc-side{background:repeating-linear-gradient(to bottom,transparent 0 22px,#202024 22px 26px,transparent 26px 40px)}
+.dc-chat{padding:18px;background:repeating-linear-gradient(to bottom,transparent 0 26px,#1e1e22 26px 30px,transparent 30px 54px)}
+
 /* spotlight cards */
 .spotlight-grid{
   display:grid;
@@ -381,25 +429,30 @@ nav{
 /* lunar visual */
 .lunar-visual{
   background:
-    linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px),
-    radial-gradient(circle at 50% 42%,rgba(255,255,255,.045),transparent 34%),#09090a;
-  background-size:34px 34px,34px 34px,auto;
+    radial-gradient(circle at 50% 48%,rgba(255,255,255,.055),transparent 30%),
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),#09090a;
+  background-size:auto,32px 32px,32px 32px;
 }
-.lunar-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border:1px solid var(--line-strong);border-radius:22px;display:grid;place-items:center;font-family:"DM Mono",monospace;font-size:9px}
-.lunar-branch{position:absolute;height:1px;background:rgba(255,255,255,.14);transform-origin:left center}
-.lunar-branch.b1{width:130px;left:50%;top:50%;transform:rotate(-28deg)}
-.lunar-branch.b2{width:130px;left:50%;top:50%;transform:rotate(28deg)}
-.lunar-branch.b3{width:130px;left:50%;top:50%;transform:rotate(152deg)}
-.lunar-branch.b4{width:130px;left:50%;top:50%;transform:rotate(208deg)}
-.lunar-dot{position:absolute;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:#0c0c0d}
-.lunar-dot.d1{left:72%;top:24%}.lunar-dot.d2{left:72%;top:67%}.lunar-dot.d3{left:22%;top:25%}.lunar-dot.d4{left:20%;top:67%}
+.lunar-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.lunar-svg .orbit{fill:none;stroke:rgba(255,255,255,.07);stroke-width:1}
+.lunar-svg .orbit-dash{fill:none;stroke:rgba(255,255,255,.16);stroke-width:1;stroke-dasharray:5 9;animation:lunarDash 14s linear infinite}
+.lunar-svg .link{fill:none;stroke:rgba(255,255,255,.15);stroke-width:1}
+.lunar-svg .link.hot{stroke:rgba(255,255,255,.28);stroke-dasharray:3 7;animation:lunarFlow 5s linear infinite}
+.lunar-svg .node{fill:#0b0b0c;stroke:rgba(255,255,255,.16);stroke-width:1}
+.lunar-svg .node-core{fill:#0d0d0e;stroke:rgba(255,255,255,.27);stroke-width:1}
+.lunar-svg .pulse{fill:#d8d8dc;opacity:.45;filter:drop-shadow(0 0 7px rgba(255,255,255,.35));animation:lunarPulse 2.8s ease-in-out infinite}
+.lunar-svg text{fill:#c3c3c8;font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.16em}
+.lunar-svg .micro{fill:#68686f;font-size:6px;letter-spacing:.11em}
+@keyframes lunarDash{to{stroke-dashoffset:-84}}
+@keyframes lunarFlow{to{stroke-dashoffset:-60}}
+@keyframes lunarPulse{50%{opacity:.95;r:4.4}}
 
 /* waveform */
 .lyra-visual{background:#09090a;display:flex;align-items:center;justify-content:center;gap:6px;padding-inline:30px}
 .wavebar{width:3px;border-radius:99px;background:#a9a9ae;opacity:.25;animation:wave 1.6s ease-in-out infinite}
 .wavebar:nth-child(2n){animation-delay:.12s}.wavebar:nth-child(3n){animation-delay:.23s}.wavebar:nth-child(4n){animation-delay:.31s}
-@keyframes wave{0%,100%{height:20px;opacity:.2}50%{height:105px;opacity:.75}}
+@keyframes wave{0%,100%{height:18px;opacity:.2}50%{height:72px;opacity:.68}}
 
 /* browser */
 .browser-visual{background:#09090a;padding:30px}
@@ -516,6 +569,9 @@ footer{border-top:1px solid var(--line);padding:45px 0 60px}
 .footer-inner{display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
 .footer-title{font-family:"Space Grotesk",sans-serif;font-size:20px;letter-spacing:-.04em;font-weight:600}
 .footer-sub{margin-top:5px;color:#55555b;font-family:"DM Mono",monospace;font-size:7.5px;text-transform:uppercase;letter-spacing:.1em}
+.footer-download{display:inline-flex;align-items:center;gap:9px;margin-top:14px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;color:#8c8c93;font-family:"DM Mono",monospace;font-size:7.5px;text-transform:uppercase;letter-spacing:.08em;transition:.24s var(--ease)}
+.footer-download:hover{color:#050505;background:#f2f2f3;border-color:#f2f2f3;transform:translateY(-2px)}
+.footer-download svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.5}
 .footer-links{display:flex;gap:22px;color:#77777e;font-size:9px}
 .footer-links a:hover{color:#fff}
 
@@ -584,9 +640,9 @@ footer{border-top:1px solid var(--line);padding:45px 0 60px}
 }
 @media(max-width:600px){
   :root{--page-pad:18px}
-  .nav-inner{height:64px}
+  .nav-inner{min-height:56px}
   .brand{font-size:13px}
-  .hero{padding:96px 0 60px}
+  .hero{padding:106px 0 60px}
   .hero-title{font-size:clamp(55px,18vw,82px)}
   .hero-fields{grid-template-columns:1fr}
   .hero-console{min-height:430px;border-radius:20px}
@@ -662,9 +718,9 @@ footer{border-top:1px solid var(--line);padding:45px 0 60px}
       </div>
       <div class="console-core">MPR</div>
       <div class="console-list">
-        <a class="console-item" href="https://github.com/guell11/Lebron" target="_blank"><span class="num">01</span><strong>LeBRON</strong><em>Latent AI ↗</em></a>
-        <a class="console-item" href="https://github.com/guell11/Forge3D" target="_blank"><span class="num">02</span><strong>Forge3D</strong><em>Local 3D ↗</em></a>
-        <a class="console-item" href="https://huggingface.co/guell00" target="_blank"><span class="num">03</span><strong>Nexora models</strong><em>Model lab ↗</em></a>
+        <a class="console-item" href="https://huggingface.co/guell00/VELUM-Coder" target="_blank" rel="noreferrer"><span class="num">01</span><strong>VELUM-Coder</strong><em>Local code model ↗</em></a>
+        <a class="console-item" href="https://github.com/guell11/Veil-Agent" target="_blank" rel="noreferrer"><span class="num">02</span><strong>Veil Agent</strong><em>Agent sandbox ↗</em></a>
+        <a class="console-item" href="https://github.com/guell11/OmniClaw-GLM-Proxy-for-Claude-Code-Codex-OpenCode" target="_blank" rel="noreferrer"><span class="num">03</span><strong>OmniClaw</strong><em>API bridge ↗</em></a>
       </div>
     </aside>
   </div>
@@ -672,18 +728,18 @@ footer{border-top:1px solid var(--line);padding:45px 0 60px}
 
 <div class="signal-band" aria-hidden="true">
   <div class="signal-track">
-    <span class="signal-item"><b>RESEARCH</b> latent reasoning</span>
-    <span class="signal-item"><b>MODELS</b> fine-tuning + inference</span>
-    <span class="signal-item"><b>LOCAL AI</b> GPU-aware systems</span>
-    <span class="signal-item"><b>SOFTWARE</b> complete products</span>
-    <span class="signal-item"><b>3D</b> generative pipelines</span>
-    <span class="signal-item"><b>RETRIEVAL</b> RAG systems</span>
-    <span class="signal-item"><b>RESEARCH</b> latent reasoning</span>
-    <span class="signal-item"><b>MODELS</b> fine-tuning + inference</span>
-    <span class="signal-item"><b>LOCAL AI</b> GPU-aware systems</span>
-    <span class="signal-item"><b>SOFTWARE</b> complete products</span>
-    <span class="signal-item"><b>3D</b> generative pipelines</span>
-    <span class="signal-item"><b>RETRIEVAL</b> RAG systems</span>
+    <span class="signal-item"><b>MODELS</b> coding + quantization</span>
+    <span class="signal-item"><b>AGENTS</b> sandboxed runtimes</span>
+    <span class="signal-item"><b>LOCAL AI</b> private inference</span>
+    <span class="signal-item"><b>PROTOCOLS</b> OpenAI + Anthropic APIs</span>
+    <span class="signal-item"><b>REALTIME</b> WebRTC + Socket.IO</span>
+    <span class="signal-item"><b>GRAPHICS</b> Vulkan + GPU systems</span>
+    <span class="signal-item"><b>MODELS</b> coding + quantization</span>
+    <span class="signal-item"><b>AGENTS</b> sandboxed runtimes</span>
+    <span class="signal-item"><b>LOCAL AI</b> private inference</span>
+    <span class="signal-item"><b>PROTOCOLS</b> OpenAI + Anthropic APIs</span>
+    <span class="signal-item"><b>REALTIME</b> WebRTC + Socket.IO</span>
+    <span class="signal-item"><b>GRAPHICS</b> Vulkan + GPU systems</span>
   </div>
 </div>
 
@@ -694,44 +750,113 @@ footer{border-top:1px solid var(--line);padding:45px 0 60px}
         <div class="section-label">02 / Selected Work</div>
         <h2 class="section-title">Not a project list.<br>A body of work.</h2>
       </div>
-      <p class="section-note">The projects below get different visual weight on purpose. Research runtimes, local AI engines and complete products deserve more than being buried inside identical cards.</p>
+      <p class="section-note">Recent work spans coding models, privacy-first agent infrastructure, API compatibility layers, realtime systems and GPU-aware desktop software. The newest projects lead; the archive keeps the rest one click away.</p>
     </div>
 
-    <article class="flagship reveal" data-project="Forge3D" tabindex="0" role="button" aria-label="Open Forge3D details">
+    <article class="flagship reveal" data-project="VELUM-Coder" tabindex="0" role="button" aria-label="Open VELUM-Coder details">
       <div class="flagship-copy">
-        <div class="project-eyebrow"><span>Flagship / Local Generative AI</span><span>001</span></div>
+        <div class="project-eyebrow"><span>Flagship / Local Coding Model</span><span>001</span></div>
         <div>
-          <h3>Forge3D</h3>
-          <p>A fully local image-to-3D generation engine built around a GPU-aware pipeline. TRELLIS generates geometry, UltraShape refines it, and the system produces UVs, PBR textures and validated GLB assets.</p>
-          <div class="project-tags"><span>TRELLIS</span><span>UltraShape</span><span>FastAPI</span><span>React</span><span>Three.js</span><span>Local GPU</span></div>
-          <a class="inline-link" href="https://github.com/guell11/Forge3D" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">Open repository <span>↗</span></a>
+          <h3>VELUM-<br>Coder</h3>
+          <p>A coding-focused 9B model released for local inference, with GGUF quantizations ranging from Q8 to extreme low-bit builds. The release includes an importance-matrix workflow tuned on code and conversation data, plus a dedicated product landing page.</p>
+          <div class="project-tags"><span>9B</span><span>GGUF</span><span>llama.cpp</span><span>Imatrix</span><span>Local-first</span><span>MIT</span></div>
+          <a class="inline-link" href="https://huggingface.co/guell00/VELUM-Coder" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">Open model <span>↗</span></a>
+          <a class="inline-link" href="https://guell11.github.io/velum-ai/" target="_blank" rel="noreferrer" onclick="event.stopPropagation()" style="margin-left:18px">Open landing page <span>↗</span></a>
         </div>
       </div>
-      <div class="forge-visual">
-        <div class="wire-cube" aria-hidden="true">
-          <div class="cube-points"></div><div class="cube-face f1"></div><div class="cube-face f2"></div><div class="cube-face f3"></div>
+      <div class="velum-visual" aria-hidden="true">
+        <div class="velum-terminal">
+          <div class="velum-terminal-head"><span>VELUM / LOCAL</span><span>CODE MODEL</span></div>
+          <div class="velum-terminal-body">
+            <b>9B</b>
+            <span>build · debug · refactor · ship</span>
+            <span>GGUF quantization / Q8 → IQ1</span>
+            <span>llama.cpp · Ollama · local APIs</span>
+          </div>
         </div>
       </div>
     </article>
 
     <div class="spotlight-grid">
+      <article class="spotlight reveal" data-project="Veil Agent" tabindex="0" role="button">
+        <div class="visual system-visual" aria-hidden="true">
+          <div class="system-diagram">
+            <div class="system-node">Model</div><div class="system-node strong">Policy</div><div class="system-node">Audit</div>
+            <div class="system-line"></div>
+            <div class="system-node">Browser</div><div class="system-node strong">Hyper-V VM</div><div class="system-node">Shell</div>
+          </div>
+        </div>
+        <div class="project-eyebrow"><span>Private Agent Runtime</span><span>002</span></div>
+        <h3>Veil Agent</h3>
+        <p>A privacy-first Windows runtime that separates model reasoning from host authority using Hyper-V isolation, deterministic policy, audited tools and VPN-gated networking.</p>
+      </article>
+
+      <article class="spotlight reveal" data-project="OmniClaw" tabindex="0" role="button">
+        <div class="visual code-proxy-visual" aria-hidden="true">
+          <div class="proxy-stack">
+            <div class="proxy-row"><span>Claude Code</span><b>→</b><span>Anthropic</span></div>
+            <div class="proxy-row"><span>Codex</span><b>→</b><span>Responses</span></div>
+            <div class="proxy-row"><span>OpenCode</span><b>→</b><span>OpenAI</span></div>
+          </div>
+        </div>
+        <div class="project-eyebrow"><span>Local API Compatibility</span><span>003</span></div>
+        <h3>OmniClaw</h3>
+        <p>A local bridge that exposes OpenAI Chat Completions, OpenAI Responses and Anthropic Messages over one AutoClaw-backed setup, with streaming, tools and client-specific integration helpers.</p>
+      </article>
+
+      <article class="spotlight third reveal" data-project="PKG_DoW" tabindex="0" role="button">
+        <div class="visual pkg-visual" aria-hidden="true">
+          <div class="pkg-shell"><div>PS4 Core</div><div>PS5 Core</div><div class="pkg-center">Vulkan / AutoBoost</div></div>
+        </div>
+        <div class="project-eyebrow"><span>Emulation Platform</span><span>004</span></div>
+        <h3>PKG_DoW</h3>
+        <p>A unified Windows launcher for compatible PS4/PS5 content with modular cores, PKG import, Vulkan tuning, hardware diagnostics and frame-time-focused AutoBoost policies.</p>
+      </article>
+
+      <article class="spotlight third reveal" data-project="Open DC" tabindex="0" role="button">
+        <div class="visual dc-visual" aria-hidden="true"><div class="dc-shell"><div class="dc-rail"></div><div class="dc-side"></div><div class="dc-chat"></div></div></div>
+        <div class="project-eyebrow"><span>Realtime Community Client</span><span>005</span></div>
+        <h3>Open DC</h3>
+        <p>An open-source realtime community app built with Flask, SQLite, Socket.IO and WebRTC, covering servers, DMs, forums, calls, screen sharing, bots and webhooks.</p>
+      </article>
+
       <article class="spotlight reveal" data-project="LeBRON" tabindex="0" role="button">
         <div class="visual latent-visual" aria-hidden="true">
           <div class="latent-ring r1"></div><div class="latent-ring r2"></div><div class="latent-ring r3"></div>
           <i class="latent-node n1"></i><i class="latent-node n2"></i><i class="latent-node n3"></i><i class="latent-node n4"></i>
         </div>
-        <div class="project-eyebrow"><span>AI Research Runtime</span><span>002</span></div>
+        <div class="project-eyebrow"><span>AI Research Runtime</span><span>006</span></div>
         <h3>LeBRON</h3>
         <p>Recurrent latent computation for frozen decoder models through a structured J-Space adapter, competing branches, verification and adaptive halting.</p>
       </article>
 
       <article class="spotlight reveal" data-project="Projeto Lunar" tabindex="0" role="button">
         <div class="visual lunar-visual" aria-hidden="true">
-          <div class="lunar-core">LUNAR</div>
-          <i class="lunar-branch b1"></i><i class="lunar-branch b2"></i><i class="lunar-branch b3"></i><i class="lunar-branch b4"></i>
-          <i class="lunar-dot d1"></i><i class="lunar-dot d2"></i><i class="lunar-dot d3"></i><i class="lunar-dot d4"></i>
+          <svg class="lunar-svg" viewBox="0 0 520 230" role="presentation">
+            <ellipse class="orbit" cx="260" cy="115" rx="170" ry="72"/>
+            <ellipse class="orbit-dash" cx="260" cy="115" rx="126" ry="100" transform="rotate(-13 260 115)"/>
+            <path class="link" d="M260 115 C215 74 174 66 130 77"/>
+            <path class="link hot" d="M260 115 C305 73 350 64 394 78"/>
+            <path class="link hot" d="M260 115 C220 151 178 163 133 151"/>
+            <path class="link" d="M260 115 C304 151 350 164 395 149"/>
+            <rect class="node" x="105" y="58" width="50" height="38" rx="13"/>
+            <rect class="node" x="369" y="59" width="50" height="38" rx="13"/>
+            <rect class="node" x="108" y="132" width="50" height="38" rx="13"/>
+            <rect class="node" x="370" y="130" width="50" height="38" rx="13"/>
+            <rect class="node-core" x="218" y="76" width="84" height="78" rx="24"/>
+            <circle class="pulse" cx="130" cy="77" r="3.2"/>
+            <circle class="pulse" cx="394" cy="78" r="3.2" style="animation-delay:.5s"/>
+            <circle class="pulse" cx="133" cy="151" r="3.2" style="animation-delay:1s"/>
+            <circle class="pulse" cx="395" cy="149" r="3.2" style="animation-delay:1.4s"/>
+            <text x="260" y="113" text-anchor="middle">LUNAR</text>
+            <text class="micro" x="260" y="128" text-anchor="middle">EDU AI</text>
+            <text class="micro" x="130" y="81" text-anchor="middle">STUDENT</text>
+            <text class="micro" x="394" y="82" text-anchor="middle">TEACHER</text>
+            <text class="micro" x="133" y="155" text-anchor="middle">FAMILY</text>
+            <text class="micro" x="395" y="153" text-anchor="middle">SCHOOL</text>
+          </svg>
         </div>
-        <div class="project-eyebrow"><span>AI Education Ecosystem</span><span>003</span></div>
+        <div class="project-eyebrow"><span>AI Education Ecosystem</span><span>007</span></div>
         <h3>Projeto Lunar</h3>
         <p>An AI-powered educational ecosystem connecting students, teachers and families through intelligent tools, dashboards, media, gamification and school workflows.</p>
       </article>
@@ -740,7 +865,7 @@ footer{border-top:1px solid var(--line);padding:45px 0 60px}
         <div class="visual lyra-visual" aria-hidden="true">
           <i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i><i class="wavebar"></i>
         </div>
-        <div class="project-eyebrow"><span>Creative AI</span><span>004</span></div>
+        <div class="project-eyebrow"><span>Creative AI</span><span>008</span></div>
         <h3>Lyra Engine</h3>
         <p>Local AI music generation, songwriting assistance and GPU-aware model orchestration in one workstation-first environment.</p>
       </article>
@@ -752,7 +877,7 @@ footer{border-top:1px solid var(--line);padding:45px 0 60px}
             <div class="browser-page"><div class="browser-side"></div><div class="browser-body"><div class="browser-line"></div><div class="browser-line"></div><div class="browser-line"></div></div></div>
           </div>
         </div>
-        <div class="project-eyebrow"><span>Desktop Software</span><span>005</span></div>
+        <div class="project-eyebrow"><span>Desktop Software</span><span>009</span></div>
         <h3>AGNER Browser</h3>
         <p>A modular desktop browser around QtWebEngine with isolated profiles, persistent sessions, local data and custom browser UX.</p>
       </article>
@@ -762,7 +887,7 @@ footer{border-top:1px solid var(--line);padding:45px 0 60px}
           <i class="rag-node a"></i><i class="rag-node b"></i><i class="rag-node c"></i><i class="rag-node d"></i>
           <i class="rag-line l1"></i><i class="rag-line l2"></i><i class="rag-line l3"></i>
         </div>
-        <div class="project-eyebrow"><span>Retrieval-Augmented AI</span><span>006</span></div>
+        <div class="project-eyebrow"><span>Retrieval-Augmented AI</span><span>010</span></div>
         <h3>IA RAG Nexa</h3>
         <p>A local knowledge assistant combining semantic retrieval, BM25/FTS, rank fusion and traceable source references.</p>
       </article>
@@ -798,12 +923,14 @@ footer{border-top:1px solid var(--line);padding:45px 0 60px}
       <p class="section-note">The portfolio intentionally crosses research and product engineering. Understanding the model matters. Understanding the runtime, interface and constraints around it matters too.</p>
     </div>
     <div class="area-list">
-      <div class="area-row reveal"><span class="area-num">01</span><h3>Latent Reasoning</h3><p>Structured internal representations, recurrent depth, adaptive compute and experiments that modify how models deliberate before decoding.</p></div>
-      <div class="area-row reveal"><span class="area-num">02</span><h3>Language Models</h3><p>Fine-tuning, coding models, evaluation, quantization, multimodal behavior and practical inference workflows.</p></div>
-      <div class="area-row reveal"><span class="area-num">03</span><h3>Local AI Systems</h3><p>GPU-aware applications that keep inference and user data on the workstation, with explicit memory and runtime management.</p></div>
-      <div class="area-row reveal"><span class="area-num">04</span><h3>Retrieval & Knowledge</h3><p>RAG systems combining semantic search, lexical retrieval, reranking and traceable sources around local or hosted models.</p></div>
-      <div class="area-row reveal"><span class="area-num">05</span><h3>Multimodal & Generative</h3><p>Systems connecting language, vision, audio and 3D generation instead of treating each model as an isolated demo.</p></div>
-      <div class="area-row reveal"><span class="area-num">06</span><h3>Software Engineering</h3><p>Desktop tools, browsers, dashboards and end-to-end products built around real constraints rather than screenshots alone.</p></div>
+      <div class="area-row reveal"><span class="area-num">01</span><h3>Language Models</h3><p>Fine-tuning, coding models, evaluation, quantization, GGUF publishing and practical local inference workflows.</p></div>
+      <div class="area-row reveal"><span class="area-num">02</span><h3>Agent Infrastructure</h3><p>Sandboxed execution, capability-scoped tools, deterministic policy, audit trails and provider-agnostic orchestration around probabilistic models.</p></div>
+      <div class="area-row reveal"><span class="area-num">03</span><h3>Local AI Systems</h3><p>Applications and compatibility layers that keep inference, credentials and workflows close to the workstation.</p></div>
+      <div class="area-row reveal"><span class="area-num">04</span><h3>Latent Reasoning</h3><p>Structured internal representations, recurrent depth, adaptive compute and experiments that modify how models deliberate before decoding.</p></div>
+      <div class="area-row reveal"><span class="area-num">05</span><h3>Realtime & Networked Apps</h3><p>Socket.IO, WebRTC, browser media, local APIs and desktop/web systems with live state and multi-user interaction.</p></div>
+      <div class="area-row reveal"><span class="area-num">06</span><h3>Retrieval & Knowledge</h3><p>RAG systems combining semantic search, lexical retrieval, reranking and traceable sources around local or hosted models.</p></div>
+      <div class="area-row reveal"><span class="area-num">07</span><h3>Multimodal & Generative</h3><p>Systems connecting language, vision, audio and 3D generation instead of treating each model as an isolated demo.</p></div>
+      <div class="area-row reveal"><span class="area-num">08</span><h3>Software Engineering</h3><p>Desktop tools, browsers, emulation frontends, dashboards and end-to-end products built around real runtime constraints.</p></div>
     </div>
   </div>
 </section>
@@ -861,9 +988,15 @@ footer{border-top:1px solid var(--line);padding:45px 0 60px}
       <div class="stack-word">Three.js</div>
       <div class="stack-word">SQLite</div>
       <div class="stack-word">Qt / PyQt6</div>
+      <div class="stack-word">Node.js</div>
+      <div class="stack-word">WebRTC</div>
+      <div class="stack-word">Vulkan</div>
+      <div class="stack-word">Hyper-V</div>
       <div class="stack-word wide">Local inference</div>
+      <div class="stack-word small">Agents · Policy · Sandboxing</div>
+      <div class="stack-word small">OpenAI · Anthropic compatibility</div>
       <div class="stack-word small">RAG · BM25 · Vector Search</div>
-      <div class="stack-word small">Quantization · NF4 · llama.cpp</div>
+      <div class="stack-word small">Quantization · GGUF · llama.cpp</div>
     </div>
   </div>
 </section>
@@ -876,7 +1009,7 @@ footer{border-top:1px solid var(--line);padding:45px 0 60px}
         <h2 class="section-title">Miguel Penha<br>Reis</h2>
       </div>
       <div class="about-text">
-        <p>I'm an <strong>AI Engineer and researcher</strong> working across large language models, latent reasoning, model fine-tuning, multimodal AI and software systems.</p>
+        <p>I'm an <strong>AI Engineer and researcher</strong> working across coding language models, latent reasoning, local AI, agent infrastructure, multimodal systems and end-to-end software.</p>
         <p>I build both the models and the systems around them, moving between research experiments and practical engineering.</p>
         <p>My work explores what happens inside intelligent systems, how their internal representations can be structured, and how those ideas can become useful tools in the real world.</p>
 
@@ -897,6 +1030,10 @@ footer{border-top:1px solid var(--line);padding:45px 0 60px}
     <div>
       <div class="footer-title">Miguel Penha Reis</div>
       <div class="footer-sub">AI Engineer · Researcher · Builder</div>
+      <a class="footer-download" href="Miguel_Penha_Reis_Portfolio.pdf" download aria-label="Baixar portfólio em PDF">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0 3-3m-3 3L5 7M3 12.5h10"/></svg>
+        Baixar portfólio em PDF
+      </a>
     </div>
     <div class="footer-links"><a href="#top">Top ↑</a><a href="https://github.com/guell11" target="_blank">GitHub</a><a href="https://huggingface.co/guell00" target="_blank">Hugging Face</a></div>
   </div>
@@ -921,7 +1058,8 @@ footer{border-top:1px solid var(--line);padding:45px 0 60px}
           <div class="meta-row"><span>Focus</span><strong id="modalFocus"></strong></div>
           <div class="meta-row"><span>Runtime</span><strong id="modalRuntime"></strong></div>
         </div>
-        <a class="modal-btn" id="modalLink" href="#" target="_blank" rel="noreferrer">Open repository <span>↗</span></a>
+        <a class="modal-btn" id="modalLink" href="#" target="_blank" rel="noreferrer">Open project <span>↗</span></a>
+        <a class="modal-btn" id="modalSecondaryLink" href="#" target="_blank" rel="noreferrer" style="display:none;margin-top:9px;background:#141416;color:#d8d8dc;border:1px solid var(--line)">Open secondary link <span>↗</span></a>
       </aside>
     </div>
   </article>
@@ -929,6 +1067,36 @@ footer{border-top:1px solid var(--line);padding:45px 0 60px}
 
 <script>
 const projects = [
+  {
+    name:"VELUM-Coder", category:"Local Coding Model",
+    overview:"A coding-focused 9B fine-tune released for local inference with a broad GGUF quantization set, from Q8_0 through highly compressed experimental builds. The release also includes an importance matrix generated from domain-specific code and conversation samples.",
+    features:["Publishes GGUF builds for llama.cpp, Ollama and other local runtimes.","Uses a shared domain-specific importance matrix for Q4/Q3/Q2/IQ1 quantization families while keeping Q8_0 as the high-quality reference.","Ships with a dedicated VELUM landing page focused on local software-development workflows."],
+    stack:["9B","GGUF","llama.cpp","Imatrix","LoRA","Local inference"],type:"Coding language model",focus:"Local software development",runtime:"Local inference",url:"https://huggingface.co/guell00/VELUM-Coder",secondaryUrl:"https://guell11.github.io/velum-ai/",secondaryLabel:"Open landing page"
+  },
+  {
+    name:"Veil Agent", category:"Private Agent Runtime",
+    overview:"An open-source Windows platform for running local or remote AI agents inside an isolated, disposable environment. Veil keeps model reasoning separate from host authority through deterministic policy, capability-scoped tools, auditing and Hyper-V guest execution.",
+    features:["Runs agent browser and shell capabilities inside a Hyper-V guest instead of the host OS.","Uses a policy engine with ALLOW, DENY and REQUIRE_APPROVAL decisions before privileged actions execute.","Designs networking around VPN-only egress, privacy browsers and fail-closed checks, with bounded multi-agent orchestration."],
+    stack:["Python","PyQt6","Hyper-V","Windows Firewall / WFP","Mullvad / Tor","SQLite"],type:"Agent infrastructure",focus:"Isolation, privacy and policy",runtime:"Windows / Hyper-V",url:"https://github.com/guell11/Veil-Agent"
+  },
+  {
+    name:"OmniClaw", category:"Local API Compatibility",
+    overview:"A Node.js local proxy that turns AutoClaw / GLM into a backend for Claude Code, Codex, OpenCode and OpenAI-compatible clients through multiple API dialects from one local setup.",
+    features:["Exposes OpenAI Chat Completions, OpenAI Responses and Anthropic Messages compatibility layers.","Supports streaming, tool calls, runtime model routing and long-conversation compaction helpers.","Includes a browser console plus integration flows for Claude Code, Codex and OpenCode while binding to localhost by default."],
+    stack:["Node.js","OpenAI APIs","Anthropic Messages","Streaming","Tool Calls","Local-first"],type:"LLM compatibility proxy",focus:"Coding-agent interoperability",runtime:"Local Node.js service",url:"https://github.com/guell11/OmniClaw-GLM-Proxy-for-Claude-Code-Codex-OpenCode"
+  },
+  {
+    name:"PKG_DoW", category:"Emulation Platform",
+    overview:"A Windows PS4/PS5 emulation platform centered on a unified game library, PKG import, modular cores, hardware diagnostics and Vulkan-focused runtime policies.",
+    features:["Detects compatible content and routes it to independent PS4 or PS5 cores from one launcher.","Includes AutoBoost policies for pipeline compilation, descriptor reuse, uploads, synchronization and VRAM-aware behavior.","Keeps cores modular and provides hardware/Vulkan diagnostics instead of forcing manual environment setup."],
+    stack:["Windows","Vulkan","PS4 / PS5 cores","Hardware diagnostics","Pipeline cache","Desktop UX"],type:"Desktop emulation launcher",focus:"Unified UX and frame-time consistency",runtime:"Windows",url:"https://github.com/guell11/PKG_DoW"
+  },
+  {
+    name:"Open DC", category:"Realtime Community Client",
+    overview:"An open-source realtime community client with a custom desktop-style UI, persistent accounts, servers, direct messages, rich chat, voice/video calls, screen sharing, forums, bots and webhooks.",
+    features:["Uses Flask-SocketIO for realtime chat, presence, typing and WebRTC signaling.","Implements browser-based microphone, camera and screen sharing with peer-to-peer WebRTC calls.","Includes server administration, invitations, roles, group DMs, forums, OpenBot and webhook integrations."],
+    stack:["Python","Flask","SQLite","Flask-SocketIO","WebRTC","JavaScript"],type:"Realtime communication app",focus:"Community messaging and calls",runtime:"Web / local server",url:"https://github.com/guell11/OPEN-DC"
+  },
   {
     name:"Forge3D", category:"Local Generative AI",
     overview:"A fully local browser-based 3D generation engine that turns a reference image into a refined, textured GLB asset while keeping the full generation workflow on the user's machine.",
@@ -1021,7 +1189,7 @@ const projects = [
   }
 ];
 
-const highlighted = new Set(["Forge3D","LeBRON","Projeto Lunar","Lyra Engine","AGNER Browser","IA RAG Nexa","Nexora-Qwen-Coder-4B","Nexora-Gemma-4-E4B-Coder"]);
+const highlighted = new Set(["VELUM-Coder","Veil Agent","OmniClaw","PKG_DoW","Open DC","LeBRON","Projeto Lunar","Lyra Engine","AGNER Browser","IA RAG Nexa","Nexora-Qwen-Coder-4B","Nexora-Gemma-4-E4B-Coder"]);
 const archiveProjects = projects.filter(p => !highlighted.has(p.name));
 
 const projectIndex = document.getElementById("projectIndex");
@@ -1031,7 +1199,7 @@ archiveProjects.forEach((p,i)=>{
   row.tabIndex=0;
   row.dataset.project=p.name;
   row.innerHTML=`
-    <span class="idx">${String(i+9).padStart(2,"0")}</span>
+    <span class="idx">${String(i+13).padStart(2,"0")}</span>
     <h4>${escapeHTML(p.name)}</h4>
     <span class="cat">${escapeHTML(p.category)}</span>
     <span class="status">Explore</span>
@@ -1059,6 +1227,15 @@ function openProject(name){
   document.getElementById("modalFocus").textContent=p.focus;
   document.getElementById("modalRuntime").textContent=p.runtime;
   document.getElementById("modalLink").href=p.url;
+  const secondary=document.getElementById("modalSecondaryLink");
+  if(p.secondaryUrl){
+    secondary.href=p.secondaryUrl;
+    secondary.innerHTML=`${escapeHTML(p.secondaryLabel||"Open secondary link")} <span>↗</span>`;
+    secondary.style.display="flex";
+  }else{
+    secondary.style.display="none";
+    secondary.href="#";
+  }
   modal.classList.add("open");
   modal.setAttribute("aria-hidden","false");
   document.body.classList.add("modal-open");
